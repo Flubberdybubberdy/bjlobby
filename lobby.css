@@ -1,3 +1,52 @@
+/* =====================================================
+   BLACKJACK TOURNAMENT LOBBY — GOLD STANDARD CSS
+   ===================================================== */
+
+:root {
+  --bg-main: #0b1020;
+  --bg-header: #12182b;
+  --bg-card: #1a2138;
+  --bg-card-muted: #141a2e;
+
+  --text-primary: #f4f6ff;
+  --text-secondary: #a7b0d9;
+  --text-muted: #7c86b8;
+
+  --accent-yellow: #f5c542;
+  --accent-red: #e54848;
+  --accent-green: #43ff99;
+  --accent-purple: #6e5bff;
+  --accent-grey: #6b7280;
+  --accent-pink: #ec6aa0;
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+
+  --shadow-deep: 0 18px 45px rgba(0, 0, 0, 0.65);
+}
+
+/* ===================== RESET ===================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #1b2340, #0b1020 60%);
+  color: var(--text-primary);
+}
+
+/* ===================== TOP BAR ===================== */
+
+.topbar {
+  height: 56px;
+  display: flex;
+  align-items: cent
 
 
 
