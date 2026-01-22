@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  <!-- TOP NAV -->
+  <!-- TOP NAV (dark style retained) -->
   <header class="topbar">
-    <button class="btn btn-danger btn-sm" type="button">Logout</button>
+    <button class="btn btn-danger btn-sm btn-uppercase" type="button">LOGOUT</button>
 
     <div class="topbar__announce">
-      ⚽🏀🎾 LIVE SPORTS BETTING TOURNAMENTS
+      ⚽🏀🎾 <span>LIVE SPORTS BETTING TOURNAMENTS</span>
     </div>
 
     <div class="topbar__right">
@@ -22,35 +22,43 @@
   </header>
 
   <main class="wrap">
-    <!-- PAGE HEADER -->
+
+    <!-- HERO (format like screenshot 2, style like screenshot 1) -->
     <section class="hero">
       <h1 class="brand">
         <span class="brand__white">Sports</span>
         <span class="brand__accent">Betting</span>
       </h1>
-      <div class="hero__subtitle">Tournament Lobby</div>
 
-      <nav class="tabs">
-        <button class="tab is-active">ALL EVENTS</button>
-        <button class="tab">LIVE</button>
-        <button class="tab">UPCOMING</button>
+      <div class="hero__subtitle">Tournament Lobby</div>
+      <!-- Balance line removed (as requested) -->
+
+      <!-- Optional system message bar (format from screenshot 2) -->
+      <div class="system-message" role="status" aria-label="System message">
+        A SAMPLE MESSAGE
+      </div>
+
+      <nav class="tabs" aria-label="Sports tournament filters">
+        <button class="tab is-active" type="button">ALL EVENTS</button>
+        <button class="tab" type="button">LIVE</button>
+        <button class="tab" type="button">UPCOMING</button>
       </nav>
     </section>
 
     <!-- SECTION HEADER -->
     <section class="section-head">
       <h2>Available Tournaments</h2>
-      <a class="howto" href="#">HOW IT WORKS →</a>
+      <a class="howto" href="#" aria-label="How it works">HOW IT WORKS →</a>
     </section>
 
-    <!-- TOURNAMENT LIST -->
-    <section class="cardlist">
+    <!-- TOURNAMENT LIST (dark cards retained, stacked like screenshot 2) -->
+    <section class="cardlist" aria-label="Tournament list">
 
-      <!-- LIVE TOURNAMENT -->
-      <article class="tcard is-live">
+      <!-- LIVE / ACTIVE -->
+      <article class="tcard is-live" aria-label="Weekend Football Challenge">
         <div class="tcard__head">
           <div class="tcard__title">
-            <span class="status-dot"></span>
+            <span class="status-dot" aria-hidden="true"></span>
             <span class="title">WEEKEND FOOTBALL CHALLENGE</span>
           </div>
           <span class="badge badge-live">LIVE</span>
@@ -85,16 +93,16 @@
         </div>
 
         <div class="tcard__actions">
-          <button class="btn btn-primary">Enter Tournament</button>
-          <button class="btn btn-secondary">Leaderboard</button>
+          <button class="btn btn-primary" type="button">Enter Tournament</button>
+          <button class="btn btn-secondary" type="button">Leaderboard</button>
         </div>
       </article>
 
-      <!-- UPCOMING TOURNAMENT -->
-      <article class="tcard is-upcoming">
+      <!-- UPCOMING -->
+      <article class="tcard is-upcoming" aria-label="Midweek Multi-Sport Cup">
         <div class="tcard__head">
           <div class="tcard__title">
-            <span class="status-dot"></span>
+            <span class="status-dot" aria-hidden="true"></span>
             <span class="title">MIDWEEK MULTI-SPORT CUP</span>
           </div>
           <span class="badge badge-upcoming">UPCOMING</span>
@@ -128,7 +136,7 @@
         </div>
 
         <div class="tcard__actions">
-          <div class="pill">
+          <div class="pill" role="status" aria-label="Starts in">
             <span class="pill__label">Starts in</span>
             <span class="pill__time">05:21:09</span>
           </div>
@@ -139,3 +147,4 @@
   </main>
 </body>
 </html>
+
