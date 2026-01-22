@@ -1,1 +1,146 @@
+/* =========================
+   TOKENS (MATCH LOBBY)
+   ========================= */
+:root.dark {
+  --bg-main: #0b1020;
+  --bg-gradient-top: #6b1d77;
+  --bg-gradient-bottom: #3a155f;
+
+  --card-bg: #1a2138;
+
+  --text-primary: #f4f6ff;
+  --text-muted: #a7b0d9;
+
+  --accent-purple: #6e5bff;
+  --accent-yellow: #f5c542;
+  --accent-orange: #ff7a1a;
+
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+}
+
+/* =========================
+   BASE
+   ========================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    var(--bg-gradient-top),
+    var(--bg-gradient-bottom)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+/* =========================
+   LAYOUT
+   ========================= */
+.loading-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-card {
+  width: 320px;
+  padding: 36px 24px;
+  text-align: center;
+  position: relative;
+}
+
+/* =========================
+   CARD BACK VISUAL
+   ========================= */
+.card-back {
+  width: 140px;
+  height: 190px;
+  margin: 0 auto 24px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suit {
+  font-size: 32px;
+  opacity: 0.25;
+}
+
+/* =========================
+   BRAND
+   ========================= */
+.brand {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.brand__black {
+  color: #000000;
+}
+
+.brand__accent {
+  color: var(--accent-orange);
+}
+
+/* =========================
+   PILL
+   ========================= */
+.pill {
+  display: inline-block;
+  margin: 16px auto 26px;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  color: #6e5bff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* =========================
+   PROGRESS BAR
+   ========================= */
+.progress {
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.25);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #f5c542,
+    #ffb000
+  );
+  box-shadow: 0 0 12px rgba(245,197,66,0.8);
+  transition: width 300ms ease;
+}
+
+/* =========================
+   PERCENT
+   ========================= */
+.percent {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
 
