@@ -8,12 +8,12 @@
 </head>
 
 <body>
-  <!-- TOP NAV (dark style retained) -->
+  <!-- TOP NAV -->
   <header class="topbar">
-    <button class="btn btn-danger btn-sm btn-uppercase" type="button">LOGOUT</button>
+    <button class="btn btn-danger btn-sm btn-uppercase">LOGOUT</button>
 
     <div class="topbar__announce">
-      ⚽🏀🎾 <span>LIVE SPORTS BETTING TOURNAMENTS</span>
+      ⚽🏀🎾 <strong>LIVE SPORTS BETTING TOURNAMENTS</strong>
     </div>
 
     <div class="topbar__right">
@@ -23,7 +23,7 @@
 
   <main class="wrap">
 
-    <!-- HERO (format like screenshot 2, style like screenshot 1) -->
+    <!-- HERO -->
     <section class="hero">
       <h1 class="brand">
         <span class="brand__white">Sports</span>
@@ -31,115 +31,108 @@
       </h1>
 
       <div class="hero__subtitle">Tournament Lobby</div>
-      <!-- Balance line removed (as requested) -->
 
-      <!-- Optional system message bar (format from screenshot 2) -->
-      <div class="system-message" role="status" aria-label="System message">
+      <!-- SYSTEM MESSAGE -->
+      <div class="system-message">
         A SAMPLE MESSAGE
       </div>
 
-      <nav class="tabs" aria-label="Sports tournament filters">
-        <button class="tab is-active" type="button">ALL EVENTS</button>
-        <button class="tab" type="button">LIVE</button>
-        <button class="tab" type="button">UPCOMING</button>
+      <nav class="tabs">
+        <button class="tab is-active">ALL EVENTS</button>
+        <button class="tab">LIVE</button>
+        <button class="tab">UPCOMING</button>
       </nav>
     </section>
 
     <!-- SECTION HEADER -->
     <section class="section-head">
       <h2>Available Tournaments</h2>
-      <a class="howto" href="#" aria-label="How it works">HOW IT WORKS →</a>
+      <a class="howto" href="#">HOW IT WORKS →</a>
     </section>
 
-    <!-- TOURNAMENT LIST (dark cards retained, stacked like screenshot 2) -->
-    <section class="cardlist" aria-label="Tournament list">
+    <!-- TOURNAMENT LIST -->
+    <section class="cardlist">
 
-      <!-- LIVE / ACTIVE -->
-      <article class="tcard is-live" aria-label="Weekend Football Challenge">
+      <!-- LIVE TOURNAMENT -->
+      <article class="tcard is-live">
         <div class="tcard__head">
           <div class="tcard__title">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="title">WEEKEND FOOTBALL CHALLENGE</span>
+            <span class="status-dot"></span>
+            <span class="title">Simple Sports Test</span>
           </div>
-          <span class="badge badge-live">LIVE</span>
         </div>
 
-        <div class="tcard__grid">
+        <!-- MATCH FORMAT (EXACT) -->
+        <div class="tcard__grid tcard__grid--match">
           <div class="kv">
-            <div class="k">SPORTS</div>
+            <div class="k">START</div>
             <div class="v">
-              Premier League<br />
-              La Liga<br />
-              Serie A
+              01/15/2026<br />
+              11:00 am
             </div>
           </div>
 
           <div class="kv">
-            <div class="k">MARKETS</div>
+            <div class="k">END</div>
             <div class="v">
-              Match Result<br />
-              Over / Under<br />
-              BTTS
+              01/22/2026<br />
+              11:00 am
             </div>
           </div>
 
           <div class="kv">
-            <div class="k">BANK</div>
+            <div class="k">ENTRY</div>
             <div class="v">
-              Starting Bank<br />
-              <span class="num">1000.00</span>
+              Starting Balance<br />
+              <span class="num">1,000.00</span>
             </div>
           </div>
         </div>
 
         <div class="tcard__actions">
-          <button class="btn btn-primary" type="button">Enter Tournament</button>
-          <button class="btn btn-secondary" type="button">Leaderboard</button>
+          <button class="btn btn-primary-alt">View</button>
+          <button class="btn btn-secondary">Leaderboard</button>
         </div>
       </article>
 
-      <!-- UPCOMING -->
-      <article class="tcard is-upcoming" aria-label="Midweek Multi-Sport Cup">
+      <!-- SECOND TOURNAMENT -->
+      <article class="tcard is-upcoming">
         <div class="tcard__head">
           <div class="tcard__title">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="title">MIDWEEK MULTI-SPORT CUP</span>
+            <span class="status-dot"></span>
+            <span class="title">Simple Sports Test</span>
           </div>
-          <span class="badge badge-upcoming">UPCOMING</span>
         </div>
 
-        <div class="tcard__grid">
+        <div class="tcard__grid tcard__grid--match">
           <div class="kv">
-            <div class="k">SPORTS</div>
+            <div class="k">START</div>
             <div class="v">
-              NBA<br />
-              NHL<br />
-              ATP Tennis
+              01/05/2026<br />
+              10:15 am
             </div>
           </div>
 
           <div class="kv">
-            <div class="k">FORMAT</div>
+            <div class="k">END</div>
             <div class="v">
-              Fixed Bank<br />
-              Limited Entries
+              01/12/2026<br />
+              10:15 am
             </div>
           </div>
 
           <div class="kv">
-            <div class="k">BANK</div>
+            <div class="k">ENTRY</div>
             <div class="v">
-              Starting Bank<br />
-              <span class="num">750.00</span>
+              Starting Balance<br />
+              <span class="num">1,000.00</span>
             </div>
           </div>
         </div>
 
         <div class="tcard__actions">
-          <div class="pill" role="status" aria-label="Starts in">
-            <span class="pill__label">Starts in</span>
-            <span class="pill__time">05:21:09</span>
-          </div>
+          <button class="btn btn-primary-alt">View</button>
+          <button class="btn btn-secondary">Leaderboard</button>
         </div>
       </article>
 
@@ -147,5 +140,6 @@
   </main>
 </body>
 </html>
+
 
 
