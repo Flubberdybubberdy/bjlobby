@@ -229,5 +229,74 @@ html, body {
 
 .status-dot.live { background: var(--accent-green); }
 .status-dot.upcoming { background: var(--accent-yellow); }
-.status-dot.finished
+.status-dot.finished { background: var(--accent-grey); }
+
+.title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* =========================
+   BADGES
+   ========================= */
+.badge {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.badge-live { background: var(--accent-red); }
+.badge-upcoming { background: var(--accent-purple); }
+.badge-finished { background: var(--accent-grey); }
+
+/* =========================
+   MATCH FORMAT GRID
+   ========================= */
+.tcard__grid--match {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.k {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.15px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.v {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.num {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* =========================
+   ACTIONS
+   ========================= */
+.tcard__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+  .tcard__grid--match {
+    grid-template-columns: 1fr;
+  }
+
+  .tcard__actions {
+    flex-direction: column;
+  }
+}
+
 
