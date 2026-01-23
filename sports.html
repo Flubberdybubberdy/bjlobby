@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <title>Sports Betting — Tournament Lobby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="sports.css" />
+  <link rel="stylesheet" href="lobby.css" />
 </head>
 
 <body class="dark">
 
-  <!-- TOP NAV -->
+  <!-- TOP NAV (UNCHANGED STRUCTURE) -->
   <header class="topbar">
     <div class="topbar-left">
       <button class="logout">LOGOUT</button>
@@ -17,22 +17,23 @@
 
     <div class="topbar-center">
       <a href="index.html" class="topbar-link">
+
+        <!-- SVG CARDS (NEW, SAFE) -->
         <span class="card-icons" aria-hidden="true">
-          <!-- CARD 1 -->
           <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8"/>
+            <rect x="4" y="4" width="56" height="80" rx="8" />
             <text x="12" y="22">A</text>
             <text x="44" y="74" transform="rotate(180 44 74)">A</text>
           </svg>
 
-          <!-- CARD 2 -->
           <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8"/>
+            <rect x="4" y="4" width="56" height="80" rx="8" />
             <text x="12" y="22">K</text>
             <text x="44" y="74" transform="rotate(180 44 74)">K</text>
           </svg>
         </span>
 
+        <!-- MESSAGE (SAME POSITION AS BEFORE) -->
         <span class="topbar-text">
           BLACKJACK TOURNAMENTS
         </span>
@@ -44,24 +45,34 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (UNCHANGED) -->
   <main class="hero">
     <h1 class="title">
       <span class="white">Sports</span>
       <span class="orange">Betting</span>
     </h1>
     <p class="subtitle">Tournament Lobby</p>
+
+    <div class="message-bar">
+      A SAMPLE MESSAGE
+    </div>
+
+    <nav class="tabs">
+      <span class="active">ALL EVENTS</span>
+      <span>LIVE</span>
+      <span>UPCOMING</span>
+      <span>FINISHED</span>
+    </nav>
   </main>
 
-  <!-- CONTENT PLACEHOLDER -->
+  <!-- CONTENT -->
   <section class="content">
     <h2 class="section-title">Available Tournaments</h2>
+    <!-- cards remain exactly as before -->
   </section>
 
 </body>
 </html>
-
-
 
 
 
