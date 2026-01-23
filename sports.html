@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <title>Sports Betting — Tournament Lobby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="lobby.css" />
+  <!-- IMPORTANT: this must be sports.css (not lobby.css) -->
+  <link rel="stylesheet" href="sports.css" />
 </head>
 
 <body class="dark">
@@ -12,23 +13,24 @@
   <!-- TOP NAV -->
   <header class="topbar">
     <div class="topbar-left">
-      <button class="logout">LOGOUT</button>
+      <button class="logout" type="button">LOGOUT</button>
     </div>
 
     <div class="topbar-center">
       <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
         <span class="card-icons" aria-hidden="true">
-          <!-- CARD 1 -->
-          <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8" />
-            <text x="12" y="22">A</text>
-            <text x="44" y="74" transform="rotate(180 44 74)">A</text>
+          <!-- SVG CARD 1 -->
+          <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-hidden="true">
+            <rect x="4" y="4" width="56" height="80" rx="8" fill="none" stroke="currentColor" stroke-width="4"></rect>
+            <text x="12" y="22" fill="currentColor" font-size="18" font-weight="900" font-family="inherit">A</text>
+            <text x="44" y="74" transform="rotate(180 44 74)" fill="currentColor" font-size="18" font-weight="900" font-family="inherit">A</text>
           </svg>
-          <!-- CARD 2 -->
-          <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8" />
-            <text x="12" y="22">K</text>
-            <text x="44" y="74" transform="rotate(180 44 74)">K</text>
+
+          <!-- SVG CARD 2 -->
+          <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-hidden="true">
+            <rect x="4" y="4" width="56" height="80" rx="8" fill="none" stroke="currentColor" stroke-width="4"></rect>
+            <text x="12" y="22" fill="currentColor" font-size="18" font-weight="900" font-family="inherit">K</text>
+            <text x="44" y="74" transform="rotate(180 44 74)" fill="currentColor" font-size="18" font-weight="900" font-family="inherit">K</text>
           </svg>
         </span>
 
@@ -176,5 +178,7 @@
 
 </body>
 </html>
+
+
 
 
