@@ -4,68 +4,100 @@
   <meta charset="UTF-8" />
   <title>Blackjack — Tournament Lobby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared tokens -->
+  <link rel="stylesheet" href="design-tokens.css" />
+
+  <!-- Blackjack layout -->
   <link rel="stylesheet" href="lobby.css" />
 </head>
 
 <body>
 
-<header class="topbar">
-  <button class="logout">LOGOUT</button>
-  <div class="topbar-title">🂡 🂱 BLACKJACK TOURNAMENTS</div>
-  <div class="topbar-right">Dark</div>
-</header>
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
 
-<main class="wrap">
+    <!-- LEFT -->
+    <div class="topbar__left">
+      <button class="logout">LOGOUT</button>
+    </div>
 
-  <h1>Blackjack</h1>
-  <div class="subtitle">Tournament Lobby</div>
+    <!-- CENTER (MIRROR NAV TO SPORTS) -->
+    <div class="topbar__center">
+      <a href="sports.html" class="topbar-link">
+        ⚽ 🏀 🎾 LIVE SPORTS BETTING TOURNAMENTS
+      </a>
+    </div>
 
-  <div class="tabs">
-    <button class="tab active">ALL TOURNAMENTS</button>
-    <button class="tab">NO LIMIT</button>
-    <button class="tab">LIMITED HANDS</button>
-  </div>
+    <!-- RIGHT -->
+    <div class="topbar__right">
+      Dark
+    </div>
 
-  <div class="section-head">
-    <h2>Available Tournaments</h2>
-    <a href="#" class="howto">HOW TO PLAY →</a>
-  </div>
+  </header>
 
-  <section class="card-list">
+  <!-- ===================== MAIN ===================== -->
+  <main class="wrap">
 
-    <article class="card live">
-      <div class="card-head">
-        <div class="card-title">
-          <span class="status-dot live"></span>
-          Thursday Thunder
+    <h1>Blackjack</h1>
+    <div class="subtitle">Tournament Lobby</div>
+
+    <!-- FILTER TABS -->
+    <div class="tabs">
+      <button class="tab active">ALL TOURNAMENTS</button>
+      <button class="tab">NO LIMIT</button>
+      <button class="tab">LIMITED HANDS</button>
+    </div>
+
+    <!-- SECTION HEADER -->
+    <div class="section-head">
+      <h2>Available Tournaments</h2>
+      <a href="#" class="howto">HOW TO PLAY →</a>
+    </div>
+
+    <!-- TOURNAMENT LIST -->
+    <section class="card-list">
+
+      <!-- LIVE -->
+      <article class="card live">
+        <div class="card-head">
+          <div class="card-title">
+            <span class="status-dot live"></span>
+            Thursday Thunder
+          </div>
+          <span class="badge live">LIVE</span>
         </div>
-        <span class="badge live">LIVE</span>
-      </div>
 
-      <div class="card-grid">
-        <div>
-          <div class="label">START</div>
-          <div class="value">Thu Jan 22<br>12:00 AM</div>
+        <div class="card-grid">
+          <div>
+            <div class="label">START</div>
+            <div class="value">Thu Jan 22<br>12:00 AM</div>
+          </div>
+
+          <div>
+            <div class="label">END</div>
+            <div class="value">Fri Jan 23<br>12:00 AM</div>
+          </div>
+
+          <div>
+            <div class="label">ENTRY</div>
+            <div class="value">
+              Starting Balance<br>
+              <strong>1000.00</strong>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="label">END</div>
-          <div class="value">Fri Jan 23<br>12:00 AM</div>
+
+        <div class="card-actions">
+          <button class="btn btn-primary">CONTINUE</button>
+          <button class="btn btn-secondary">LEADERBOARD</button>
         </div>
-        <div>
-          <div class="label">ENTRY</div>
-          <div class="value">Starting Balance<br><strong>1000.00</strong></div>
-        </div>
-      </div>
+      </article>
 
-      <div class="card-actions">
-        <button class="btn btn-primary">CONTINUE</button>
-        <button class="btn btn-secondary">LEADERBOARD</button>
-      </div>
-    </article>
+    </section>
 
-  </section>
+  </main>
 
-</main>
 </body>
 </html>
 
