@@ -9,23 +9,22 @@
 
 <body class="dark">
 
-  <!-- TOP NAV (UNCHANGED STRUCTURE) -->
+  <!-- TOP NAV -->
   <header class="topbar">
     <div class="topbar-left">
       <button class="logout">LOGOUT</button>
     </div>
 
     <div class="topbar-center">
-      <a href="index.html" class="topbar-link">
-
-        <!-- SVG CARDS (NEW, SAFE) -->
+      <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
         <span class="card-icons" aria-hidden="true">
+          <!-- CARD 1 -->
           <svg class="card-icon" viewBox="0 0 64 88">
             <rect x="4" y="4" width="56" height="80" rx="8" />
             <text x="12" y="22">A</text>
             <text x="44" y="74" transform="rotate(180 44 74)">A</text>
           </svg>
-
+          <!-- CARD 2 -->
           <svg class="card-icon" viewBox="0 0 64 88">
             <rect x="4" y="4" width="56" height="80" rx="8" />
             <text x="12" y="22">K</text>
@@ -33,10 +32,7 @@
           </svg>
         </span>
 
-        <!-- MESSAGE (SAME POSITION AS BEFORE) -->
-        <span class="topbar-text">
-          BLACKJACK TOURNAMENTS
-        </span>
+        <span class="topbar-text">BLACKJACK TOURNAMENTS</span>
       </a>
     </div>
 
@@ -45,34 +41,140 @@
     </div>
   </header>
 
-  <!-- HERO (UNCHANGED) -->
+  <!-- HERO -->
   <main class="hero">
     <h1 class="title">
-      <span class="white">Sports</span>
-      <span class="orange">Betting</span>
+      <span class="white">Sports</span><span class="orange">Betting</span>
     </h1>
     <p class="subtitle">Tournament Lobby</p>
 
-    <div class="message-bar">
-      A SAMPLE MESSAGE
-    </div>
+    <div class="message-bar">A SAMPLE MESSAGE</div>
 
-    <nav class="tabs">
-      <span class="active">ALL EVENTS</span>
-      <span>LIVE</span>
-      <span>UPCOMING</span>
-      <span>FINISHED</span>
+    <nav class="tabs" aria-label="Sports lobby filters">
+      <button class="tab active" type="button">ALL EVENTS</button>
+      <button class="tab" type="button">LIVE</button>
+      <button class="tab" type="button">UPCOMING</button>
+      <button class="tab" type="button">FINISHED</button>
     </nav>
   </main>
 
   <!-- CONTENT -->
   <section class="content">
-    <h2 class="section-title">Available Tournaments</h2>
-    <!-- cards remain exactly as before -->
+    <div class="section-head">
+      <h2 class="section-title">Available Tournaments</h2>
+      <a class="howto" href="#" aria-label="How it works">HOW IT WORKS →</a>
+    </div>
+
+    <!-- CARD 1 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot live" aria-hidden="true"></span>
+          <span>Simple Sports Test</span>
+        </div>
+        <span class="status live">LIVE</span>
+      </div>
+
+      <div class="tgrid">
+        <div class="tcol">
+          <div class="label">START</div>
+          <div class="value">01/15/2026</div>
+          <div class="value muted">11:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">END</div>
+          <div class="value">01/22/2026</div>
+          <div class="value muted">11:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">1,000.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <button class="btn btn-view" type="button">VIEW</button>
+        <button class="btn btn-leader" type="button">LEADERBOARD</button>
+      </div>
+    </article>
+
+    <!-- CARD 2 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot upcoming" aria-hidden="true"></span>
+          <span>Midweek Multi-Sport Cup</span>
+        </div>
+        <span class="status upcoming">UPCOMING</span>
+      </div>
+
+      <div class="tgrid">
+        <div class="tcol">
+          <div class="label">START</div>
+          <div class="value">01/18/2026</div>
+          <div class="value muted">09:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">END</div>
+          <div class="value">01/25/2026</div>
+          <div class="value muted">09:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">750.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <div class="pill">STARTS IN&nbsp;&nbsp;05:21:09</div>
+      </div>
+    </article>
+
+    <!-- CARD 3 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot finished" aria-hidden="true"></span>
+          <span>Weekend Sports Mash</span>
+        </div>
+        <span class="status finished">FINISHED</span>
+      </div>
+
+      <div class="tgrid">
+        <div class="tcol">
+          <div class="label">START</div>
+          <div class="value">01/01/2026</div>
+          <div class="value muted">10:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">END</div>
+          <div class="value">01/08/2026</div>
+          <div class="value muted">10:00 am</div>
+        </div>
+
+        <div class="tcol">
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">500.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <button class="btn btn-disabled" type="button" disabled>COMPLETED</button>
+        <button class="btn btn-leader" type="button">LEADERBOARD</button>
+      </div>
+    </article>
+
   </section>
 
 </body>
 </html>
-
 
 
