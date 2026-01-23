@@ -18,17 +18,15 @@
     <div class="topbar-center">
       <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
 
+        <!-- HEADER CARDS -->
         <span class="card-icons" aria-hidden="true">
 
           <!-- ACE OF SPADES -->
           <svg class="card-icon" viewBox="0 0 64 88">
             <rect x="4" y="4" width="56" height="80" rx="8" class="card-bg"/>
-
-            <!-- Rank -->
             <text x="10" y="22" class="rank black">A</text>
             <text x="54" y="66" transform="rotate(180 54 66)" class="rank black">A</text>
 
-            <!-- Spade -->
             <path class="spade"
               d="M32 30
                  C22 40 18 46 18 52
@@ -43,12 +41,9 @@
           <!-- JACK OF HEARTS -->
           <svg class="card-icon" viewBox="0 0 64 88">
             <rect x="4" y="4" width="56" height="80" rx="8" class="card-bg"/>
-
-            <!-- Rank -->
             <text x="10" y="22" class="rank red">J</text>
             <text x="54" y="66" transform="rotate(180 54 66)" class="rank red">J</text>
 
-            <!-- Heart -->
             <path class="heart"
               d="M32 56
                  C32 56 20 46 20 38
@@ -70,7 +65,7 @@
     </div>
   </header>
 
-  <!-- HERO (UNCHANGED) -->
+  <!-- HERO -->
   <main class="hero">
     <h1 class="title">
       <span class="white">Sports</span><span class="orange">Betting</span>
@@ -87,8 +82,116 @@
     </nav>
   </main>
 
-  <!-- CONTENT stays EXACTLY as-is -->
+  <!-- CONTENT (RESTORED, UNTOUCHED) -->
+  <section class="content">
+
+    <div class="section-head">
+      <h2 class="section-title">Available Tournaments</h2>
+      <a class="howto" href="#">HOW IT WORKS →</a>
+    </div>
+
+    <!-- CARD 1 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot live"></span>
+          <span>Simple Sports Test</span>
+        </div>
+        <span class="status live">LIVE</span>
+      </div>
+
+      <div class="tgrid">
+        <div>
+          <div class="label">START</div>
+          <div class="value">01/15/2026</div>
+          <div class="value muted">11:00 am</div>
+        </div>
+        <div>
+          <div class="label">END</div>
+          <div class="value">01/22/2026</div>
+          <div class="value muted">11:00 am</div>
+        </div>
+        <div>
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">1,000.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <button class="btn btn-view">VIEW</button>
+        <button class="btn btn-leader">LEADERBOARD</button>
+      </div>
+    </article>
+
+    <!-- CARD 2 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot upcoming"></span>
+          <span>Midweek Multi-Sport Cup</span>
+        </div>
+        <span class="status upcoming">UPCOMING</span>
+      </div>
+
+      <div class="tgrid">
+        <div>
+          <div class="label">START</div>
+          <div class="value">01/18/2026</div>
+          <div class="value muted">09:00 am</div>
+        </div>
+        <div>
+          <div class="label">END</div>
+          <div class="value">01/25/2026</div>
+          <div class="value muted">09:00 am</div>
+        </div>
+        <div>
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">750.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <div class="pill">STARTS IN&nbsp;05:21:09</div>
+      </div>
+    </article>
+
+    <!-- CARD 3 -->
+    <article class="tcard">
+      <div class="tcard-top">
+        <div class="tname">
+          <span class="dot finished"></span>
+          <span>Weekend Sports Mash</span>
+        </div>
+        <span class="status finished">FINISHED</span>
+      </div>
+
+      <div class="tgrid">
+        <div>
+          <div class="label">START</div>
+          <div class="value">01/01/2026</div>
+          <div class="value muted">10:00 am</div>
+        </div>
+        <div>
+          <div class="label">END</div>
+          <div class="value">01/08/2026</div>
+          <div class="value muted">10:00 am</div>
+        </div>
+        <div>
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance</div>
+          <div class="value">500.00</div>
+        </div>
+      </div>
+
+      <div class="tactions">
+        <button class="btn btn-disabled" disabled>COMPLETED</button>
+        <button class="btn btn-leader">LEADERBOARD</button>
+      </div>
+    </article>
+
+  </section>
 
 </body>
 </html>
-
