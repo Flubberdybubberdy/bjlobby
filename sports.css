@@ -4,26 +4,35 @@
 :root{
   --bg-main:#070b1a;
   --bg-top:#111a33;
+  --panel:#1b2340;
+  --panel-2:#17203a;
 
   --text:#ffffff;
   --muted:#9aa3c7;
 
-  --orange:#ff8c2b;
   --yellow:#f6c945;
-  --red:#e53935;
-  --black:#111111;
+  --pink:#ef6aa8;
+  --orange:#ff8c2b;
 
-  --header-link:#f2b24c;
+  --red:#e53935;
+  --header-link:#f2b24c; /* readable gold */
+  --link:#6f7cff;
+
+  --radius:18px;
+  --radius-sm:12px;
+
+  --shadow:0 20px 60px rgba(0,0,0,.6);
+  --shadow-card:0 18px 44px rgba(0,0,0,.55);
 }
 
 /* ===============================
-   GLOBAL
+   GLOBAL (FORCE NORMAL FLOW)
 ================================ */
 *{box-sizing:border-box}
 html,body{height:100%}
-
 body{
   margin:0;
+  display:block;
   background:radial-gradient(circle at top, var(--bg-top), var(--bg-main) 70%);
   color:var(--text);
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -52,64 +61,63 @@ body{
   padding:6px 14px;
   font-weight:800;
   font-size:12px;
+  letter-spacing:.04em;
   cursor:pointer;
 }
 
-.mode{font-size:14px; opacity:.9}
+.mode{
+  color:var(--text);
+  font-size:14px;
+  opacity:.9;
+}
 
 /* ===============================
-   HEADER LINK + CARDS
+   HEADER LINK + SVG CARDS
 ================================ */
 .topbar-link{
   display:inline-flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   text-decoration:none;
 }
 
 .topbar-text{
   font-weight:900;
-  font-size:13px;
   letter-spacing:.14em;
-  text-transform:uppercase;
+  font-size:13px;
   color:var(--header-link);
+  white-space:nowrap;
+  text-transform:uppercase;
 }
 
-/* Card group */
-.card-icons{
-  display:inline-flex;
-  gap:6px;
-}
-
-/* Card size */
+.card-icons{display:inline-flex; gap:6px}
 .card-icon{
-  width:20px;
+  width:18px;
   height:auto;
+  flex:0 0 auto;
 }
 
-/* Card face */
+/* White card look */
 .card-bg{
   fill:#ffffff;
-  stroke:#d8d8d8;      /* subtle real-card border */
+  stroke:rgba(0,0,0,.22);
   stroke-width:2;
 }
 
-/* Ranks */
-.rank{
-  font-size:18px;
-  font-weight:900;
-  font-family:inherit;
+/* Rank/suit styling */
+.rank, .suit{
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 18px;
+  dominant-baseline: middle;
 }
+.suit{ font-size: 18px; }
 
-.rank.black{fill:var(--black)}
-.rank.red{fill:var(--red)}
-
-/* Suits */
-.spade{fill:var(--black)}
-.heart{fill:var(--red)}
+.black{ fill:#111111; }
+.red{ fill:var(--red); }
 
 /* ===============================
-   HERO (UNCHANGED)
+   HERO
 ================================ */
 .hero{
   padding:56px 20px 22px;
@@ -119,12 +127,14 @@ body{
 .title{
   font-size:46px;
   margin:0;
+  line-height:1.05;
+  letter-spacing:-.02em;
 }
 .title .white{color:#fff}
 .title .orange{color:var(--orange); margin-left:6px}
 
 .subtitle{
-  margin-top:6px;
+  margin:8px 0 0;
   color:var(--muted);
   font-size:14px;
 }
@@ -137,6 +147,8 @@ body{
   padding:10px 16px;
   border-radius:10px;
   font-weight:800;
+  letter-spacing:.02em;
+  box-shadow:0 10px 30px rgba(229,57,53,.35);
 }
 
 .tabs{
@@ -147,15 +159,70 @@ body{
 }
 
 .tab{
-  background:none;
+  background:transparent;
   border:0;
   color:var(--muted);
   font-weight:800;
   font-size:13px;
+  letter-spacing:.10em;
   cursor:pointer;
+  padding:8px 0;
+  text-transform:uppercase;
 }
 .tab.active{
   color:#fff;
   border-bottom:2px solid var(--yellow);
 }
+
+/* ===============================
+   CONTENT
+================================ */
+.content{
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 24px 64px;
+}
+
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin:18px 0 14px;
+}
+
+.section-title{
+  margin:0;
+  font-size:20px;
+  font-weight:900;
+}
+
+.howto{
+  color:var(--link);
+  text-decoration:none;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.howto:hover{opacity:1; text-decoration:underline}
+
+/* ===============================
+   TOURNAMENT CARDS
+================================ */
+.tcard{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-card);
+  padding:22px 24px;
+  margin:18px 0;
+}
+
+.tcard-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.tname{
+  displ
 
