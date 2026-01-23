@@ -1,3 +1,6 @@
+/* ===============================
+   RESET / BASE
+================================ */
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 
@@ -7,6 +10,9 @@ body {
   color: #fff;
 }
 
+/* ===============================
+   LAYOUT
+================================ */
 .page {
   min-height: 100%;
   display: flex;
@@ -25,7 +31,9 @@ body {
   text-align: center;
 }
 
-/* ICONS */
+/* ===============================
+   TOP ICONS
+================================ */
 .icons {
   display: flex;
   justify-content: center;
@@ -36,28 +44,30 @@ body {
 .icons svg {
   width: 22px;
   height: 22px;
-  stroke: #fff;
+  stroke: #ffffff;
   fill: none;
   stroke-width: 1.8;
-  opacity: .9;
+  opacity: .95;
 }
 
-/* TEXT */
+/* ===============================
+   TYPOGRAPHY
+================================ */
 .title {
   font-size: 34px;
   margin: 0;
   font-weight: 900;
 }
 
-.orange { color: #ff8c2b; }
-.white { color: #fff; }
+.title .orange { color: #ff8c2b; }
+.title .white { color: #ffffff; }
 
 .pill {
   display: inline-block;
   margin: 12px 0 16px;
   padding: 6px 14px;
-  background: #fff;
-  color: #222;
+  background: #ffffff;
+  color: #2b2b2b;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 900;
@@ -80,7 +90,9 @@ body {
   font-size: 12px;
 }
 
-/* BUTTONS */
+/* ===============================
+   BUTTONS
+================================ */
 button {
   border: 0;
   cursor: pointer;
@@ -112,7 +124,11 @@ button {
   border-radius: 14px;
 }
 
-/* FORM */
+/* ===============================
+   FORM
+================================ */
+.form { margin-top: 10px; }
+
 .field {
   display: flex;
   align-items: center;
@@ -120,15 +136,6 @@ button {
   border-radius: 14px;
   padding: 12px 14px;
   margin-bottom: 14px;
-}
-
-.field svg {
-  width: 18px;
-  height: 18px;
-  stroke: #6b7280;
-  fill: none;
-  stroke-width: 2;
-  margin-right: 10px;
 }
 
 .field input {
@@ -139,13 +146,27 @@ button {
   flex: 1;
 }
 
+.field .icon {
+  margin-right: 10px;
+}
+
+.field svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
+  fill: none;
+  stroke-width: 2;
+}
+
 .or {
   margin: 14px 0;
   font-size: 12px;
   opacity: .7;
 }
 
-/* FOOTER */
+/* ===============================
+   FOOTER
+================================ */
 .footer {
   margin-top: 20px;
   font-size: 12px;
@@ -160,11 +181,11 @@ button {
   font-weight: 700;
 }
 
-.footer a.support {
-  color: #ffffff; /* THIS WAS THE ASK */
+.footer .help {
+  color: #ffffff;
 }
 
-.dark {
+.footer .dark {
   margin-top: 6px;
   opacity: .7;
 }
