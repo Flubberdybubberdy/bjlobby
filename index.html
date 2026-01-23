@@ -1,188 +1,71 @@
-<!-- lobby.html -->
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blackjack — Tournament Lobby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="lobby.css" />
 </head>
 
 <body>
-  <!-- TOP NAV -->
-  <header class="topbar">
-    <button class="btn btn-danger btn-sm" type="button">Logout</button>
 
-    <div class="topbar__announce" aria-label="Announcement">
-      ⚽🏀🎾 <span>SPORTS BETTING TOURNAMENTS</span> <span class="muted">[COMING SOON]</span> 🔔
-    </div>
+<header class="topbar">
+  <button class="logout">LOGOUT</button>
+  <div class="topbar-title">🂡 🂱 BLACKJACK TOURNAMENTS</div>
+  <div class="topbar-right">Dark</div>
+</header>
 
-    <div class="topbar__right">
-      <button class="icon-btn" type="button" aria-label="Settings">
-        ⚙️
-      </button>
+<main class="wrap">
 
-      <label class="toggle" aria-label="Dark mode toggle">
-        <input id="darkToggle" type="checkbox" checked />
-        <span class="toggle__track"><span class="toggle__thumb"></span></span>
-        <span class="toggle__label">Dark</span>
-      </label>
-    </div>
-  </header>
+  <h1>Blackjack</h1>
+  <div class="subtitle">Tournament Lobby</div>
 
-  <main class="wrap">
-    <!-- PAGE HEADER -->
-    <section class="hero">
-      <h1 class="brand">
-        <span class="brand__white">Black</span><span class="brand__accent">jack</span>
-      </h1>
-      <div class="hero__subtitle">Tournament Lobby</div>
+  <div class="tabs">
+    <button class="tab active">ALL TOURNAMENTS</button>
+    <button class="tab">NO LIMIT</button>
+    <button class="tab">LIMITED HANDS</button>
+  </div>
 
-      <nav class="tabs" aria-label="Tournament filters">
-        <button class="tab is-active" type="button">ALL TOURNAMENTS</button>
-        <button class="tab" type="button">NO LIMIT</button>
-        <button class="tab" type="button">LIMITED HANDS</button>
-      </nav>
-    </section>
+  <div class="section-head">
+    <h2>Available Tournaments</h2>
+    <a href="#" class="howto">HOW TO PLAY →</a>
+  </div>
 
-    <!-- SECTION HEADER -->
-    <section class="section-head">
-      <h2>Available Tournaments</h2>
-      <a class="howto" href="#" aria-label="How to play">HOW TO PLAY →</a>
-    </section>
+  <section class="card-list">
 
-    <!-- TOURNAMENT LIST -->
-    <section class="cardlist" aria-label="Tournament list">
-      <!-- LIVE / ACTIVE CARD -->
-      <article class="tcard is-live" aria-label="Tournament card: Thursday Thunder">
-        <div class="tcard__head">
-          <div class="tcard__title">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="title">THURSDAY THUNDER</span>
-          </div>
-          <span class="badge badge-live">LIVE</span>
+    <article class="card live">
+      <div class="card-head">
+        <div class="card-title">
+          <span class="status-dot live"></span>
+          Thursday Thunder
         </div>
+        <span class="badge live">LIVE</span>
+      </div>
 
-        <div class="tcard__grid">
-          <div class="kv">
-            <div class="k">START</div>
-            <div class="v">
-              Thursday<br />
-              January 22nd 2026<br />
-              12:00 AM
-            </div>
-          </div>
-
-          <div class="kv">
-            <div class="k">END</div>
-            <div class="v">
-              Friday<br />
-              January 23rd 2026<br />
-              12:00 AM
-            </div>
-          </div>
-
-          <div class="kv">
-            <div class="k">ENTRY</div>
-            <div class="v">
-              Starting Balance<br />
-              <span class="num">1000.00</span>
-            </div>
-          </div>
+      <div class="card-grid">
+        <div>
+          <div class="label">START</div>
+          <div class="value">Thu Jan 22<br>12:00 AM</div>
         </div>
-
-        <div class="tcard__actions">
-          <button class="btn btn-primary" type="button">Continue</button>
-          <button class="btn btn-secondary" type="button">Leaderboard</button>
+        <div>
+          <div class="label">END</div>
+          <div class="value">Fri Jan 23<br>12:00 AM</div>
         </div>
-      </article>
-
-      <!-- UPCOMING CARD -->
-      <article class="tcard is-upcoming" aria-label="Tournament card: Friday Fun">
-        <div class="tcard__head">
-          <div class="tcard__title">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span class="title">FRIDAY FUN</span>
-          </div>
-          <span class="badge badge-upcoming">UPCOMING</span>
+        <div>
+          <div class="label">ENTRY</div>
+          <div class="value">Starting Balance<br><strong>1000.00</strong></div>
         </div>
+      </div>
 
-        <div class="tcard__grid">
-          <div class="kv">
-            <div class="k">START</div>
-            <div class="v">
-              Friday<br />
-              January 23rd 2026<br />
-              12:00 AM
-            </div>
-          </div>
+      <div class="card-actions">
+        <button class="btn btn-primary">CONTINUE</button>
+        <button class="btn btn-secondary">LEADERBOARD</button>
+      </div>
+    </article>
 
-          <div class="kv">
-            <div class="k">END</div>
-            <div class="v">
-              Saturday<br />
-              January 24th 2026<br />
-              12:00 AM
-            </div>
-          </div>
+  </section>
 
-          <div class="kv">
-            <div class="k">ENTRY</div>
-            <div class="v">
-              Starting Balance<br />
-              <span class="num">1000.00</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tcard__actions">
-          <div class="pill" role="status" aria-label="Starts in">
-            <span class="pill__label">Starts in</span>
-            <span class="pill__time">13:56:40</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- FINISHED CARD -->
-      <article class="tcard is-finished" aria-label="Tournament card: Monday Mash">
-        <div class="tcard__head">
-          <div class="tcard__title">
-            <span class="status-dot status-dot--muted" aria-hidden="true"></span>
-            <span class="title">MONDAY MASH</span>
-          </div>
-          <span class="badge badge-finished">FINISHED</span>
-        </div>
-
-        <div class="tcard__grid">
-          <div class="kv">
-            <div class="k">START</div>
-            <div class="v">Monday<br />January 20th 2026<br />12:00 AM</div>
-          </div>
-          <div class="kv">
-            <div class="k">END</div>
-            <div class="v">Tuesday<br />January 21st 2026<br />12:00 AM</div>
-          </div>
-          <div class="kv">
-            <div class="k">ENTRY</div>
-            <div class="v">Starting Balance<br /><span class="num">1000.00</span></div>
-          </div>
-        </div>
-
-        <div class="tcard__actions">
-          <button class="btn btn-ghost" type="button">View Results</button>
-        </div>
-      </article>
-    </section>
-  </main>
-
-  <script>
-    // Simple dark toggle (keeps the token system intact)
-    const html = document.documentElement;
-    const toggle = document.getElementById("darkToggle");
-    toggle.addEventListener("change", () => {
-      html.classList.toggle("dark", toggle.checked);
-      html.classList.toggle("light", !toggle.checked);
-    });
-  </script>
+</main>
 </body>
 </html>
+
