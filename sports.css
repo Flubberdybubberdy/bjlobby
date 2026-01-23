@@ -32,7 +32,7 @@
 html,body{height:100%}
 body{
   margin:0;
-  display:block;            /* important: defeats any stray old flex */
+  display:block;
   background:radial-gradient(circle at top, var(--bg-top), var(--bg-main) 70%);
   color:var(--text);
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -63,6 +63,7 @@ body{
   font-size:12px;
   letter-spacing:.04em;
   cursor:pointer;
+  text-transform:uppercase;
 }
 
 .mode{
@@ -90,19 +91,13 @@ body{
   text-transform:uppercase;
 }
 
+/* SVG card styling */
 .card-icons{display:inline-flex; gap:6px}
-.card-icon{width:18px; height:auto; flex:0 0 auto}
-
-.card-icon rect{
-  fill:none;
-  stroke:var(--red);
-  stroke-width:4;
-}
-.card-icon text{
-  fill:var(--red);
-  font-size:18px;
-  font-weight:900;
-  font-family:inherit;
+.card-icon{
+  width:18px;
+  height:auto;
+  flex:0 0 auto;
+  color:var(--red); /* powers currentColor in SVG */
 }
 
 /* ===============================
@@ -174,7 +169,7 @@ body{
 
 .section-head{
   display:flex;
-  align-items:baseline; /* baseline align */
+  align-items:baseline;
   justify-content:space-between;
   margin:18px 0 14px;
 }
@@ -201,7 +196,7 @@ body{
   background:linear-gradient(180deg,var(--panel),var(--panel-2));
   border-radius:var(--radius);
   box-shadow:var(--shadow-card);
-  padding:22px 24px; /* was 24, tightened */
+  padding:22px 24px;
   margin:18px 0;
 }
 
@@ -254,7 +249,7 @@ body{
   color:var(--muted);
   font-size:11px;
   font-weight:900;
-  letter-spacing:.10em; /* tightened a hair */
+  letter-spacing:.10em;
   text-transform:uppercase;
   margin-bottom:6px;
 }
@@ -275,7 +270,7 @@ body{
 .btn{
   border:0;
   border-radius:12px;
-  padding:12px 18px;  /* +2px height */
+  padding:12px 18px;
   font-weight:900;
   letter-spacing:.08em;
   text-transform:uppercase;
@@ -301,7 +296,7 @@ body{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  height:42px;              /* matches buttons nicely */
+  height:42px;
   padding:0 18px;
   border-radius:12px;
   background:rgba(255,255,255,.10);
