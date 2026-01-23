@@ -4,26 +4,16 @@
 :root{
   --bg-main:#070b1a;
   --bg-top:#111a33;
-  --panel:#1b2340;
-  --panel-2:#17203a;
 
   --text:#ffffff;
   --muted:#9aa3c7;
 
-  --yellow:#f6c945;
-  --pink:#ef6aa8;
   --orange:#ff8c2b;
-
+  --yellow:#f6c945;
   --red:#e53935;
   --black:#111111;
+
   --header-link:#f2b24c;
-  --link:#6f7cff;
-
-  --radius:18px;
-  --radius-sm:12px;
-
-  --shadow:0 20px 60px rgba(0,0,0,.6);
-  --shadow-card:0 18px 44px rgba(0,0,0,.55);
 }
 
 /* ===============================
@@ -31,6 +21,7 @@
 ================================ */
 *{box-sizing:border-box}
 html,body{height:100%}
+
 body{
   margin:0;
   background:radial-gradient(circle at top, var(--bg-top), var(--bg-main) 70%);
@@ -61,15 +52,10 @@ body{
   padding:6px 14px;
   font-weight:800;
   font-size:12px;
-  letter-spacing:.04em;
   cursor:pointer;
-  text-transform:uppercase;
 }
 
-.mode{
-  font-size:14px;
-  opacity:.9;
-}
+.mode{font-size:14px; opacity:.9}
 
 /* ===============================
    HEADER LINK + CARDS
@@ -83,46 +69,47 @@ body{
 
 .topbar-text{
   font-weight:900;
-  letter-spacing:.14em;
   font-size:13px;
-  color:var(--header-link);
-  white-space:nowrap;
+  letter-spacing:.14em;
   text-transform:uppercase;
+  color:var(--header-link);
 }
 
+/* Card group */
 .card-icons{
   display:inline-flex;
   gap:6px;
 }
 
+/* Card size */
 .card-icon{
   width:20px;
   height:auto;
 }
 
-/* Card base */
+/* Card face */
 .card-bg{
   fill:#ffffff;
-  stroke:#ffffff;
+  stroke:#d8d8d8;      /* subtle real-card border */
   stroke-width:2;
 }
 
 /* Ranks */
-.card-rank{
+.rank{
   font-size:18px;
   font-weight:900;
   font-family:inherit;
 }
 
-.card-rank.black{fill:var(--black)}
-.card-rank.red{fill:var(--red)}
+.rank.black{fill:var(--black)}
+.rank.red{fill:var(--red)}
 
 /* Suits */
 .spade{fill:var(--black)}
 .heart{fill:var(--red)}
 
 /* ===============================
-   HERO
+   HERO (UNCHANGED)
 ================================ */
 .hero{
   padding:56px 20px 22px;
@@ -132,7 +119,6 @@ body{
 .title{
   font-size:46px;
   margin:0;
-  line-height:1.05;
 }
 .title .white{color:#fff}
 .title .orange{color:var(--orange); margin-left:6px}
@@ -166,40 +152,10 @@ body{
   color:var(--muted);
   font-weight:800;
   font-size:13px;
-  letter-spacing:.10em;
   cursor:pointer;
-  padding:8px 0;
-  text-transform:uppercase;
 }
 .tab.active{
   color:#fff;
   border-bottom:2px solid var(--yellow);
 }
 
-/* ===============================
-   CONTENT (unchanged)
-================================ */
-.content{
-  max-width:1180px;
-  margin:0 auto;
-  padding:28px 24px 64px;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-}
-
-.section-title{
-  font-size:20px;
-  font-weight:900;
-}
-
-.howto{
-  color:var(--link);
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  text-decoration:none;
-}
