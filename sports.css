@@ -13,7 +13,7 @@
   --accent-orange: #ff8c2b;
 
   --casino-red: #e53935;
-  --casino-red-soft: rgba(229,57,53,0.9);
+  --header-link: #f2b24c; /* readable gold */
 
   --radius-lg: 18px;
   --shadow-soft: 0 20px 60px rgba(0,0,0,0.6);
@@ -22,20 +22,17 @@
 /* ===============================
    GLOBAL
 ================================ */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  min-height: 100vh;
   background: radial-gradient(circle at top, #111a33, var(--bg-main) 70%);
   color: var(--text-main);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ===============================
-   TOP BAR
+   TOP BAR (UNCHANGED LAYOUT)
 ================================ */
 .topbar {
   display: grid;
@@ -45,17 +42,9 @@ body {
   background: linear-gradient(180deg, #0e1428, #0a1020);
 }
 
-.topbar-left {
-  justify-self: start;
-}
-
-.topbar-center {
-  justify-self: center;
-}
-
-.topbar-right {
-  justify-self: end;
-}
+.topbar-left { justify-self: start; }
+.topbar-center { justify-self: center; }
+.topbar-right { justify-self: end; }
 
 .logout {
   background: var(--casino-red);
@@ -66,35 +55,28 @@ body {
   font-weight: 800;
   font-size: 12px;
   letter-spacing: 0.04em;
-  cursor: pointer;
 }
 
 /* ===============================
-   CENTER LINK
+   HEADER LINK (TINY CHANGE)
 ================================ */
 .topbar-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  opacity: 0.95;
-  transition: opacity 0.2s ease;
-}
-
-.topbar-link:hover {
-  opacity: 1;
 }
 
 .topbar-text {
   font-weight: 800;
   letter-spacing: 0.12em;
   font-size: 13px;
-  color: var(--casino-red);
+  color: var(--header-link);
   white-space: nowrap;
 }
 
 /* ===============================
-   SVG CARDS
+   SVG CARDS (NEW, SAFE)
 ================================ */
 .card-icons {
   display: inline-flex;
@@ -104,7 +86,6 @@ body {
 .card-icon {
   width: 18px;
   height: auto;
-  flex-shrink: 0;
 }
 
 .card-icon rect {
@@ -121,10 +102,10 @@ body {
 }
 
 /* ===============================
-   HERO
+   HERO (UNCHANGED)
 ================================ */
 .hero {
-  padding: 64px 20px 32px;
+  padding: 64px 20px 24px;
   text-align: center;
 }
 
@@ -133,18 +114,42 @@ body {
   margin: 0;
 }
 
-.title .white {
-  color: #ffffff;
-}
-
-.title .orange {
-  color: var(--accent-orange);
-}
+.title .white { color: #fff; }
+.title .orange { color: var(--accent-orange); }
 
 .subtitle {
   margin-top: 6px;
   color: var(--text-muted);
   font-size: 14px;
+}
+
+.message-bar {
+  margin: 20px auto;
+  max-width: 680px;
+  background: var(--casino-red);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.tabs span {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.tabs .active {
+  color: #fff;
+  border-bottom: 2px solid var(--accent-yellow);
+  padding-bottom: 4px;
 }
 
 /* ===============================
@@ -159,5 +164,4 @@ body {
 .section-title {
   font-size: 20px;
   margin: 0;
-  color: #ffffff;
 }
