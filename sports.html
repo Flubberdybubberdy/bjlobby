@@ -4,59 +4,108 @@
   <meta charset="UTF-8" />
   <title>Sports Betting — Tournament Lobby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- IMPORTANT: this must match your repo filename exactly -->
   <link rel="stylesheet" href="sports.css" />
 </head>
 
-<body class="dark">
+<body>
 
-  <!-- TOP NAV -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="logout">LOGOUT</button>
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="logout">LOGOUT</button>
+  </div>
+
+  <div class="topbar-center">
+    <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
+      <span class="card-icons" aria-hidden="true">
+
+        <!-- ACE OF SPADES -->
+        <svg class="card-icon" viewBox="0 0 64 88">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8"/>
+          <text class="rank black" x="12" y="22">A</text>
+          <text class="suit black" x="12" y="40">♠</text>
+          <text class="rank black" x="44" y="74" transform="rotate(180 44 74)">A</text>
+          <text class="suit black" x="44" y="56" transform="rotate(180 44 56)">♠</text>
+        </svg>
+
+        <!-- JACK OF HEARTS -->
+        <svg class="card-icon" viewBox="0 0 64 88">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8"/>
+          <text class="rank red" x="12" y="22">J</text>
+          <text class="suit red" x="12" y="40">♥</text>
+          <text class="rank red" x="44" y="74" transform="rotate(180 44 74)">J</text>
+          <text class="suit red" x="44" y="56" transform="rotate(180 44 56)">♥</text>
+        </svg>
+
+      </span>
+      <span class="topbar-text">BLACKJACK TOURNAMENTS</span>
+    </a>
+  </div>
+
+  <div class="topbar-right">
+    <span class="mode">Dark</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<main class="hero">
+  <h1 class="title">
+    <span class="white">Sports</span><span class="orange">Betting</span>
+  </h1>
+  <p class="subtitle">Tournament Lobby</p>
+
+  <div class="message-bar">A SAMPLE MESSAGE</div>
+
+  <nav class="tabs">
+    <button class="tab active">ALL EVENTS</button>
+    <button class="tab">LIVE</button>
+    <button class="tab">UPCOMING</button>
+    <button class="tab">FINISHED</button>
+  </nav>
+</main>
+
+<!-- CONTENT -->
+<section class="content">
+  <div class="section-head">
+    <h2 class="section-title">Available Tournaments</h2>
+    <a class="howto" href="#">HOW IT WORKS →</a>
+  </div>
+
+  <!-- CARD: LIVE -->
+  <article class="tcard">
+    <div class="tcard-top">
+      <div class="tname">
+        <span class="dot live"></span>
+        <span>Simple Sports Test</span>
+      </div>
+      <span class="status live">LIVE</span>
     </div>
 
-    <div class="topbar-center">
-      <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
-        <span class="card-icons" aria-hidden="true">
-          <!-- CARD 1: WHITE A♠ (BLACK) -->
-          <svg class="card-icon card-ace" viewBox="0 0 64 88" role="img" aria-label="Ace of Spades">
-            <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
-            <text class="rank black" x="12" y="22">A</text>
-            <text class="suit black" x="12" y="40">♠</text>
-            <text class="rank black" x="44" y="74" transform="rotate(180 44 74)">A</text>
-            <text class="suit black" x="44" y="56" transform="rotate(180 44 56)">♠</text>
-          </svg>
-
-          <!-- CARD 2: WHITE J♥ (RED) -->
-          <svg class="card-icon card-jack" viewBox="0 0 64 88" role="img" aria-label="Jack of Hearts">
-            <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
-            <text class="rank red" x="12" y="22">J</text>
-            <text class="suit red" x="12" y="40">♥</text>
-            <text class="rank red" x="44" y="74" transform="rotate(180 44 74)">J</text>
-            <text class="suit red" x="44" y="56" transform="rotate(180 44 56)">♥</text>
-          </svg>
-        </span>
-
-        <span class="topbar-text">BLACKJACK TOURNAMENTS</span>
-      </a>
+    <div class="tgrid">
+      <div>
+        <div class="label">START</div>
+        <div class="value">01/15/2026</div>
+        <div class="value muted">11:00 am</div>
+      </div>
+      <div>
+        <div class="label">END</div>
+        <div class="value">01/22/2026</div>
+        <div class="value muted">11:00 am</div>
+      </div>
+      <div>
+        <div class="label">ENTRY</div>
+        <div class="value">Starting Balance</div>
+        <div class="value">1,000.00</div>
+      </div>
     </div>
 
-    <div class="topbar-right">
-      <span class="mode">Dark</span>
+    <div class="tactions">
+      <button class="btn btn-view">VIEW</button>
+      <button class="btn btn-leader">LEADERBOARD</button>
     </div>
-  </header>
+  </article>
 
-  <!-- HERO -->
-  <main class="hero">
-    <h1 class="title">
-      <span class="white">Sports</span><span class="orange">Betting</span>
-    </h1>
-    <p class="subtitle">Tournament Lobby</p>
+</section>
 
-    <div class="message-bar">A SAMPLE MESSAGE</div>
-
-    <nav class="tabs" aria-label="Sports lobby filters">
-      <button class="tab active" type="button">ALL EVENTS</button>
-      <button class="tab" type="button">LIVE</button>
-      <butto
+</body>
+</html>
