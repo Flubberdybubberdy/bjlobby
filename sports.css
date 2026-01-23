@@ -15,24 +15,19 @@
   --orange:#ff8c2b;
 
   --red:#e53935;
-  --header-link:#f2b24c; /* readable gold */
+  --header-link:#f2b24c;
   --link:#6f7cff;
 
   --radius:18px;
-  --radius-sm:12px;
-
-  --shadow:0 20px 60px rgba(0,0,0,.6);
   --shadow-card:0 18px 44px rgba(0,0,0,.55);
 }
 
 /* ===============================
-   GLOBAL (FORCE NORMAL FLOW)
+   GLOBAL
 ================================ */
 *{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
-  display:block;
   background:radial-gradient(circle at top, var(--bg-top), var(--bg-main) 70%);
   color:var(--text);
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -49,10 +44,6 @@ body{
   background:linear-gradient(180deg,#0e1428,#0a1020);
 }
 
-.topbar-left{justify-self:start}
-.topbar-center{justify-self:center}
-.topbar-right{justify-self:end}
-
 .logout{
   background:var(--red);
   color:#fff;
@@ -61,60 +52,30 @@ body{
   padding:6px 14px;
   font-weight:800;
   font-size:12px;
-  letter-spacing:.04em;
-  cursor:pointer;
 }
 
-.mode{
-  color:var(--text);
-  font-size:14px;
-  opacity:.9;
-}
-
-/* ===============================
-   HEADER LINK + SVG CARDS
-================================ */
 .topbar-link{
-  display:inline-flex;
+  display:flex;
   align-items:center;
   gap:10px;
   text-decoration:none;
 }
 
 .topbar-text{
+  color:var(--header-link);
   font-weight:900;
   letter-spacing:.14em;
   font-size:13px;
-  color:var(--header-link);
-  white-space:nowrap;
   text-transform:uppercase;
 }
 
-.card-icons{display:inline-flex; gap:6px}
-.card-icon{
-  width:18px;
-  height:auto;
-  flex:0 0 auto;
-}
+.card-icons{display:flex; gap:6px}
+.card-icon{width:18px}
 
-/* White card look */
-.card-bg{
-  fill:#ffffff;
-  stroke:rgba(0,0,0,.22);
-  stroke-width:2;
-}
-
-/* Rank/suit styling */
-.rank, .suit{
-  font-family: inherit;
-  font-weight: 900;
-  font-size: 18px;
-  dominant-baseline: middle;
-}
-.suit{ font-size: 18px; }
-
-.black{ fill:#111111; }
-.red{ fill:var(--red); }
+.card-bg{fill:#fff; stroke:rgba(0,0,0,.2); stroke-width:2}
+.rank,.suit{font-weight:900; font-size:18px}
+.black{fill:#111}
+.red{fill:var(--red)}
 
 /* ===============================
    HERO
@@ -124,50 +85,31 @@ body{
   text-align:center;
 }
 
-.title{
-  font-size:46px;
-  margin:0;
-  line-height:1.05;
-  letter-spacing:-.02em;
-}
-.title .white{color:#fff}
+.title{font-size:46px;margin:0}
 .title .orange{color:var(--orange); margin-left:6px}
-
-.subtitle{
-  margin:8px 0 0;
-  color:var(--muted);
-  font-size:14px;
-}
+.subtitle{color:var(--muted); font-size:14px}
 
 .message-bar{
   margin:20px auto 0;
   max-width:680px;
   background:var(--red);
-  color:#fff;
   padding:10px 16px;
   border-radius:10px;
   font-weight:800;
-  letter-spacing:.02em;
-  box-shadow:0 10px 30px rgba(229,57,53,.35);
 }
 
 .tabs{
   display:flex;
-  gap:26px;
   justify-content:center;
+  gap:26px;
   margin-top:18px;
 }
-
 .tab{
-  background:transparent;
+  background:none;
   border:0;
   color:var(--muted);
   font-weight:800;
-  font-size:13px;
-  letter-spacing:.10em;
-  cursor:pointer;
-  padding:8px 0;
-  text-transform:uppercase;
+  letter-spacing:.1em;
 }
 .tab.active{
   color:#fff;
@@ -185,28 +127,18 @@ body{
 
 .section-head{
   display:flex;
-  align-items:baseline;
   justify-content:space-between;
-  margin:18px 0 14px;
-}
-
-.section-title{
-  margin:0;
-  font-size:20px;
-  font-weight:900;
+  align-items:baseline;
 }
 
 .howto{
   color:var(--link);
-  text-decoration:none;
   font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
+  text-decoration:none;
 }
-.howto:hover{opacity:1; text-decoration:underline}
 
 /* ===============================
-   TOURNAMENT CARDS
+   CARDS
 ================================ */
 .tcard{
   background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -218,11 +150,39 @@ body{
 
 .tcard-top{
   display:flex;
-  align-items:center;
   justify-content:space-between;
   margin-bottom:14px;
 }
 
-.tname{
-  displ
+.tname{display:flex;gap:10px;font-weight:900}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot.live{background:#4cff9a}
+
+.status{
+  font-size:12px;
+  font-weight:900;
+  padding:7px 12px;
+  border-radius:999px;
+}
+.status.live{background:var(--red)}
+
+.tgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:24px;
+}
+
+.label{font-size:11px;color:var(--muted);font-weight:900}
+.value{font-weight:900}
+
+.tactions{display:flex;gap:14px;margin-top:16px}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 18px;
+  font-weight:900;
+}
+.btn-view{background:linear-gradient(180deg,#ff7bb8,var(--pink))}
+.btn-leader{background:linear-gradient(180deg,#ffd46a,var(--yellow))}
 
