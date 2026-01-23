@@ -9,77 +9,71 @@
 
 <body>
 
-  <main class="page">
+  <main class="wrap">
 
     <section class="card">
 
       <!-- ICON STRIP -->
-      <div class="icons">
+      <div class="icons" aria-hidden="true">
         <!-- Football -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/>
-          <polygon points="12,6 9,9 12,12 15,9"/>
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="28"/>
+          <path d="M20 24l24 16M44 24L20 40"/>
         </svg>
 
         <!-- Basketball -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M2 12h20M12 2v20"/>
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="28"/>
+          <path d="M32 4v56M4 32h56M12 12c20 10 20 30 0 40M52 12c-20 10-20 30 0 40"/>
         </svg>
 
         <!-- Trophy -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 3h12v3c0 3-3 6-6 6s-6-3-6-6V3z"/>
-          <path d="M4 6h2c0 3-1 5-3 6"/>
-          <path d="M20 6h-2c0 3 1 5 3 6"/>
-          <rect x="9" y="15" width="6" height="2"/>
-          <rect x="8" y="17" width="8" height="2"/>
+        <svg viewBox="0 0 64 64">
+          <path d="M18 8h28v10c0 10-6 18-14 18s-14-8-14-18z"/>
+          <path d="M10 10h8v8c0 6-4 10-8 10M54 10h-8v8c0 6 4 10 8 10"/>
+          <rect x="26" y="36" width="12" height="10"/>
+          <rect x="22" y="46" width="20" height="6"/>
         </svg>
       </div>
 
       <!-- TITLE -->
       <h1 class="title">
-        <span>Sports</span><span class="accent">Betting</span>
+        <span class="white">Sports</span>
+        <span class="orange">Betting</span>
       </h1>
 
       <div class="pill">TOURNAMENTS</div>
 
-      <!-- VALUE PROP -->
+      <!-- SUB COPY -->
       <p class="copy">
-        Compete in <span class="badge">FREE</span> sports betting tournaments
+        Compete in <span class="highlight">FREE</span> sports betting tournaments<br/>
         against players worldwide
       </p>
 
-      <button class="cta-secondary">REAL PRIZES TO BE WON</button>
+      <!-- PROMO CTA -->
+      <div class="promo">
+        REAL PRIZES TO BE WON
+      </div>
 
-      <!-- FORM -->
+      <!-- LOGIN -->
       <form class="form">
-        <input type="text" placeholder="Username" aria-label="Username" />
-        <input type="password" placeholder="Password" aria-label="Password" />
-
-        <button type="submit" class="cta-primary">LOGIN</button>
+        <input type="text" placeholder="Username" />
+        <input type="password" placeholder="Password" />
+        <button class="btn login" type="button">LOGIN</button>
       </form>
 
-      <div class="divider">OR</div>
+      <div class="or">OR</div>
 
-      <button class="cta-register">REGISTER NOW</button>
+      <!-- REGISTER -->
+      <button class="btn register" type="button">REGISTER NOW</button>
 
-      <!-- FOOTER -->
+      <!-- FOOTER LINKS -->
       <footer class="footer">
         <a href="#">Forgot Password?</a>
         <a href="#">Terms & Conditions</a>
         <a href="#">Affiliate Program</a>
         <a href="#">Contact Support</a>
+        <div class="mode">Dark Mode <strong>OFF</strong></div>
 
-        <div class="mode">
-          Dark Mode <span>OFF</span>
-        </div>
-      </footer>
 
-    </section>
-
-  </main>
-
-</body>
-</html>
 
