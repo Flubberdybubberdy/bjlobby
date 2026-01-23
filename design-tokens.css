@@ -1,1 +1,41 @@
+/* =====================================================
+   GLOBAL DESIGN TOKENS — LOCKED
+   ===================================================== */
+
+:root {
+  /* Backgrounds */
+  --bg-main: #0b1020;
+  --bg-header: #12182b;
+  --bg-card: #1a2138;
+  --bg-card-muted: #141a2e;
+
+  /* Text */
+  --text-primary: #f4f6ff;
+  --text-secondary: #a7b0d9;
+  --text-muted: #7c86b8;
+
+  /* Accents */
+  --accent-yellow: #f5c542;
+  --accent-red: #e54848;
+  --accent-green: #43ff99;
+  --accent-purple: #6e5bff;
+  --accent-grey: #6b7280;
+  --accent-pink: #ec6aa0;
+
+  /* Radius */
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+
+  /* Buttons */
+  --btn-height: 48px;
+  --btn-height-sm: 34px;
+
+  /* Typography */
+  --label-letter-spacing: 0.12px;
+  --badge-letter-spacing: 0.4px;
+
+  /* Shadows */
+  --shadow-deep: 0 18px 45px rgba(0, 0, 0, 0.65);
+}
 
