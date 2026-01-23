@@ -1,39 +1,33 @@
 /* ===============================
-   RESET + BASE
+   RESET / BASE
 ================================ */
 * { box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
+html, body { height: 100%; margin: 0; }
 
 body {
-  background: radial-gradient(circle at top, #1a2345, #070b1a 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #111a33, #070b1a 70%);
   color: #fff;
 }
 
 /* ===============================
-   WRAP
+   LAYOUT
 ================================ */
-.wrap {
-  width: 100%;
-  max-width: 420px;
+.page {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 24px;
 }
 
-/* ===============================
-   CARD
-================================ */
 .card {
-  background: linear-gradient(180deg, #232d55, #8b3fb2);
-  border-radius: 26px;
-  padding: 28px 22px 26px;
-  box-shadow: 0 30px 80px rgba(0,0,0,.55);
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #1b2340, #121a30);
+  border-radius: 28px;
+  padding: 36px 28px 32px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
   text-align: center;
 }
 
@@ -43,21 +37,21 @@ body {
 .icons {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 18px;
   margin-bottom: 18px;
 }
 
 .icons svg {
-  width: 34px;
-  height: 34px;
-  fill: none;
+  width: 22px;
+  height: 22px;
   stroke: #ffffff;
-  stroke-width: 3;
-  opacity: .95;
+  fill: none;
+  stroke-width: 2;
+  opacity: .9;
 }
 
 /* ===============================
-   TITLE
+   TYPOGRAPHY
 ================================ */
 .title {
   font-size: 34px;
@@ -65,46 +59,130 @@ body {
   font-weight: 900;
 }
 
-.title .white { color: #fff; }
 .title .orange { color: #ff8c2b; }
+.title .white { color: #ffffff; }
 
 .pill {
   display: inline-block;
-  margin: 10px 0 18px;
-  padding: 6px 18px;
+  margin: 12px 0 16px;
+  padding: 6px 14px;
+  background: #ffffff;
+  color: #2b2b2b;
   border-radius: 999px;
-  background: #fff;
-  color: #6a2aa7;
+  font-size: 11px;
   font-weight: 900;
-  font-size: 12px;
   letter-spacing: .14em;
 }
 
-/* ===============================
-   COPY
-================================ */
-.copy {
-  color: #e9ecff;
+.subtitle {
   font-size: 14px;
+  color: #b7c0e0;
   line-height: 1.5;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
-.highlight {
-  background: #ffe100;
+.free {
+  background: #f6c945;
   color: #000;
   padding: 2px 6px;
   border-radius: 6px;
   font-weight: 900;
+  font-size: 12px;
 }
 
 /* ===============================
-   PROMO
+   BUTTONS
 ================================ */
-.promo {
-  background: linear-gradient(180deg, #ffd86a, #f6c945);
-  color: #000;
+button {
+  border: 0;
+  cursor: pointer;
   font-weight: 900;
-  padding: 12px;
-  bo
+  letter-spacing: .08em;
+}
+
+.cta-primary {
+  width: 100%;
+  background: linear-gradient(180deg, #ffd46a, #f6c945);
+  color: #111;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+}
+
+.login {
+  background: linear-gradient(180deg, #6ad69a, #35b87b);
+  color: #fff;
+  padding: 14px;
+  border-radius: 14px;
+  margin-top: 10px;
+}
+
+.register {
+  background: linear-gradient(180deg, #ffe35c, #ffd23a);
+  color: #111;
+  padding: 14px;
+  border-radius: 14px;
+}
+
+/* ===============================
+   FORM
+================================ */
+.form { margin-top: 10px; }
+
+.field {
+  display: flex;
+  align-items: center;
+  background: #eef3fb;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.field input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+}
+
+.field .icon {
+  margin-right: 10px;
+}
+
+.field svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
+  fill: none;
+  stroke-width: 2;
+}
+
+.or {
+  margin: 14px 0;
+  font-size: 12px;
+  opacity: .7;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer a {
+  color: #f6c945;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer .dark {
+  margin-top: 6px;
+  opacity: .7;
+}
 
