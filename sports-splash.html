@@ -9,71 +9,91 @@
 
 <body>
 
-  <main class="wrap">
-
+  <main class="page">
     <section class="card">
 
-      <!-- ICON STRIP -->
-      <div class="icons" aria-hidden="true">
-        <!-- Football -->
-        <svg viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="28"/>
-          <path d="M20 24l24 16M44 24L20 40"/>
+      <!-- TOP ICONS -->
+      <div class="icons">
+        <!-- BALL -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3v18"/>
         </svg>
 
-        <!-- Basketball -->
-        <svg viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="28"/>
-          <path d="M32 4v56M4 32h56M12 12c20 10 20 30 0 40M52 12c-20 10-20 30 0 40"/>
+        <!-- COURT -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <path d="M12 4v16M4 12h16"/>
         </svg>
 
-        <!-- Trophy -->
-        <svg viewBox="0 0 64 64">
-          <path d="M18 8h28v10c0 10-6 18-14 18s-14-8-14-18z"/>
-          <path d="M10 10h8v8c0 6-4 10-8 10M54 10h-8v8c0 6 4 10 8 10"/>
-          <rect x="26" y="36" width="12" height="10"/>
-          <rect x="22" y="46" width="20" height="6"/>
+        <!-- TROPHY -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/>
+          <path d="M4 4h2v3a4 4 0 0 1-2-3zM20 4h-2v3a4 4 0 0 0 2-3z"/>
+          <rect x="9" y="16" width="6" height="3"/>
         </svg>
       </div>
 
       <!-- TITLE -->
       <h1 class="title">
-        <span class="white">Sports</span>
-        <span class="orange">Betting</span>
+        <span class="white">Sports</span><span class="orange">Betting</span>
       </h1>
 
       <div class="pill">TOURNAMENTS</div>
 
-      <!-- SUB COPY -->
-      <p class="copy">
-        Compete in <span class="highlight">FREE</span> sports betting tournaments<br/>
+      <p class="subtitle">
+        Compete in <span class="free">FREE</span> sports betting tournaments<br/>
         against players worldwide
       </p>
 
-      <!-- PROMO CTA -->
-      <div class="promo">
-        REAL PRIZES TO BE WON
-      </div>
+      <!-- CTA -->
+      <button class="cta-primary">REAL PRIZES TO BE WON</button>
 
-      <!-- LOGIN -->
+      <!-- FORM -->
       <form class="form">
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button class="btn login" type="button">LOGIN</button>
+
+        <div class="field">
+          <span class="icon">
+            <!-- USER -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 16-4 16 0"/>
+            </svg>
+          </span>
+          <input type="text" placeholder="Username" />
+        </div>
+
+        <div class="field">
+          <span class="icon">
+            <!-- LOCK -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="10" rx="2"/>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+            </svg>
+          </span>
+          <input type="password" placeholder="Password" />
+        </div>
+
+        <button type="submit" class="login">LOGIN</button>
+
+        <div class="or">OR</div>
+
+        <button type="button" class="register">REGISTER NOW</button>
+
       </form>
 
-      <div class="or">OR</div>
-
-      <!-- REGISTER -->
-      <button class="btn register" type="button">REGISTER NOW</button>
-
-      <!-- FOOTER LINKS -->
-      <footer class="footer">
+      <!-- FOOTER -->
+      <div class="footer">
         <a href="#">Forgot Password?</a>
         <a href="#">Terms & Conditions</a>
         <a href="#">Affiliate Program</a>
-        <a href="#">Contact Support</a>
-        <div class="mode">Dark Mode <strong>OFF</strong></div>
+        <a href="#">Need help? Contact Support</a>
+        <div class="dark">Dark Mode <strong>OFF</strong></div>
+      </div>
 
+    </section>
+  </main>
 
+</body>
+</html>
 
