@@ -2,6 +2,7 @@
 
 /* =====================================================
    BLACKJACK TOURNAMENT LOBBY — GOLD STANDARD
+   WITH MIRRORED SPORTS NAV
    ===================================================== */
 
 * {
@@ -21,12 +22,18 @@ body {
 
 .topbar {
   height: 56px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 0 14px;
   background: var(--bg-header);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* LEFT */
+.topbar__left {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .logout {
@@ -41,16 +48,29 @@ body {
   cursor: pointer;
 }
 
-.topbar-title {
+/* CENTER */
+.topbar__center {
+  text-align: center;
+}
+
+.topbar-link {
   font-weight: 900;
   font-size: 14px;
   letter-spacing: 0.4px;
   color: var(--accent-yellow);
+  text-decoration: none;
 }
 
-.topbar-right {
-  color: var(--text-muted);
+.topbar-link:hover {
+  opacity: 0.9;
+}
+
+/* RIGHT */
+.topbar__right {
+  display: flex;
+  justify-content: flex-end;
   font-size: 13px;
+  color: var(--text-muted);
 }
 
 /* ===================== LAYOUT ===================== */
