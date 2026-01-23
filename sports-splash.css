@@ -47,7 +47,7 @@ body {
   stroke: #ffffff;
   fill: none;
   stroke-width: 2;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* ===============================
@@ -110,6 +110,7 @@ button {
 }
 
 .login {
+  width: 100%;
   background: linear-gradient(180deg, #6ad69a, #35b87b);
   color: #fff;
   padding: 14px;
@@ -118,6 +119,7 @@ button {
 }
 
 .register {
+  width: 100%;
   background: linear-gradient(180deg, #ffe35c, #ffd23a);
   color: #111;
   padding: 14px;
@@ -181,9 +183,12 @@ button {
   font-weight: 700;
 }
 
+.footer .help {
+  color: #ffffff; /* FORCE WHITE */
+}
+
 .footer .dark {
   margin-top: 6px;
   opacity: .7;
 }
-
 
