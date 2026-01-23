@@ -2,7 +2,6 @@
 
 /* =====================================================
    BLACKJACK TOURNAMENT LOBBY — GOLD STANDARD
-   WITH MIRRORED SPORTS NAV
    ===================================================== */
 
 * {
@@ -30,7 +29,6 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* LEFT */
 .topbar__left {
   display: flex;
   justify-content: flex-start;
@@ -48,7 +46,7 @@ body {
   cursor: pointer;
 }
 
-/* CENTER */
+/* CENTER LINK — HIGH CONTRAST */
 .topbar__center {
   text-align: center;
 }
@@ -57,7 +55,7 @@ body {
   font-weight: 900;
   font-size: 14px;
   letter-spacing: 0.4px;
-  color: var(--accent-yellow);
+  color: #6FA8FF; /* readable, sportsbook-safe blue */
   text-decoration: none;
 }
 
@@ -65,7 +63,6 @@ body {
   opacity: 0.9;
 }
 
-/* RIGHT */
 .topbar__right {
   display: flex;
   justify-content: flex-end;
@@ -81,13 +78,18 @@ body {
   padding: 34px 16px 60px;
 }
 
-/* ===================== HEADERS ===================== */
+/* ===================== TITLES ===================== */
 
-h1 {
+.page-title {
   text-align: center;
   font-size: 40px;
   font-weight: 900;
   margin: 0;
+}
+
+/* JACK IN RED */
+.jack-red {
+  color: var(--accent-red);
 }
 
 .subtitle {
@@ -159,16 +161,6 @@ h1 {
   min-height: 170px;
 }
 
-.card.upcoming {
-  background: var(--bg-card-muted);
-  opacity: 0.92;
-}
-
-.card.finished {
-  background: var(--bg-card-muted);
-  opacity: 0.78;
-}
-
 /* ===================== CARD HEADER ===================== */
 
 .card-head {
@@ -198,14 +190,6 @@ h1 {
   background: var(--accent-green);
 }
 
-.status-dot.upcoming {
-  background: var(--accent-yellow);
-}
-
-.status-dot.finished {
-  background: var(--accent-grey);
-}
-
 .badge {
   font-size: 12px;
   font-weight: 900;
@@ -217,17 +201,6 @@ h1 {
 .badge.live {
   background: var(--accent-red);
   color: #fff;
-}
-
-.badge.upcoming {
-  background: rgba(110, 91, 255, 0.22);
-  border: 1px solid rgba(110, 91, 255, 0.35);
-}
-
-.badge.finished {
-  background: rgba(107, 114, 128, 0.25);
-  border: 1px solid rgba(107, 114, 128, 0.35);
-  color: rgba(244, 246, 255, 0.75);
 }
 
 /* ===================== GRID ===================== */
@@ -280,12 +253,6 @@ h1 {
 .btn-secondary {
   background: var(--accent-yellow);
   color: #0b1020;
-}
-
-.btn-muted {
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(244, 246, 255, 0.65);
-  cursor: not-allowed;
 }
 
 /* ===================== RESPONSIVE ===================== */
