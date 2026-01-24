@@ -4,107 +4,105 @@
   <meta charset="UTF-8" />
   <title>Sports Betting — Tournaments</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Cache-bust this so you ALWAYS see changes -->
-  <link rel="stylesheet" href="sports-splash.css?v=3" />
+  <link rel="stylesheet" href="sports-splash.css" />
 </head>
 
 <body>
-  <main class="page">
-    <section class="card">
 
-      <!-- TOP ICONS: Football + Basketball + Tennis -->
-      <div class="icons" aria-hidden="true">
+<main class="page">
+  <section class="card">
 
-        <!-- FOOTBALL (soccer ball) -->
-        <svg viewBox="0 0 24 24" role="img" aria-label="Football">
-          <circle cx="12" cy="12" r="9" />
-          <!-- centre pentagon -->
-          <path d="M12 8.2l2.2 1.6-.8 2.6h-2.8l-.8-2.6L12 8.2z"/>
-          <!-- seams -->
-          <path d="M12 3.2l2.7 1.1 1.9 2.5-.6 2.9-2.2-1.5M12 3.2L9.3 4.3 7.4 6.8l.6 2.9 2.2-1.5"/>
-          <path d="M7.8 13.7l-2.9.3-1.7-2.6 1.1-3.0 3.0.3M16.2 13.7l2.9.3 1.7-2.6-1.1-3.0-3.0.3"/>
-          <path d="M9.5 20.6l-2.4-1.7.9-2.8 2.8.1M14.5 20.6l2.4-1.7-.9-2.8-2.8.1"/>
-        </svg>
+    <!-- TOP SPORTS ICONS -->
+    <div class="icons" aria-hidden="true">
 
-        <!-- BASKETBALL -->
-        <svg viewBox="0 0 24 24" role="img" aria-label="Basketball">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18" />
-          <path d="M12 3c0 6-3 9-9 9" />
-          <path d="M12 21c0-6 3-9 9-9" />
-          <path d="M12 3c0 6 3 9 9 9" />
-          <path d="M12 21c0-6-3-9-9-9" />
-        </svg>
+      <!-- FOOTBALL -->
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 8.3l2.1 1.6-.8 2.5h-2.6l-.8-2.5L12 8.3z"></path>
+        <path d="M12 3.2l2.7 1.1 1.9 2.6-.6 2.9-2.2-1.5"></path>
+        <path d="M12 3.2L9.3 4.3 7.4 6.9l.6 2.9 2.2-1.5"></path>
+        <path d="M7.8 13.8l-2.9.3-1.7-2.6 1.1-3.0 3.0.3"></path>
+        <path d="M16.2 13.8l2.9.3 1.7-2.6-1.1-3.0-3.0.3"></path>
+        <path d="M9.5 20.6l-2.4-1.7.9-2.8 2.8.1"></path>
+        <path d="M14.5 20.6l2.4-1.7-.9-2.8-2.8.1"></path>
+      </svg>
 
-        <!-- TENNIS BALL -->
-        <svg viewBox="0 0 24 24" role="img" aria-label="Tennis ball">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M6.2 6.8c3.4 0 6.2 2.8 6.2 6.2S9.6 19.2 6.2 19.2" />
-          <path d="M17.8 4.8c0 3.4-2.8 6.2-6.2 6.2S5.4 8.2 5.4 4.8" />
-        </svg>
+      <!-- BASKETBALL -->
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M3 12h18"></path>
+        <path d="M12 3c0 6-3 9-9 9"></path>
+        <path d="M12 21c0-6 3-9 9-9"></path>
+        <path d="M12 3c0 6 3 9 9 9"></path>
+        <path d="M12 21c0-6-3-9-9-9"></path>
+      </svg>
 
+      <!-- TENNIS BALL -->
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M6.2 6.8c3.4 0 6.2 2.8 6.2 6.2s-2.8 6.2-6.2 6.2"></path>
+        <path d="M17.8 4.8c0 3.4-2.8 6.2-6.2 6.2s-6.2-2.8-6.2-6.2"></path>
+      </svg>
+
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="title">
+      <span class="white">Sports</span><span class="orange">Betting</span>
+    </h1>
+
+    <div class="pill">TOURNAMENTS</div>
+
+    <p class="subtitle">
+      Compete in <span class="free">FREE</span> sports betting tournaments<br />
+      against players worldwide
+    </p>
+
+    <button class="cta-primary">REAL PRIZES TO BE WON</button>
+
+    <!-- LOGIN FORM -->
+    <form class="form">
+
+      <div class="field">
+        <span class="icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4 16-4 16 0"></path>
+          </svg>
+        </span>
+        <input type="text" placeholder="Username" />
       </div>
 
-      <!-- TITLE -->
-      <h1 class="title">
-        <span class="white">Sports</span><span class="orange">Betting</span>
-      </h1>
-
-      <div class="pill">TOURNAMENTS</div>
-
-      <p class="subtitle">
-        Compete in <span class="free">FREE</span> sports betting tournaments<br/>
-        against players worldwide
-      </p>
-
-      <!-- CTA -->
-      <button class="cta-primary" type="button">REAL PRIZES TO BE WON</button>
-
-      <!-- FORM -->
-      <form class="form">
-
-        <div class="field">
-          <span class="icon" aria-hidden="true">
-            <!-- USER -->
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="8" r="3.5"></circle>
-              <path d="M4.5 19.5c.8-4 14.2-4 15 0"></path>
-            </svg>
-          </span>
-          <input type="text" placeholder="Username" />
-        </div>
-
-        <div class="field">
-          <span class="icon" aria-hidden="true">
-            <!-- LOCK -->
-            <svg viewBox="0 0 24 24">
-              <rect x="6" y="10.5" width="12" height="9" rx="2"></rect>
-              <path d="M8.5 10.5V8.2a3.5 3.5 0 0 1 7 0v2.3"></path>
-            </svg>
-          </span>
-          <input type="password" placeholder="Password" />
-        </div>
-
-        <button type="submit" class="login">LOGIN</button>
-
-        <div class="or">OR</div>
-
-        <button type="button" class="register">REGISTER NOW</button>
-
-      </form>
-
-      <!-- FOOTER -->
-      <div class="footer">
-        <a href="#">Forgot Password?</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Affiliate Program</a>
-        <a class="support" href="#">Need help? Contact Support</a>
-        <div class="dark">Dark Mode <strong>OFF</strong></div>
+      <div class="field">
+        <span class="icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+          </svg>
+        </span>
+        <input type="password" placeholder="Password" />
       </div>
 
-    </section>
-  </main>
+      <button class="login">LOGIN</button>
+
+      <div class="or">OR</div>
+
+      <button class="register">REGISTER NOW</button>
+
+    </form>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <a href="#">Forgot Password?</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Affiliate Program</a>
+      <a href="#" class="support">Need help? Contact Support</a>
+      <div class="dark">Dark Mode <strong>OFF</strong></div>
+    </div>
+
+  </section>
+</main>
+
 </body>
 </html>
 
