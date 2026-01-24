@@ -32,7 +32,7 @@ body {
 }
 
 /* ===============================
-   ICONS (TOP)
+   ICONS (TOP – SPORTS)
 ================================ */
 .icons {
   display: flex;
@@ -44,10 +44,15 @@ body {
 .icons svg {
   width: 22px;
   height: 22px;
-  stroke: #ffffff;
-  fill: none;
-  stroke-width: 2;
+  fill: #ffffff;
   opacity: .9;
+}
+
+.icons svg path,
+.icons svg polygon {
+  fill: none;
+  stroke: #070b1a;
+  stroke-width: 1.5;
 }
 
 /* ===============================
@@ -191,4 +196,5 @@ button {
   margin-top: 6px;
   opacity: .7;
 }
+
 
