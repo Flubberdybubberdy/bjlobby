@@ -113,6 +113,80 @@ button {
 
 .login {
   width: 100%;
-  background: linear-gradient(18
+  background: linear-gradient(180deg, #6ad69a, #35b87b);
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 14px;
+  margin-top: 10px;
+}
+
+.register {
+  width: 100%;
+  background: linear-gradient(180deg, #ffe35c, #ffd23a);
+  color: #111;
+  padding: 14px;
+  border-radius: 14px;
+}
+
+/* ===============================
+   FORM
+================================ */
+.form { margin-top: 10px; }
+
+.field {
+  display: flex;
+  align-items: center;
+  background: #eef3fb;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.field input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+}
+
+.field .icon {
+  margin-right: 10px;
+  display: inline-flex;
+}
+
+.field svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6b7280;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer a {
+  color: #f6c945;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer a.support {
+  color: #ffffff;
+}
+
+.footer .dark {
+  margin-top: 6px;
+  opacity: .7;
+}
 
 
