@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sports Betting — Tournaments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* ===============================
+       RESET / BASE
+    ================================ */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      outline: 10px solid red; /* 🔴 CANARY — MUST BE VISIBLE */
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111a33, #070b1a 70%);
+      color: #ffffff;
+    }
+
+    /* ===============================
+       LAYOUT
+    ================================ */
+    .page {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, #1b2340, #121a30);
+      border-radius: 28px;
+      padding: 36px 28px 32px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      text-align: center;
+    }
+
+    /* ===============================
+       TOP SPORTS ICONS
+    ================================ */
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .icons svg {
+      width: 26px;
+      height: 26px;
+      fill: #ffffff;
+      opacity: .95;
+    }
+
+    /* ===============================
+       TYPOGRAPHY
+    ================================ */
+    .title {
+      font-size: 34px;
+      margin: 0;
+      font-weight: 900;
+    }
+
+    .white { color: #ffffff; }
+    .orange { color: #ff8c2b; }
+
+    .pill {
+      display: inline-block;
+      margin: 12px 0 16px;
+      padding: 6px 14px;
+      background: #ffffff;
+      color: #2b2b2b;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #b7c0e0;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .free {
+      background: #f6c945;
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    /* ===============================
+       BUTTONS
+    ================================ */
+    button {
+      border: 0;
+      cursor: pointer;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .cta-primary {
+      width: 100%;
+      background: linear-gradient(180deg, #ffd46a, #f6c945);
+      color: #111;
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .login {
+      width: 100%;
+      background: linear-gradient(180deg, #6ad69a, #35b87b);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
+
+    .register {
+      width: 100%;
+      background: linear-gradient(180deg, #ffe35c, #ffd23a);
+      color: #111;
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    /* ===============================
+       FORM
+    ================================ */
+    .form { margin-top: 10px; }
+
+    .field {
+      display: flex;
+      align-items: center;
+      background: #eef3fb;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .field input {
+      border: 0;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .field svg {
+      width: 18px;
+      height: 18px;
+      fill: #6b7280;
+      margin-right: 10px;
+    }
+
+    .or {
+      margin: 14px 0;
+      font-size: 12px;
+      opacity: .7;
+    }
+
+    /* ===============================
+       FOOTER
+    ================================ */
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer a {
+      color: #f6c945;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer .support {
+      color: #ffffff;
+    }
+
+    .dark {
+      margin-top: 6px;
+      opacity: .7;
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="page">
+<section class="card">
+
+  <!-- TOP SPORTS ICONS -->
+  <div class="icons">
+
+    <!-- FOOTBALL -->
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <polygon points="12,7 15,9 14,13 10,13 9,9"/>
+    </svg>
+
+    <!-- BASKETBALL -->
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 2v20" stroke="#070b1a" stroke-width="2" fill="none"/>
+      <path d="M2 12h20" stroke="#070b1a" stroke-width="2" fill="none"/>
+    </svg>
+
+    <!-- TENNIS BALL -->
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M6 6c4 4 4 8 0 12" stroke="#070b1a" stroke-width="2" fill="none"/>
+      <path d="M18 6c-4 4-4 8 0 12" stroke="#070b1a" stroke-width="2" fill="none"/>
+    </svg>
+
+  </div>
+
+  <h1 class="title">
+    <span class="white">Sports</span><span class="orange">Betting</span>
+  </h1>
+
+  <div class="pill">TOURNAMENTS</div>
+
+  <p class="subtitle">
+    Compete in <span class="free">FREE</span> sports betting tournaments<br>
+    against players worldwide
+  </p>
+
+  <button class="cta-primary">REAL PRIZES TO BE WON</button>
+
+  <form class="form">
+
+    <div class="field">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 16-4 16 0"/>
+      </svg>
+      <input type="text" placeholder="Username">
+    </div>
+
+    <div class="field">
+      <svg viewBox="0 0 24 24">
+        <rect x="5" y="10" width="14" height="10" rx="2"/>
+        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+      </svg>
+      <input type="password" placeholder="Password">
+    </div>
+
+    <button class="login">LOGIN</button>
+
+    <div class="or">OR</div>
+
+    <button class="register">REGISTER NOW</button>
+
+  </form>
+
+  <div class="footer">
+    <a href="#">Forgot Password?</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Affiliate Program</a>
+    <a href="#" class="support">Need help? Contact Support</a>
+    <div class="dark">Dark Mode <strong>OFF</strong></div>
+  </div>
+
+</section>
+</main>
+
+</body>
+</html>
+
 
