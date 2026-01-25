@@ -29,33 +29,44 @@ html, body {
   max-width: 420px;
   background: linear-gradient(180deg, #0f172a, #0b1220);
   border-radius: 28px;
-  padding: 28px 26px 26px;
+  padding: 30px 26px 28px;
   box-shadow: 0 40px 120px rgba(0,0,0,0.6);
   text-align: center;
 }
 
 /* =========================
-   SPORTS ICONS (PNG)
+   SPORTS ICONS (FIXED)
 ========================= */
 .sports-icons {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 18px;
+  margin-bottom: 18px;
 }
 
-.sports-icons img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+/* Mask container */
+.icon-wrap {
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: bounce 1.6s ease-in-out infinite;
 }
 
-.sports-icons img:nth-child(1) { animation-delay: 0s; }
-.sports-icons img:nth-child(2) { animation-delay: 0.12s; }
-.sports-icons img:nth-child(3) { animation-delay: 0.24s; }
-.sports-icons img:nth-child(4) { animation-delay: 0.36s; }
-.sports-icons img:nth-child(5) { animation-delay: 0.48s; }
+/* Image itself */
+.icon-wrap img {
+  width: 110px;       /* overscale to crop text */
+  height: auto;
+  transform: translateY(-6px); /* pushes text out of view */
+}
+
+.icon-wrap:nth-child(1) { animation-delay: 0s; }
+.icon-wrap:nth-child(2) { animation-delay: 0.12s; }
+.icon-wrap:nth-child(3) { animation-delay: 0.24s; }
+.icon-wrap:nth-child(4) { animation-delay: 0.36s; }
+.icon-wrap:nth-child(5) { animation-delay: 0.48s; }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
@@ -188,11 +199,11 @@ h1 span { color: #ff8a2a; }
   <div class="card">
 
     <div class="sports-icons">
-      <img src="assets/icons/soccer.png" alt="Football">
-      <img src="assets/icons/basketball.png" alt="Basketball">
-      <img src="assets/icons/tennis.png" alt="Tennis">
-      <img src="assets/icons/nfl.png" alt="NFL">
-      <img src="assets/icons/golf.png" alt="Golf">
+      <div class="icon-wrap"><img src="assets/icons/soccer.png" alt=""></div>
+      <div class="icon-wrap"><img src="assets/icons/basketball.png" alt=""></div>
+      <div class="icon-wrap"><img src="assets/icons/tennis.png" alt=""></div>
+      <div class="icon-wrap"><img src="assets/icons/nfl.png" alt=""></div>
+      <div class="icon-wrap"><img src="assets/icons/golf.png" alt=""></div>
     </div>
 
     <h1>Sports<span>Betting</span></h1>
@@ -205,7 +216,6 @@ h1 span { color: #ff8a2a; }
 
     <div class="cta">REAL PRIZES TO BE WON</div>
 
-    <!-- USERNAME -->
     <div class="field">
       <svg viewBox="0 0 24 24" fill="#2563eb">
         <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
@@ -213,7 +223,6 @@ h1 span { color: #ff8a2a; }
       <input type="text" placeholder="Username">
     </div>
 
-    <!-- PASSWORD -->
     <div class="field">
       <svg viewBox="0 0 24 24" fill="#fbbf24">
         <path d="M17 8V7a5 5 0 00-10 0v1H5v14h14V8h-2zm-8-1a3 3 0 016 0v1H9V7z"/>
@@ -222,9 +231,7 @@ h1 span { color: #ff8a2a; }
     </div>
 
     <button class="btn btn-login">LOGIN</button>
-
     <div class="or">OR</div>
-
     <button class="btn btn-register">REGISTER NOW</button>
 
     <div class="footer">
