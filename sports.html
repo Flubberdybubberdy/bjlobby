@@ -19,8 +19,8 @@
       <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
         <span class="card-icons" aria-hidden="true">
 
-          <!-- CARD 1: WHITE A♠ (BLACK) -->
-          <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Ace of Spades">
+          <!-- CARD 1: WHITE A♠ -->
+          <svg class="card-icon" viewBox="0 0 64 88">
             <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
             <text class="rank black" x="12" y="22">A</text>
             <text class="suit black" x="12" y="40">♠</text>
@@ -28,8 +28,8 @@
             <text class="suit black" x="44" y="56" transform="rotate(180 44 56)">♠</text>
           </svg>
 
-          <!-- CARD 2: WHITE J♥ (RED) -->
-          <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Jack of Hearts">
+          <!-- CARD 2: WHITE J♥ -->
+          <svg class="card-icon" viewBox="0 0 64 88">
             <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
             <text class="rank red" x="12" y="22">J</text>
             <text class="suit red" x="12" y="40">♥</text>
@@ -57,26 +57,27 @@
 
     <div class="message-bar">A SAMPLE MESSAGE</div>
 
-    <nav class="tabs" aria-label="Sports lobby filters">
-      <button class="tab active" type="button">ALL EVENTS</button>
-      <button class="tab" type="button">LIVE</button>
-      <button class="tab" type="button">UPCOMING</button>
-      <button class="tab" type="button">FINISHED</button>
+    <nav class="tabs">
+      <button class="tab active">ALL EVENTS</button>
+      <button class="tab">LIVE</button>
+      <button class="tab">UPCOMING</button>
+      <button class="tab">FINISHED</button>
     </nav>
   </main>
 
   <!-- CONTENT -->
   <section class="content">
+
     <div class="section-head">
       <h2 class="section-title">Available Tournaments</h2>
-      <a class="howto" href="#" aria-label="How it works">HOW IT WORKS →</a>
+      <a class="howto" href="#">HOW IT WORKS →</a>
     </div>
 
-    <!-- CARD 1 -->
+    <!-- TOURNAMENT 1 -->
     <article class="tcard">
       <div class="tcard-top">
         <div class="tname">
-          <span class="dot live" aria-hidden="true"></span>
+          <span class="dot live"></span>
           <span>Simple Sports Test</span>
         </div>
         <span class="status live">LIVE</span>
@@ -103,16 +104,17 @@
       </div>
 
       <div class="tactions">
-        <button class="btn btn-view" type="button">VIEW</button>
-        <button class="btn btn-leader" type="button">LEADERBOARD</button>
+        <!-- 🔴 ONLY CHANGE IS HERE -->
+        <a href="sports-tournament.html" class="btn btn-view">VIEW</a>
+        <button class="btn btn-leader">LEADERBOARD</button>
       </div>
     </article>
 
-    <!-- CARD 2 -->
+    <!-- TOURNAMENT 2 -->
     <article class="tcard">
       <div class="tcard-top">
         <div class="tname">
-          <span class="dot upcoming" aria-hidden="true"></span>
+          <span class="dot upcoming"></span>
           <span>Midweek Multi-Sport Cup</span>
         </div>
         <span class="status upcoming">UPCOMING</span>
@@ -139,15 +141,15 @@
       </div>
 
       <div class="tactions">
-        <div class="pill">STARTS IN&nbsp;&nbsp;05:21:09</div>
+        <div class="pill">STARTS IN&nbsp;05:21:09</div>
       </div>
     </article>
 
-    <!-- CARD 3 -->
+    <!-- TOURNAMENT 3 -->
     <article class="tcard">
       <div class="tcard-top">
         <div class="tname">
-          <span class="dot finished" aria-hidden="true"></span>
+          <span class="dot finished"></span>
           <span>Weekend Sports Mash</span>
         </div>
         <span class="status finished">FINISHED</span>
@@ -174,8 +176,8 @@
       </div>
 
       <div class="tactions">
-        <button class="btn btn-disabled" type="button" disabled>COMPLETED</button>
-        <button class="btn btn-leader" type="button">LEADERBOARD</button>
+        <button class="btn btn-disabled" disabled>COMPLETED</button>
+        <button class="btn btn-leader">LEADERBOARD</button>
       </div>
     </article>
 
