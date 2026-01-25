@@ -11,7 +11,7 @@
 
     body {
       font-family: Inter, system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at top, #0d1630, #050914 70%);
+      background: radial-gradient(circle at top, #111a33, #070b1a 70%);
       color: #ffffff;
     }
 
@@ -26,14 +26,16 @@
     .card {
       width: 100%;
       max-width: 420px;
-      background: linear-gradient(180deg, #182342, #0e162d);
+      background: linear-gradient(180deg, #1b2340, #121a30);
       border-radius: 28px;
       padding: 36px 28px 32px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.7);
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
       text-align: center;
     }
 
-    /* TOP SPORTS BALLS */
+    /* ===============================
+       SPORTS ICONS (3D + BOUNCE)
+    ================================ */
     .icons {
       display: flex;
       justify-content: center;
@@ -44,7 +46,8 @@
     .ball {
       width: 28px;
       height: 28px;
-      animation: bounce 1.8s ease-in-out infinite;
+      border-radius: 50%;
+      animation: bounce 2.8s ease-in-out infinite;
     }
 
     .ball:nth-child(2) { animation-delay: .15s; }
@@ -55,13 +58,75 @@
       50% { transform: translateY(-6px); }
     }
 
+    .football {
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #d9d9d9 45%, #bfbfbf 100%);
+      position: relative;
+    }
+
+    .football::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      background: #111;
+      clip-path: polygon(50% 0%, 95% 25%, 78% 85%, 22% 85%, 5% 25%);
+    }
+
+    .basketball {
+      background:
+        radial-gradient(circle at 30% 30%, #ffb36a, #d46a1f 65%, #b45112 100%);
+      position: relative;
+    }
+
+    .basketball::before,
+    .basketball::after {
+      content: "";
+      position: absolute;
+      background: rgba(0,0,0,.6);
+    }
+
+    .basketball::before {
+      width: 2px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .basketball::after {
+      height: 2px;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .tennis {
+      background:
+        radial-gradient(circle at 30% 30%, #e6ff9a, #9fd43a 70%, #7db120 100%);
+      position: relative;
+    }
+
+    .tennis::before,
+    .tennis::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: rgba(255,255,255,.7);
+      top: 0;
+    }
+
+    .tennis::before { left: 35%; transform: rotate(12deg); }
+    .tennis::after  { right: 35%; transform: rotate(-12deg); }
+
+    /* ===============================
+       TYPOGRAPHY
+    ================================ */
     .title {
       font-size: 34px;
       margin: 0;
       font-weight: 900;
     }
 
-    .white { color: #ffffff; }
     .orange { color: #ff8c2b; }
 
     .pill {
@@ -92,6 +157,9 @@
       font-size: 12px;
     }
 
+    /* ===============================
+       BUTTONS
+    ================================ */
     button {
       border: 0;
       cursor: pointer;
@@ -125,6 +193,9 @@
       border-radius: 14px;
     }
 
+    /* ===============================
+       FORM
+    ================================ */
     .form { margin-top: 10px; }
 
     .field {
@@ -136,6 +207,14 @@
       margin-bottom: 14px;
     }
 
+    .icon {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    .user { color: #2f6bff; }
+    .lock { color: #f6c945; }
+
     .field input {
       border: 0;
       background: transparent;
@@ -144,26 +223,15 @@
       flex: 1;
     }
 
-    .icon-user {
-      width: 18px;
-      height: 18px;
-      fill: #3b82f6;
-      margin-right: 10px;
-    }
-
-    .icon-lock {
-      width: 18px;
-      height: 18px;
-      fill: #f6c945;
-      margin-right: 10px;
-    }
-
     .or {
       margin: 14px 0;
       font-size: 12px;
       opacity: .7;
     }
 
+    /* ===============================
+       FOOTER
+    ================================ */
     .footer {
       margin-top: 20px;
       font-size: 12px;
@@ -178,6 +246,10 @@
       font-weight: 700;
     }
 
+    .footer a.support {
+      color: #ffffff;
+    }
+
     .dark {
       margin-top: 6px;
       opacity: .7;
@@ -189,30 +261,14 @@
 <main class="page">
 <section class="card">
 
-  <!-- SPORTS BALLS -->
   <div class="icons">
-    <!-- FOOTBALL -->
-    <svg class="ball" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-      <polygon points="12,7 15,9 14,13 10,13 9,9" fill="#111"/>
-    </svg>
-
-    <!-- BASKETBALL -->
-    <svg class="ball" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" fill="#f97316"/>
-      <path d="M12 2v20M2 12h20" stroke="#111" stroke-width="1.5"/>
-    </svg>
-
-    <!-- TENNIS BALL -->
-    <svg class="ball" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" fill="#d9f99d"/>
-      <path d="M6 6c4 4 4 8 0 12" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-      <path d="M18 6c-4 4-4 8 0 12" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-    </svg>
+    <div class="ball football"></div>
+    <div class="ball basketball"></div>
+    <div class="ball tennis"></div>
   </div>
 
   <h1 class="title">
-    <span class="white">Sports</span><span class="orange">Betting</span>
+    Sports<span class="orange">Betting</span>
   </h1>
 
   <div class="pill">TOURNAMENTS</div>
@@ -226,18 +282,12 @@
 
   <form class="form">
     <div class="field">
-      <svg class="icon-user" viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 16-4 16 0"/>
-      </svg>
+      <span class="icon user">👤</span>
       <input type="text" placeholder="Username">
     </div>
 
     <div class="field">
-      <svg class="icon-lock" viewBox="0 0 24 24">
-        <rect x="5" y="10" width="14" height="10" rx="2"/>
-        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-      </svg>
+      <span class="icon lock">🔒</span>
       <input type="password" placeholder="Password">
     </div>
 
@@ -250,7 +300,7 @@
     <a href="#">Forgot Password?</a>
     <a href="#">Terms & Conditions</a>
     <a href="#">Affiliate Program</a>
-    <a href="#">Need help? Contact Support</a>
+    <a href="#" class="support">Need help? Contact Support</a>
     <div class="dark">Dark Mode <strong>OFF</strong></div>
   </div>
 
@@ -258,6 +308,5 @@
 </main>
 </body>
 </html>
-
 
 
