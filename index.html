@@ -1,4 +1,3 @@
-<!-- FORCE PAGES REDEPLOY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +13,27 @@
     html, body { height: 100%; margin: 0; }
 
     body {
-      outline: 10px solid red; /* 🔴 CANARY — MUST BE VISIBLE */
       font-family: Inter, system-ui, -apple-system, sans-serif;
       background: radial-gradient(circle at top, #111a33, #070b1a 70%);
       color: #ffffff;
+    }
+
+    /* ===============================
+       CANARY BANNER (MUST BE VISIBLE)
+    ================================ */
+    .canary {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      background: red;
+      color: white;
+      text-align: center;
+      font-weight: 900;
+      padding: 10px;
+      letter-spacing: .08em;
+      font-size: 14px;
     }
 
     /* ===============================
@@ -29,6 +45,7 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
+      padding-top: 80px; /* space for CANARY banner */
     }
 
     .card {
@@ -54,7 +71,9 @@
     .icons svg {
       width: 26px;
       height: 26px;
-      fill: #ffffff;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2;
       opacity: .95;
     }
 
@@ -199,85 +218,73 @@
 
 <body>
 
-<main class="page">
-<section class="card">
-
-  <!-- TOP SPORTS ICONS -->
-  <div class="icons">
-
-    <!-- FOOTBALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/>
-      <polygon points="12,7 15,9 14,13 10,13 9,9"/>
-    </svg>
-
-    <!-- BASKETBALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 2v20" stroke="#070b1a" stroke-width="2" fill="none"/>
-      <path d="M2 12h20" stroke="#070b1a" stroke-width="2" fill="none"/>
-    </svg>
-
-    <!-- TENNIS BALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M6 6c4 4 4 8 0 12" stroke="#070b1a" stroke-width="2" fill="none"/>
-      <path d="M18 6c-4 4-4 8 0 12" stroke="#070b1a" stroke-width="2" fill="none"/>
-    </svg>
-
+  <!-- 🔴 CANARY MARKER -->
+  <div class="canary">
+    ⚠️ CANARY BUILD — IF YOU SEE THIS, PAGES IS SERVING INDEX.HTML
   </div>
 
-  <h1 class="title">
-    <span class="white">Sports</span><span class="orange">Betting</span>
-  </h1>
+  <main class="page">
+    <section class="card">
 
-  <div class="pill">TOURNAMENTS</div>
+      <div class="icons">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+      </div>
 
-  <p class="subtitle">
-    Compete in <span class="free">FREE</span> sports betting tournaments<br>
-    against players worldwide
-  </p>
+      <h1 class="title">
+        <span class="white">Sports</span><span class="orange">Betting</span>
+      </h1>
 
-  <button class="cta-primary">REAL PRIZES TO BE WON</button>
+      <div class="pill">TOURNAMENTS</div>
 
-  <form class="form">
+      <p class="subtitle">
+        Compete in <span class="free">FREE</span> sports betting tournaments<br>
+        against players worldwide
+      </p>
 
-    <div class="field">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 16-4 16 0"/>
-      </svg>
-      <input type="text" placeholder="Username">
-    </div>
+      <button class="cta-primary">REAL PRIZES TO BE WON</button>
 
-    <div class="field">
-      <svg viewBox="0 0 24 24">
-        <rect x="5" y="10" width="14" height="10" rx="2"/>
-        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-      </svg>
-      <input type="password" placeholder="Password">
-    </div>
+      <form class="form">
 
-    <button class="login">LOGIN</button>
+        <div class="field">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 16-4 16 0"/>
+          </svg>
+          <input type="text" placeholder="Username">
+        </div>
 
-    <div class="or">OR</div>
+        <div class="field">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="10" width="14" height="10" rx="2"/>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+          </svg>
+          <input type="password" placeholder="Password">
+        </div>
 
-    <button class="register">REGISTER NOW</button>
+        <button class="login">LOGIN</button>
 
-  </form>
+        <div class="or">OR</div>
 
-  <div class="footer">
-    <a href="#">Forgot Password?</a>
-    <a href="#">Terms & Conditions</a>
-    <a href="#">Affiliate Program</a>
-    <a href="#" class="support">Need help? Contact Support</a>
-    <div class="dark">Dark Mode <strong>OFF</strong></div>
-  </div>
+        <button class="register">REGISTER NOW</button>
 
-</section>
-</main>
+      </form>
+
+      <div class="footer">
+        <a href="#">Forgot Password?</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Affiliate Program</a>
+        <a href="#" class="support">Need help? Contact Support</a>
+        <div class="dark">Dark Mode <strong>OFF</strong></div>
+      </div>
+
+    </section>
+  </main>
 
 </body>
 </html>
+
+
 
 
