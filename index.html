@@ -1,236 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Sports Betting – Tournaments</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Sports Betting — Tournaments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    /* ===============================
+       RESET / BASE
+    ================================ */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617 70%);
-  color: #ffffff;
-}
+    body{
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #111a33, #070b1a 70%);
+      color: #ffffff;
+    }
 
-.page {
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
+    /* ===============================
+       LAYOUT
+    ================================ */
+    .page{
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
 
-.card {
-  width: 100%;
-  max-width: 420px;
-  background: linear-gradient(180deg, #0b1325, #020617);
-  border-radius: 24px;
-  padding: 32px 28px;
-  box-shadow: 0 30px 80px rgba(0,0,0,.6);
-  text-align: center;
-}
+    .card{
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, #1b2340, #121a30);
+      border-radius: 28px;
+      padding: 36px 28px 32px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      text-align: center;
+    }
 
-/* --- BALLS --- */
-.balls {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 14px;
-}
+    /* ===============================
+       TOP SPORTS ICONS (REALISTIC + BOUNCE)
+    ================================ */
+    .icons{
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
 
-.ball {
-  width: 28px;
-  height: 28px;
-  animation: bounce 1.6s ease-in-out infinite;
-}
+    .ball{
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+      transform-origin: 50% 90%;
+      animation: bounce 1.35s infinite ease-in-out;
+    }
+    .ball:nth-child(2){ animation-delay: .10s; }
+    .ball:nth-child(3){ animation-delay: .20s; }
 
-.ball:nth-child(2){ animation-delay:.15s }
-.ball:nth-child(3){ animation-delay:.3s }
+    @keyframes bounce{
+      0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+      35%      { transform: translateY(-10px) scaleX(.98) scaleY(1.02); }
+      55%      { transform: translateY(0) scaleX(1.05) scaleY(.95); }
+      75%      { transform: translateY(-4px) scaleX(.99) scaleY(1.01); }
+    }
 
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
+    /* ===============================
+       TYPOGRAPHY
+    ================================ */
+    .title{
+      font-size: 34px;
+      margin: 0;
+      font-weight: 900;
+    }
 
-/* --- TITLES --- */
-h1 {
-  margin: 6px 0 6px;
-  font-size: 28px;
-  font-weight: 800;
-}
-h1 span { color:#fb923c }
+    .white{ color: #ffffff; }
+    .orange{ color: #ff8c2b; }
 
-.badge {
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:999px;
-  background:#fff;
-  color:#020617;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.12em;
-}
+    .pill{
+      display: inline-block;
+      margin: 12px 0 16px;
+      padding: 6px 14px;
+      background: #ffffff;
+      color: #2b2b2b;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
 
-.subtitle {
-  margin:14px 0 20px;
-  font-size:14px;
-  color:#cbd5f5;
-}
+    .subtitle{
+      font-size: 14px;
+      color: #b7c0e0;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
 
-/* --- BUTTONS --- */
-.primary {
-  width:100%;
-  border:none;
-  border-radius:14px;
-  padding:14px;
-  background:#fbbf24;
-  color:#020617;
-  font-weight:800;
-  cursor:pointer;
-  margin-bottom:16px;
-}
+    .free{
+      background: #f6c945;
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 12px;
+    }
 
-.login {
-  background:linear-gradient(180deg,#22c55e,#16a34a);
-  color:#fff;
-  margin-top:8px;
-}
+    /* ===============================
+       BUTTONS
+    ================================ */
+    button{
+      border: 0;
+      cursor: pointer;
+      font-weight: 900;
+      letter-spacing: .08em;
+      font-size: 13px;
+    }
 
-/* --- INPUTS --- */
-.field {
-  display:flex;
-  align-items:center;
-  background:#eef2ff;
-  border-radius:12px;
-  padding:12px 14px;
-  margin-bottom:10px;
-  color:#020617;
-}
+    .cta-primary{
+      width: 100%;
+      background: linear-gradient(180deg, #ffd46a, #f6c945);
+      color: #111;
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
 
-.field svg {
-  width:18px;
-  height:18px;
-  margin-right:10px;
-}
+    .login{
+      width: 100%;
+      background: linear-gradient(180deg, #6ad69a, #35b87b);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 14px;
+      margin-top: 10px;
+    }
 
-.field input {
-  border:none;
-  background:none;
-  outline:none;
-  width:100%;
-  font-size:14px;
-}
+    .register{
+      width: 100%;
+      background: linear-gradient(180deg, #ffe35c, #ffd23a);
+      color: #111;
+      padding: 14px;
+      border-radius: 14px;
+    }
 
-/* --- FOOTER --- */
-.links {
-  margin-top:16px;
-  font-size:12px;
-}
+    /* ===============================
+       FORM
+    ================================ */
+    .form{ margin-top: 10px; }
 
-.links a {
-  display:block;
-  color:#fbbf24;
-  text-decoration:none;
-  margin:4px 0;
-}
+    .field{
+      display: flex;
+      align-items: center;
+      background: #eef3fb;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
 
-.help {
-  margin-top:6px;
-  color:#ffffff;
-}
+    .field input{
+      border: 0;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      flex: 1;
+      color: #111;
+    }
 
-.dark {
-  margin-top:8px;
-  font-size:11px;
-  color:#94a3b8;
-}
-</style>
+    .field .ico{
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .field .ico svg{ width: 18px; height: 18px; display:block; }
+
+    .or{
+      margin: 14px 0;
+      font-size: 12px;
+      opacity: .7;
+    }
+
+    /* ===============================
+       FOOTER
+    ================================ */
+    .footer{
+      margin-top: 20px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      line-height: 1.35;
+    }
+
+    .footer a{
+      color: #f6c945;            /* ALL footer links = yellow */
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .help-line{
+      color: #ffffff;            /* "Need help?" in white */
+      font-weight: 800;
+    }
+    .help-line a{ color:#f6c945; font-weight: 900; }
+  </style>
 </head>
 
 <body>
-<div class="page">
-  <div class="card">
+  <main class="page">
+    <section class="card">
 
-    <!-- SPORTS BALLS -->
-    <div class="balls">
+      <!-- TOP SPORTS ICONS -->
+      <div class="icons" aria-hidden="true">
+        <!-- FOOTBALL (soccer) -->
+        <span class="ball" title="Football">
+          <svg viewBox="0 0 24 24" role="img" aria-label="Football">
+            <defs>
+              <radialGradient id="gSoccer" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="70%" stop-color="#e9eef7"/>
+                <stop offset="100%" stop-color="#d5dcea"/>
+              </radialGradient>
+            </defs>
+            <circle cx="12" cy="12" r="10" fill="url(#gSoccer)"/>
+            <circle cx="12" cy="12" r="10" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
+            <!-- center pentagon -->
+            <path d="M12 7.1l3.2 2.2-1.2 3.7H10l-1.2-3.7z" fill="#1a1f2d"/>
+            <!-- panels -->
+            <path d="M12 7.1L7.7 9.2 6.3 13.4 9.9 15.7 10 13z" fill="#1a1f2d" opacity=".85"/>
+            <path d="M12 7.1l4.3 2.1 1.4 4.2-3.6 2.3L14 13z" fill="#1a1f2d" opacity=".85"/>
+            <path d="M6.3 13.4l2.5 5.1 3.2-.9-2.1-1.9z" fill="#1a1f2d" opacity=".75"/>
+            <path d="M17.7 13.4l-2.5 5.1-3.2-.9 2.1-1.9z" fill="#1a1f2d" opacity=".75"/>
+            <!-- subtle highlight -->
+            <circle cx="8.5" cy="8" r="2.2" fill="rgba(255,255,255,.55)"/>
+          </svg>
+        </span>
 
-      <!-- FOOTBALL -->
-      <svg class="ball" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="28" fill="#ffffff"/>
-        <polygon points="32,18 38,22 36,30 28,30 26,22" fill="#111827"/>
-        <polygon points="26,22 18,20 14,28 20,34 28,30" fill="#111827"/>
-        <polygon points="38,22 46,20 50,28 44,34 36,30" fill="#111827"/>
-        <polygon points="20,34 14,28 18,42 28,46 28,30" fill="#111827"/>
-        <polygon points="44,34 50,28 46,42 36,46 36,30" fill="#111827"/>
-        <circle cx="32" cy="32" r="28" fill="none" stroke="#111827" stroke-width="2"/>
-      </svg>
+        <!-- BASKETBALL -->
+        <span class="ball" title="Basketball">
+          <svg viewBox="0 0 24 24" role="img" aria-label="Basketball">
+            <defs>
+              <radialGradient id="gBball" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffb066"/>
+                <stop offset="70%" stop-color="#ff7a2f"/>
+                <stop offset="100%" stop-color="#e65a12"/>
+              </radialGradient>
+            </defs>
+            <circle cx="12" cy="12" r="10" fill="url(#gBball)"/>
+            <circle cx="12" cy="12" r="10" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1"/>
+            <path d="M12 2a10 10 0 0 0 0 20" fill="none" stroke="#2a1b10" stroke-width="1.4" opacity=".7"/>
+            <path d="M2 12a10 10 0 0 0 20 0" fill="none" stroke="#2a1b10" stroke-width="1.4" opacity=".7"/>
+            <path d="M4.7 5.2c3 1.4 5 4 5.3 6.8" fill="none" stroke="#2a1b10" stroke-width="1.2" opacity=".6"/>
+            <path d="M19.3 18.8c-3-1.4-5-4-5.3-6.8" fill="none" stroke="#2a1b10" stroke-width="1.2" opacity=".6"/>
+            <circle cx="8.3" cy="8" r="2.2" fill="rgba(255,255,255,.35)"/>
+          </svg>
+        </span>
 
-      <!-- BASKETBALL -->
-      <svg class="ball" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="28" fill="#f97316"/>
-        <path d="M32 4v56M4 32h56" stroke="#111827" stroke-width="4"/>
-        <path d="M12 12c16 16 16 24 0 40M52 12c-16 16-16 24 0 40"
-              stroke="#111827" stroke-width="4"/>
-      </svg>
+        <!-- TENNIS BALL -->
+        <span class="ball" title="Tennis">
+          <svg viewBox="0 0 24 24" role="img" aria-label="Tennis ball">
+            <defs>
+              <radialGradient id="gTennis" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#d7ff85"/>
+                <stop offset="70%" stop-color="#8dff3f"/>
+                <stop offset="100%" stop-color="#63d81f"/>
+              </radialGradient>
+            </defs>
+            <circle cx="12" cy="12" r="10" fill="url(#gTennis)"/>
+            <circle cx="12" cy="12" r="10" fill="none" stroke="rgba(0,0,0,.14)" stroke-width="1"/>
+            <path d="M6.1 5.9c3.9 3.9 3.9 8.3 0 12.2" fill="none" stroke="#f2ffd6" stroke-width="1.8" opacity=".95"/>
+            <path d="M17.9 5.9c-3.9 3.9-3.9 8.3 0 12.2" fill="none" stroke="#f2ffd6" stroke-width="1.8" opacity=".95"/>
+            <circle cx="8.2" cy="8" r="2.0" fill="rgba(255,255,255,.35)"/>
+          </svg>
+        </span>
+      </div>
 
-      <!-- TENNIS -->
-      <svg class="ball" viewBox="0 0 64 64">
-        <circle cx="32" cy="32" r="28" fill="#84cc16"/>
-        <path d="M10 20c16 12 28 12 44 0" fill="none" stroke="#ffffff" stroke-width="4"/>
-        <path d="M10 44c16-12 28-12 44 0" fill="none" stroke="#ffffff" stroke-width="4"/>
-      </svg>
+      <h1 class="title">
+        <span class="white">Sports</span><span class="orange">Betting</span>
+      </h1>
 
-    </div>
+      <div class="pill">TOURNAMENTS</div>
 
-    <h1>Sports<span>Betting</span></h1>
-    <div class="badge">TOURNAMENTS</div>
+      <p class="subtitle">
+        Compete in <span class="free">FREE</span> sports betting tournaments<br>
+        against players worldwide
+      </p>
 
-    <div class="subtitle">
-      Compete in <b>FREE</b> sports betting tournaments<br/>
-      against players worldwide
-    </div>
+      <button class="cta-primary" type="button">REAL PRIZES TO BE WON</button>
 
-    <button class="primary">REAL PRIZES TO BE WON</button>
+      <form class="form" onsubmit="return false;">
+        <div class="field">
+          <span class="ico" aria-hidden="true">
+            <!-- person icon (blue) -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" fill="#2f7dff"/>
+              <path d="M4 20c0-4 16-4 16 0" fill="none" stroke="#2f7dff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input type="text" placeholder="Username" autocomplete="username">
+        </div>
 
-    <!-- USERNAME -->
-    <div class="field">
-      <svg viewBox="0 0 24 24" fill="#2563eb">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c2-4 14-4 16 0"/>
-      </svg>
-      <input placeholder="Username"/>
-    </div>
+        <div class="field">
+          <span class="ico" aria-hidden="true">
+            <!-- lock icon (gold) -->
+            <svg viewBox="0 0 24 24">
+              <rect x="6" y="10" width="12" height="10" rx="2" fill="#f6c945"/>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#b88712" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input type="password" placeholder="Password" autocomplete="current-password">
+        </div>
 
-    <!-- PASSWORD -->
-    <div class="field">
-      <svg viewBox="0 0 24 24" fill="#fbbf24">
-        <rect x="5" y="10" width="14" height="10" rx="2"/>
-        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-      </svg>
-      <input type="password" placeholder="Password"/>
-    </div>
+        <button class="login" type="submit">LOGIN</button>
 
-    <button class="primary login">LOGIN</button>
+        <div class="or">OR</div>
 
-    <div style="margin:8px 0;font-size:12px;color:#94a3b8;">OR</div>
+        <button class="register" type="button">REGISTER NOW</button>
+      </form>
 
-    <button class="primary">REGISTER NOW</button>
+      <div class="footer">
+        <a href="#">Forgot Password?</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Affiliate Program</a>
+        <div class="help-line">
+          Need help? <a href="#">Contact Support</a>
+        </div>
+      </div>
 
-    <div class="links">
-      <a href="#">Forgot Password?</a>
-      <a href="#">Terms & Conditions</a>
-      <a href="#">Affiliate Program</a>
-      <div class="help">Need help? Contact Support</div>
-    </div>
-
-    <div class="dark">Dark Mode OFF</div>
-
-  </div>
-</div>
+    </section>
+  </main>
 </body>
 </html>
 
