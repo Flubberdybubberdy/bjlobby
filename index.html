@@ -14,7 +14,7 @@
 
     body {
       font-family: Inter, system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at top, #111a33, #070b1a 70%);
+      background: radial-gradient(circle at top, #0d1630, #050914 70%);
       color: #ffffff;
     }
 
@@ -32,32 +32,35 @@
     .card {
       width: 100%;
       max-width: 420px;
-      background: linear-gradient(180deg, #1b2340, #121a30);
+      background: linear-gradient(180deg, #182342, #0e162d);
       border-radius: 28px;
       padding: 36px 28px 32px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      box-shadow: 0 30px 80px rgba(0,0,0,.7);
       text-align: center;
     }
 
     /* ===============================
-       TOP SPORTS ICONS
+       TOP SPORTS ICONS (REAL OBJECT STYLE)
     ================================ */
     .icons {
       display: flex;
       justify-content: center;
-      gap: 18px;
+      gap: 16px;
       margin-bottom: 18px;
     }
 
-    .icons svg {
-      width: 24px;
-      height: 24px;
-      fill: none;
-      stroke: #ffffff;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: .95;
+    .ball {
+      width: 28px;
+      height: 28px;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    .ball:nth-child(2) { animation-delay: .15s; }
+    .ball:nth-child(3) { animation-delay: .3s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     /* ===============================
@@ -150,21 +153,26 @@
       margin-bottom: 14px;
     }
 
-    .field svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: #6b7280;
-      stroke-width: 2;
-      margin-right: 10px;
-    }
-
     .field input {
       border: 0;
       background: transparent;
       outline: none;
       font-size: 14px;
       flex: 1;
+    }
+
+    .icon-user {
+      width: 18px;
+      height: 18px;
+      fill: #3b82f6; /* BLUE PERSON */
+      margin-right: 10px;
+    }
+
+    .icon-lock {
+      width: 18px;
+      height: 18px;
+      fill: #f6c945; /* GOLD LOCK */
+      margin-right: 10px;
     }
 
     .or {
@@ -207,28 +215,13 @@
 <section class="card">
 
   <!-- TOP SPORTS ICONS -->
-  <div class="icons" aria-hidden="true">
-
+  <div class="icons">
     <!-- FOOTBALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M12 8l2 1.5-.8 2.4h-2.4L10 9.5z"/>
-    </svg>
-
+    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg" alt="Football">
     <!-- BASKETBALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M3 12h18"/>
-      <path d="M12 3v18"/>
-    </svg>
-
-    <!-- TENNIS BALL -->
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M6 6c4 4 4 8 0 12"/>
-      <path d="M18 6c-4 4-4 8 0 12"/>
-    </svg>
-
+    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Basketball">
+    <!-- TENNIS -->
+    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_ball_3.png" alt="Tennis Ball">
   </div>
 
   <h1 class="title">
@@ -247,7 +240,7 @@
   <form class="form">
 
     <div class="field">
-      <svg viewBox="0 0 24 24">
+      <svg class="icon-user" viewBox="0 0 24 24">
         <circle cx="12" cy="8" r="4"/>
         <path d="M4 20c0-4 16-4 16 0"/>
       </svg>
@@ -255,7 +248,7 @@
     </div>
 
     <div class="field">
-      <svg viewBox="0 0 24 24">
+      <svg class="icon-lock" viewBox="0 0 24 24">
         <rect x="5" y="10" width="14" height="10" rx="2"/>
         <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
       </svg>
