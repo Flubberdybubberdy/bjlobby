@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* ===============================
-       RESET / BASE
-    ================================ */
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; }
 
@@ -18,9 +15,6 @@
       color: #ffffff;
     }
 
-    /* ===============================
-       LAYOUT
-    ================================ */
     .page {
       min-height: 100%;
       display: flex;
@@ -39,9 +33,7 @@
       text-align: center;
     }
 
-    /* ===============================
-       TOP SPORTS ICONS (REAL OBJECT STYLE)
-    ================================ */
+    /* TOP SPORTS BALLS */
     .icons {
       display: flex;
       justify-content: center;
@@ -63,9 +55,6 @@
       50% { transform: translateY(-6px); }
     }
 
-    /* ===============================
-       TYPOGRAPHY
-    ================================ */
     .title {
       font-size: 34px;
       margin: 0;
@@ -103,9 +92,6 @@
       font-size: 12px;
     }
 
-    /* ===============================
-       BUTTONS
-    ================================ */
     button {
       border: 0;
       cursor: pointer;
@@ -139,9 +125,6 @@
       border-radius: 14px;
     }
 
-    /* ===============================
-       FORM
-    ================================ */
     .form { margin-top: 10px; }
 
     .field {
@@ -164,14 +147,14 @@
     .icon-user {
       width: 18px;
       height: 18px;
-      fill: #3b82f6; /* BLUE PERSON */
+      fill: #3b82f6;
       margin-right: 10px;
     }
 
     .icon-lock {
       width: 18px;
       height: 18px;
-      fill: #f6c945; /* GOLD LOCK */
+      fill: #f6c945;
       margin-right: 10px;
     }
 
@@ -181,9 +164,6 @@
       opacity: .7;
     }
 
-    /* ===============================
-       FOOTER
-    ================================ */
     .footer {
       margin-top: 20px;
       font-size: 12px;
@@ -198,10 +178,6 @@
       font-weight: 700;
     }
 
-    .footer .support {
-      color: #ffffff;
-    }
-
     .dark {
       margin-top: 6px;
       opacity: .7;
@@ -210,18 +186,29 @@
 </head>
 
 <body>
-
 <main class="page">
 <section class="card">
 
-  <!-- TOP SPORTS ICONS -->
+  <!-- SPORTS BALLS -->
   <div class="icons">
     <!-- FOOTBALL -->
-    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Soccer_ball.svg" alt="Football">
+    <svg class="ball" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#ffffff"/>
+      <polygon points="12,7 15,9 14,13 10,13 9,9" fill="#111"/>
+    </svg>
+
     <!-- BASKETBALL -->
-    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png" alt="Basketball">
-    <!-- TENNIS -->
-    <img class="ball" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_ball_3.png" alt="Tennis Ball">
+    <svg class="ball" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#f97316"/>
+      <path d="M12 2v20M2 12h20" stroke="#111" stroke-width="1.5"/>
+    </svg>
+
+    <!-- TENNIS BALL -->
+    <svg class="ball" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#d9f99d"/>
+      <path d="M6 6c4 4 4 8 0 12" stroke="#ffffff" stroke-width="1.5" fill="none"/>
+      <path d="M18 6c-4 4-4 8 0 12" stroke="#ffffff" stroke-width="1.5" fill="none"/>
+    </svg>
   </div>
 
   <h1 class="title">
@@ -238,7 +225,6 @@
   <button class="cta-primary">REAL PRIZES TO BE WON</button>
 
   <form class="form">
-
     <div class="field">
       <svg class="icon-user" viewBox="0 0 24 24">
         <circle cx="12" cy="8" r="4"/>
@@ -256,24 +242,20 @@
     </div>
 
     <button class="login">LOGIN</button>
-
     <div class="or">OR</div>
-
     <button class="register">REGISTER NOW</button>
-
   </form>
 
   <div class="footer">
     <a href="#">Forgot Password?</a>
     <a href="#">Terms & Conditions</a>
     <a href="#">Affiliate Program</a>
-    <a href="#" class="support">Need help? Contact Support</a>
+    <a href="#">Need help? Contact Support</a>
     <div class="dark">Dark Mode <strong>OFF</strong></div>
   </div>
 
 </section>
 </main>
-
 </body>
 </html>
 
