@@ -1,265 +1,892 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Sports Tournament — Leaderboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sports Tournament — Live Betting</title>
+  <style>
+    :root{
+      --bg0:#05070c;
+      --bg1:#07101c;
+      --panel:#0c1422;
+      --panel2:#101b2c;
+      --panel3:#0a121f;
+      --border:rgba(255,255,255,.08);
+      --border2:rgba(255,255,255,.12);
+      --text:#f3f6ff;
+      --muted:#9aa7c2;
+      --gold:#f2b84a;
+      --cyan:#2bd0ff;
+      --red:#ff3b56;
+      --green:#18d27a;
+      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --r16:16px;
+      --r20:20px;
+      --r24:24px;
+      --r999:999px;
+    }
 
-<style>
-/* ================= ROOT ================= */
-:root{
-  --bg0:#05070c;
-  --bg1:#070b12;
-  --panel:#0b111b;
-  --panel2:#101a2a;
-  --card:#121d30;
-  --stroke:rgba(255,255,255,.08);
-  --shadow:0 18px 60px rgba(0,0,0,.75);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 50% 18%, rgba(60,110,255,.10), rgba(0,0,0,0) 60%),
+        radial-gradient(900px 700px at 50% 65%, rgba(0,255,210,.06), rgba(0,0,0,0) 62%),
+        radial-gradient(1200px 900px at 50% 50%, rgba(255,255,255,.05), rgba(0,0,0,0) 62%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      overflow-x:hidden;
+    }
 
-  --white:#f7f9ff;
-  --muted:#9aaccc;
-  --accent:#00d3ff;
-  --green:#20e28b;
+    /* TOP BAR */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      padding-top: calc(14px + env(safe-area-inset-top));
+      background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0));
+      backdrop-filter: blur(10px);
+    }
 
-  --gold:#f5c35a;
-  --silver:#cfd6df;
-  --bronze:#d08a4c;
-}
+    .back{
+      appearance:none;
+      border:0;
+      background: linear-gradient(180deg, #ff6a6a, #ff3b56);
+      color:#fff;
+      font-weight:800;
+      letter-spacing:.02em;
+      padding:10px 14px;
+      border-radius: var(--r999);
+      box-shadow: 0 10px 25px rgba(255,59,86,.22);
+      cursor:pointer;
+      white-space:nowrap;
+    }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--white);
-  background:
-    radial-gradient(1200px 800px at 50% 20%, rgba(40,70,120,.25), transparent 60%),
-    linear-gradient(180deg, var(--bg1), var(--bg0));
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-width:0;
+      flex:1;
+    }
 
-/* ================= TOP BAR ================= */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 18px;
-  background:rgba(10,16,26,.72);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.back{
-  padding:10px 18px;
-  border-radius:999px;
-  background:#ff3b4d;
-  color:#fff;
-  text-decoration:none;
-  font-weight:900;
-}
-.center{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.center span{
-  font-weight:900;
-  letter-spacing:.16em;
-  color:#f2b047;
-  font-size:14px;
-}
+    .brand .cards{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      margin-left:2px;
+    }
 
-/* ================= HEADER ================= */
-.wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:22px 18px 60px;
-}
-.h-title{
-  font-size:42px;
-  font-weight:1000;
-  margin:10px 0 6px;
-}
-.prize{
-  color:var(--green);
-  font-weight:1000;
-  font-size:22px;
-  margin-bottom:14px;
-}
+    .card-icon{
+      width:22px;
+      height:30px;
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,.45));
+      transform-origin: 50% 90%;
+      animation: bounce 1.9s ease-in-out infinite;
+    }
+    .card-icon:nth-child(2){ animation-delay:.16s; }
 
-/* ================= TABS ================= */
-.tabs{
-  display:flex;
-  gap:26px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  margin-bottom:24px;
-}
-.tab{
-  background:none;
-  border:0;
-  color:rgba(160,180,210,.65);
-  font-weight:900;
-  padding:12px 2px;
-  cursor:pointer;
-}
-.tab.active{
-  color:var(--accent);
-  border-bottom:3px solid var(--accent);
-}
+    @keyframes bounce{
+      0%,100%{ transform: translateY(0) rotate(-2deg); }
+      50%{ transform: translateY(-6px) rotate(2deg); }
+    }
 
-/* ================= SUMMARY STRIP ================= */
-.summary{
-  display:flex;
-  justify-content:space-between;
-  background:linear-gradient(180deg, #131f33, #0d1624);
-  border-radius:16px;
-  padding:16px 22px;
-  margin-bottom:22px;
-}
-.summary div{
-  text-align:center;
-}
-.summary .label{
-  color:var(--muted);
-  font-weight:800;
-  font-size:12px;
-  letter-spacing:.12em;
-}
-.summary .value{
-  margin-top:4px;
-  font-weight:1000;
-  font-size:18px;
-  color:var(--gold);
-}
+    .card-bg{ fill:#fff; }
+    .rank.black,.suit.black{ fill:#111; font-weight:800; font-family: ui-sans-serif, system-ui, -apple-system; }
+    .rank.red,.suit.red{ fill:#d61f3a; font-weight:800; font-family: ui-sans-serif, system-ui, -apple-system; }
 
-/* ================= PODIUM ================= */
-.podium{
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:18px;
-  margin-bottom:26px;
-}
-.podium-card{
-  background:linear-gradient(180deg,#16243a,#0e1828);
-  border-radius:18px;
-  padding:22px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-.podium-card h3{
-  margin:8px 0 0;
-  font-size:14px;
-  letter-spacing:.14em;
-}
-.podium-card.gold{
-  outline:2px solid rgba(245,195,90,.6);
-}
-.medal{
-  font-size:32px;
-}
+    .brand .label{
+      font-weight:900;
+      letter-spacing:.14em;
+      font-size:14px;
+      color: var(--gold);
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
 
-/* ================= ALL PLAYERS ================= */
-.players{
-  background:linear-gradient(180deg,#131f33,#0d1624);
-  border-radius:18px;
-  padding:16px;
-}
-.player-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 14px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.player-row:last-child{ border-bottom:none; }
-.rank{
-  font-weight:1000;
-  color:var(--muted);
-}
-.name{
-  flex:1;
-  margin-left:12px;
-  font-weight:900;
-}
-.score{
-  color:var(--green);
-  font-weight:900;
-}
+    .rightpad{
+      width:84px; /* balances left Back button so title stays centred */
+    }
 
-/* ================= MOBILE ================= */
-@media(max-width:760px){
-  .podium{ grid-template-columns:1fr; }
-  .h-title{ font-size:36px; }
-}
-</style>
+    /* PAGE WRAP */
+    .wrap{
+      width:min(1120px, 100%);
+      margin:0 auto;
+      padding: 10px 16px 24px;
+    }
+
+    .hero{
+      padding: 22px 4px 10px;
+      text-align:left;
+    }
+
+    .h1{
+      font-size: clamp(34px, 4.6vw, 56px);
+      line-height:1.05;
+      margin: 8px 0 6px;
+      font-weight: 900;
+      letter-spacing:-.02em;
+      text-shadow: 0 16px 50px rgba(0,0,0,.55);
+    }
+
+    .prize{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--green);
+      margin: 6px 0 18px;
+    }
+    .prize .label{ color: var(--green); opacity:.95; }
+
+    /* TABS */
+    .tabs{
+      display:flex;
+      gap:28px;
+      align-items:flex-end;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+
+    .tab{
+      appearance:none;
+      border:0;
+      background:none;
+      color: var(--muted);
+      font-weight:800;
+      padding: 10px 0;
+      cursor:pointer;
+      position:relative;
+      font-size: 15px;
+    }
+    .tab.active{ color: var(--cyan); }
+    .tab.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-11px;
+      width:100%;
+      height:3px;
+      border-radius: 3px;
+      background: var(--cyan);
+      box-shadow: 0 10px 30px rgba(43,208,255,.25);
+    }
+
+    /* CONTENT GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items:start;
+    }
+
+    /* MATCH CARD */
+    .match{
+      background: linear-gradient(180deg, rgba(25,45,75,.55), rgba(10,18,31,.75));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r24);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .match::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(500px 240px at 30% 0%, rgba(43,208,255,.12), rgba(0,0,0,0) 60%),
+                  radial-gradient(520px 260px at 85% 20%, rgba(255,59,86,.10), rgba(0,0,0,0) 62%);
+      pointer-events:none;
+      opacity:.75;
+    }
+    .match > *{ position:relative; }
+
+    .match-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom: 14px;
+    }
+    .match-name{
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    .match-time{
+      color: rgba(255,255,255,.72);
+      font-weight: 800;
+      font-size: 16px;
+      white-space:nowrap;
+      margin-top: 3px;
+    }
+
+    .odds{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    .odd{
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 14px 12px;
+      text-align:center;
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      user-select:none;
+      min-height: 92px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+    }
+    .odd:hover{ transform: translateY(-2px); border-color: rgba(43,208,255,.35); }
+    .odd .k{
+      color: rgba(255,255,255,.55);
+      font-weight:900;
+      letter-spacing:.18em;
+      font-size: 13px;
+    }
+    .odd .v{
+      color: #ff5268;
+      font-weight: 1000;
+      font-size: 32px;
+      letter-spacing:.02em;
+    }
+    .odd.selected{
+      background: rgba(12, 220, 160, .12);
+      border-color: rgba(24, 210, 122, .55);
+      box-shadow: 0 16px 40px rgba(24,210,122,.10);
+    }
+    .odd.selected .v{ color:#ff5268; }
+    .odd.selected .k{ color: rgba(255,255,255,.70); }
+
+    /* RIGHT PANEL (DESKTOP) */
+    .slip{
+      position:sticky;
+      top: 84px;
+      border-radius: var(--r24);
+      background: linear-gradient(180deg, rgba(20,35,60,.72), rgba(10,18,31,.88));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .slip-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      margin-bottom: 12px;
+    }
+    .slip-title{
+      font-size: 24px;
+      font-weight: 1000;
+      color: var(--cyan);
+      letter-spacing:-.01em;
+    }
+    .stake-label{
+      color: rgba(255,255,255,.65);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .slip-selection{
+      margin: 10px 0 12px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.82);
+      font-weight: 800;
+      min-height: 64px;
+    }
+    .slip-selection .sub{
+      display:block;
+      margin-top:6px;
+      color: rgba(255,255,255,.55);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing:.02em;
+    }
+
+    .stake{
+      display:grid;
+      grid-template-columns: 64px 1fr 64px;
+      gap: 10px;
+      align-items:center;
+      margin: 10px 0 14px;
+    }
+    .pillbtn{
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      color:#fff;
+      font-size: 24px;
+      font-weight: 1000;
+      cursor:pointer;
+    }
+    .stake-val{
+      text-align:center;
+      font-weight: 1100;
+      font-size: 44px;
+      letter-spacing:.02em;
+    }
+
+    .cta{
+      width:100%;
+      border:0;
+      border-radius: 18px;
+      height: 58px;
+      font-weight: 1000;
+      font-size: 18px;
+      cursor:pointer;
+      background: linear-gradient(180deg, #22f59a, #10c874);
+      color:#042018;
+      box-shadow: 0 18px 42px rgba(16,200,116,.20);
+    }
+    .remove{
+      margin-top: 12px;
+      width:100%;
+      border:0;
+      border-radius: 18px;
+      height: 54px;
+      font-weight: 1000;
+      font-size: 16px;
+      cursor:pointer;
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.78);
+    }
+
+    /* SECTIONS (TAB PANELS) */
+    .panel{ display:none; }
+    .panel.active{ display:block; }
+
+    .section-card{
+      background: linear-gradient(180deg, rgba(25,45,75,.55), rgba(10,18,31,.75));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r24);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    /* LEADERBOARD LOOK */
+    .lb-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      color: rgba(255,255,255,.70);
+      font-weight: 900;
+      letter-spacing:.14em;
+      font-size: 12px;
+      text-transform:uppercase;
+    }
+    .lb-top .big{
+      display:block;
+      margin-top:6px;
+      font-size: 18px;
+      letter-spacing:0;
+      color: var(--gold);
+      font-weight: 1000;
+      text-transform:none;
+    }
+    .podium{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .pod{
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      text-align:center;
+    }
+    .pod.mid{
+      border-color: rgba(242,184,74,.45);
+      box-shadow: 0 22px 60px rgba(242,184,74,.10);
+    }
+    .pod .m{ font-size: 26px; }
+    .pod .t{
+      margin-top:10px;
+      font-weight: 1000;
+      letter-spacing:.16em;
+      font-size: 12px;
+      color: rgba(255,255,255,.75);
+    }
+
+    .rows{
+      margin-top: 16px;
+      border-radius: 20px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 14px;
+      background: rgba(0,0,0,.18);
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-weight: 900;
+    }
+    .row:first-child{ border-top:0; }
+    .row .l{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .rank{
+      width:26px;
+      text-align:right;
+      color: rgba(255,255,255,.55);
+      font-weight: 1000;
+    }
+    .pname{
+      color: rgba(255,255,255,.88);
+    }
+    .pwin{
+      color: #22f59a;
+      font-weight: 1100;
+    }
+
+    /* MOBILE BET SLIP: SOLID BOTTOM SHEET (NOT TRANSPARENT) */
+    .sheet{
+      display:none;
+    }
+
+    @media (max-width: 980px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+      .slip{ display:none; }
+
+      /* reserve space so content doesn't hide behind sheet */
+      body{
+        padding-bottom: calc(260px + env(safe-area-inset-bottom));
+      }
+
+      .sheet{
+        display:block;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:60;
+        background: linear-gradient(180deg, rgba(10,18,31,.98), rgba(8,14,25,.99));
+        border-top: 1px solid rgba(255,255,255,.10);
+        box-shadow: 0 -24px 70px rgba(0,0,0,.65);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .sheet-grip{
+        width: 54px;
+        height: 5px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.18);
+        margin: 10px auto 6px;
+      }
+
+      .sheet-inner{
+        padding: 10px 14px 14px;
+      }
+
+      .sheet-head{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-end;
+        gap:12px;
+        margin-bottom: 10px;
+      }
+      .sheet-title{
+        font-size: 26px;
+        font-weight: 1100;
+        color: var(--cyan);
+      }
+      .sheet-stake{
+        color: rgba(255,255,255,.65);
+        font-weight: 1000;
+        font-size: 20px;
+      }
+
+      .stake{
+        grid-template-columns: 70px 1fr 70px;
+      }
+      .stake-val{ font-size: 52px; }
+
+      .cta{ height: 64px; font-size: 20px; }
+      .remove{ height: 58px; font-size: 18px; }
+    }
+
+    @media (max-width: 420px){
+      .rightpad{ width: 12px; }
+      .brand .label{ font-size: 13px; letter-spacing:.12em; }
+      .match-name{ font-size: 20px; }
+      .odd .v{ font-size: 30px; }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="back" type="button" onclick="location.href='sports.html'">Back</button>
 
-<header class="topbar">
-  <a class="back" href="sports.html">Back</a>
-  <div class="center">
-    <span>BLACKJACK TOURNAMENTS</span>
+    <div class="brand" aria-label="Blackjack tournaments header">
+      <span class="cards" aria-hidden="true">
+        <!-- WHITE A♠ (BLACK) -->
+        <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Ace of Spades">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
+          <text class="rank black" x="12" y="22">A</text>
+          <text class="suit black" x="12" y="40">♠</text>
+          <text class="rank black" x="44" y="74" transform="rotate(180 44 74)">A</text>
+          <text class="suit black" x="44" y="56" transform="rotate(180 44 56)">♠</text>
+        </svg>
+
+        <!-- WHITE J♥ (RED) -->
+        <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Jack of Hearts">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
+          <text class="rank red" x="12" y="22">J</text>
+          <text class="suit red" x="12" y="40">♥</text>
+          <text class="rank red" x="44" y="74" transform="rotate(180 44 74)">J</text>
+          <text class="suit red" x="44" y="56" transform="rotate(180 44 56)">♥</text>
+        </svg>
+      </span>
+
+      <span class="label">BLACKJACK TOURNAMENTS</span>
+    </div>
+
+    <div class="rightpad" aria-hidden="true"></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="h1">Simple Sports Test</div>
+      <div class="prize"><span class="label">Prize:</span> <span id="prizeValue">£7,418.29</span></div>
+
+      <nav class="tabs" aria-label="Tournament sections">
+        <button class="tab active" type="button" data-tab="live">Live Betting</button>
+        <button class="tab" type="button" data-tab="bets">My Bets</button>
+        <button class="tab" type="button" data-tab="leader">Leaderboard</button>
+      </nav>
+    </section>
+
+    <!-- LIVE BETTING -->
+    <section class="panel active" id="panel-live">
+      <div class="grid">
+        <div>
+          <article class="match" data-match="Man Utd vs Man City" data-time="17/01/2026 12:30">
+            <div class="match-top">
+              <div class="match-name">Man Utd vs Man City</div>
+              <div class="match-time">17/01/2026 12:30</div>
+            </div>
+            <div class="odds">
+              <div class="odd" data-pick="HOME" data-odds="3.7"><div class="k">HOME</div><div class="v">3.7</div></div>
+              <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+              <div class="odd" data-pick="AWAY" data-odds="2.05"><div class="k">AWAY</div><div class="v">2.05</div></div>
+            </div>
+          </article>
+
+          <article class="match" data-match="Liverpool vs Burnley" data-time="17/01/2026 15:00">
+            <div class="match-top">
+              <div class="match-name">Liverpool vs Burnley</div>
+              <div class="match-time">17/01/2026 15:00</div>
+            </div>
+            <div class="odds">
+              <div class="odd" data-pick="HOME" data-odds="1.25"><div class="k">HOME</div><div class="v">1.25</div></div>
+              <div class="odd" data-pick="DRAW" data-odds="7.5"><div class="k">DRAW</div><div class="v">7.5</div></div>
+              <div class="odd" data-pick="AWAY" data-odds="15"><div class="k">AWAY</div><div class="v">15</div></div>
+            </div>
+          </article>
+
+          <article class="match" data-match="Chelsea vs Brentford" data-time="17/01/2026 15:00">
+            <div class="match-top">
+              <div class="match-name">Chelsea vs Brentford</div>
+              <div class="match-time">17/01/2026 15:00</div>
+            </div>
+            <div class="odds">
+              <div class="odd" data-pick="HOME" data-odds="1.8"><div class="k">HOME</div><div class="v">1.8</div></div>
+              <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+              <div class="odd" data-pick="AWAY" data-odds="5"><div class="k">AWAY</div><div class="v">5</div></div>
+            </div>
+          </article>
+
+          <article class="match" data-match="Spurs vs West Ham" data-time="17/01/2026 15:00">
+            <div class="match-top">
+              <div class="match-name">Spurs vs West Ham</div>
+              <div class="match-time">17/01/2026 15:00</div>
+            </div>
+            <div class="odds">
+              <div class="odd" data-pick="HOME" data-odds="1.8"><div class="k">HOME</div><div class="v">1.8</div></div>
+              <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+              <div class="odd" data-pick="AWAY" data-odds="5"><div class="k">AWAY</div><div class="v">5</div></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- DESKTOP SLIP -->
+        <aside class="slip" aria-label="Bet slip (desktop)">
+          <div class="slip-head">
+            <div class="slip-title">Bet Slip</div>
+            <div class="stake-label">Stake: <span id="stakeLabelDesktop">50</span></div>
+          </div>
+
+          <div class="slip-selection" id="selectionDesktop">
+            No selection yet
+            <span class="sub">Tap an odds box to add</span>
+          </div>
+
+          <div class="stake">
+            <button class="pillbtn" type="button" id="minusDesktop">−</button>
+            <div class="stake-val" id="stakeDesktop">50</div>
+            <button class="pillbtn" type="button" id="plusDesktop">+</button>
+          </div>
+
+          <button class="cta" type="button" id="placeBetDesktop">Place Bet</button>
+          <button class="remove" type="button" id="removeDesktop">Remove</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MY BETS -->
+    <section class="panel" id="panel-bets">
+      <div class="section-card">
+        <div style="font-weight:1000;font-size:22px;margin-bottom:8px;color:var(--cyan);">My Bets</div>
+        <div style="color:rgba(255,255,255,.72);font-weight:800;">
+          This is a styled placeholder that matches the system look. We can populate with bet history rows next.
+        </div>
+
+        <div style="margin-top:14px;display:grid;gap:12px;">
+          <div class="section-card" style="margin:0;background:rgba(0,0,0,.22);border-radius:20px;">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+              <div style="font-weight:1000;">Man Utd vs Man City</div>
+              <div style="color:rgba(255,255,255,.65);font-weight:900;">17/01/2026 12:30</div>
+            </div>
+            <div style="margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+              <div style="border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(0,0,0,.25);padding:10px;text-align:center;">
+                <div style="color:rgba(255,255,255,.55);font-weight:1000;letter-spacing:.16em;font-size:12px;">RISK</div>
+                <div style="font-weight:1100;color:#ff5268;font-size:18px;margin-top:4px;">50</div>
+              </div>
+              <div style="border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(0,0,0,.25);padding:10px;text-align:center;">
+                <div style="color:rgba(255,255,255,.55);font-weight:1000;letter-spacing:.16em;font-size:12px;">WIN</div>
+                <div style="font-weight:1100;color:#22f59a;font-size:18px;margin-top:4px;">0</div>
+              </div>
+              <div style="border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(0,0,0,.25);padding:10px;text-align:center;">
+                <div style="color:rgba(255,255,255,.55);font-weight:1000;letter-spacing:.16em;font-size:12px;">TYPE</div>
+                <div style="font-weight:1100;color:var(--cyan);font-size:18px;margin-top:4px;">STRAIGHT</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card" style="margin:0;background:rgba(0,0,0,.22);border-radius:20px;">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+              <div style="font-weight:1000;">Liverpool vs Burnley</div>
+              <div style="color:rgba(255,255,255,.65);font-weight:900;">17/01/2026 15:00</div>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+              <div style="padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.10);font-weight:1000;">
+                ODDS: <span style="color:#22f59a;">HOME 1.25</span>
+              </div>
+              <div style="padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.10);font-weight:1000;">
+                RISK: <span style="color:#ff5268;">50</span>
+              </div>
+              <div style="padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.10);font-weight:1000;">
+                TYPE: <span style="color:var(--cyan);">STRAIGHT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="panel" id="panel-leader">
+      <div class="section-card">
+        <div class="lb-top">
+          <div>Players <span class="big">248</span></div>
+          <div>Time left <span class="big">24.5h</span></div>
+        </div>
+
+        <div class="podium" aria-label="Podium">
+          <div class="pod"><div class="m">🥈</div><div class="t">2ND PLACE</div></div>
+          <div class="pod mid"><div class="m">🥇</div><div class="t">1ST PLACE</div></div>
+          <div class="pod"><div class="m">🥉</div><div class="t">3RD PLACE</div></div>
+        </div>
+
+        <div class="rows" aria-label="Leaderboard rows">
+          <div class="row">
+            <div class="l"><span class="rank">4</span><span class="pname">Player_8472</span></div>
+            <div class="pwin">£6,230</div>
+          </div>
+          <div class="row">
+            <div class="l"><span class="rank">5</span><span class="pname">Player_1029</span></div>
+            <div class="pwin">£6,010</div>
+          </div>
+          <div class="row">
+            <div class="l"><span class="rank">6</span><span class="pname">Player_5521</span></div>
+            <div class="pwin">£5,890</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MOBILE BOTTOM SHEET (SOLID) -->
+  <div class="sheet" aria-label="Bet slip (mobile)">
+    <div class="sheet-grip"></div>
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <div class="sheet-title">Bet Slip</div>
+        <div class="sheet-stake">Stake: <span id="stakeLabelMobile">50</span></div>
+      </div>
+
+      <div class="slip-selection" id="selectionMobile">
+        No selection yet
+        <span class="sub">Tap an odds box to add</span>
+      </div>
+
+      <div class="stake">
+        <button class="pillbtn" type="button" id="minusMobile">−</button>
+        <div class="stake-val" id="stakeMobile">50</div>
+        <button class="pillbtn" type="button" id="plusMobile">+</button>
+      </div>
+
+      <button class="cta" type="button" id="placeBetMobile">Place Bet</button>
+      <button class="remove" type="button" id="removeMobile">Remove</button>
+    </div>
   </div>
-  <div style="width:44px"></div>
-</header>
 
-<div class="wrap">
+  <script>
+    // TAB TOGGLING
+    const tabs = document.querySelectorAll('.tab');
+    const panels = {
+      live: document.getElementById('panel-live'),
+      bets: document.getElementById('panel-bets'),
+      leader: document.getElementById('panel-leader'),
+    };
 
-  <h1 class="h-title">Simple Sports Test</h1>
-  <div class="prize">Prize: £7,418.29</div>
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-  <div class="tabs">
-    <button class="tab">Live Betting</button>
-    <button class="tab">My Bets</button>
-    <button class="tab active">Leaderboard</button>
-  </div>
+        Object.values(panels).forEach(p => p.classList.remove('active'));
+        const key = btn.dataset.tab;
+        panels[key].classList.add('active');
 
-  <div class="summary">
-    <div>
-      <div class="label">PLAYERS</div>
-      <div class="value">248</div>
-    </div>
-    <div>
-      <div class="label">TIME LEFT</div>
-      <div class="value">24.5h</div>
-    </div>
-  </div>
+        // If leaving Live Betting on mobile, we keep sheet visible but selection still applies.
+        // (Optional future: hide sheet when not on live tab)
+      });
+    });
 
-  <div class="podium">
-    <div class="podium-card">
-      <div class="medal">🥈</div>
-      <h3>2ND PLACE</h3>
-    </div>
+    // BET SLIP STATE
+    let stake = 50;
+    let selection = null; // { match, time, pick, odds }
 
-    <div class="podium-card gold">
-      <div class="medal">🥇</div>
-      <h3>1ST PLACE</h3>
-    </div>
+    const el = {
+      stakeDesktop: document.getElementById('stakeDesktop'),
+      stakeLabelDesktop: document.getElementById('stakeLabelDesktop'),
+      selectionDesktop: document.getElementById('selectionDesktop'),
+      stakeMobile: document.getElementById('stakeMobile'),
+      stakeLabelMobile: document.getElementById('stakeLabelMobile'),
+      selectionMobile: document.getElementById('selectionMobile'),
+    };
 
-    <div class="podium-card">
-      <div class="medal">🥉</div>
-      <h3>3RD PLACE</h3>
-    </div>
-  </div>
+    function renderSlip(){
+      if(el.stakeDesktop){
+        el.stakeDesktop.textContent = stake;
+        el.stakeLabelDesktop.textContent = stake;
+      }
+      el.stakeMobile.textContent = stake;
+      el.stakeLabelMobile.textContent = stake;
 
-  <div class="players">
-    <div class="player-row">
-      <div class="rank">4</div>
-      <div class="name">Player_8472</div>
-      <div class="score">£6,230</div>
-    </div>
-    <div class="player-row">
-      <div class="rank">5</div>
-      <div class="name">Player_1029</div>
-      <div class="score">£6,010</div>
-    </div>
-    <div class="player-row">
-      <div class="rank">6</div>
-      <div class="name">Player_5521</div>
-      <div class="score">£5,890</div>
-    </div>
-  </div>
+      const text = selection
+        ? `<b>${selection.match}</b> — ${selection.pick} @ ${selection.odds}<span class="sub">${selection.time}</span>`
+        : `No selection yet<span class="sub">Tap an odds box to add</span>`;
 
-</div>
+      if(el.selectionDesktop) el.selectionDesktop.innerHTML = text;
+      el.selectionMobile.innerHTML = text;
+    }
+
+    function setStake(next){
+      stake = Math.max(0, Math.min(999, next));
+      renderSlip();
+    }
+
+    function clearSelection(){
+      selection = null;
+      document.querySelectorAll('.odd.selected').forEach(o => o.classList.remove('selected'));
+      renderSlip();
+    }
+
+    // ODDS CLICK
+    document.querySelectorAll('.match').forEach(matchEl => {
+      const matchName = matchEl.dataset.match;
+      const matchTime = matchEl.dataset.time;
+
+      matchEl.querySelectorAll('.odd').forEach(oddEl => {
+        oddEl.addEventListener('click', () => {
+          // single selection across whole page
+          document.querySelectorAll('.odd.selected').forEach(o => o.classList.remove('selected'));
+          oddEl.classList.add('selected');
+
+          selection = {
+            match: matchName,
+            time: matchTime,
+            pick: oddEl.dataset.pick,
+            odds: oddEl.dataset.odds
+          };
+          renderSlip();
+        });
+      });
+    });
+
+    // BUTTON WIRING
+    const wire = (id, fn) => {
+      const node = document.getElementById(id);
+      if(node) node.addEventListener('click', fn);
+    };
+
+    wire('minusDesktop', () => setStake(stake - 10));
+    wire('plusDesktop',  () => setStake(stake + 10));
+    wire('minusMobile',  () => setStake(stake - 10));
+    wire('plusMobile',   () => setStake(stake + 10));
+
+    wire('removeDesktop', clearSelection);
+    wire('removeMobile', clearSelection);
+
+    const place = () => {
+      if(!selection){
+        alert('Select an odds box first.');
+        return;
+      }
+      alert(`Placed: ${selection.match} — ${selection.pick} @ ${selection.odds}\nStake: ${stake}`);
+    };
+
+    wire('placeBetDesktop', place);
+    wire('placeBetMobile',  place);
+
+    // INIT
+    renderSlip();
+  </script>
 </body>
 </html>
+
 
