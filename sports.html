@@ -4,273 +4,296 @@
   <meta charset="UTF-8" />
   <title>Sports Betting — Tournament Lobby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="sports.css" />
-
   <style>
-    /* ---------- TOP BAR FIXES ---------- */
+    * { box-sizing: border-box; }
 
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #111827, #020617 70%);
+      color: #fff;
+    }
+
+    /* TOP BAR */
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
+      padding: 12px 16px;
+    }
+
+    .logout {
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 8px 14px;
+      font-weight: 700;
     }
 
     .topbar-center {
       display: flex;
       align-items: center;
-      gap: 10px; /* tighter spacing */
+      gap: 10px;
+      color: #f59e0b;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .card-icons {
+    .cards {
       display: flex;
       gap: 4px;
     }
 
-    .card-icon {
-      width: 26px;
-      height: auto;
-    }
-
-    .topbar-text {
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 480px) {
-      .topbar {
-        padding: 8px 12px;
-      }
-
-      .card-icon {
-        width: 22px;
-      }
-
-      .topbar-text {
-        font-size: 13px;
-      }
-    }
-
-    /* ---------- BUTTON NORMALISATION ---------- */
-
-    .btn,
-    .pill {
-      display: inline-flex;
+    .card {
+      width: 20px;
+      height: 28px;
+      background: #fff;
+      border-radius: 4px;
+      color: #000;
+      font-size: 12px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 44px;
-      padding: 0 18px;
-      border-radius: 22px;
+      font-weight: 800;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 40px 16px 24px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: #fb923c;
+    }
+
+    .hero p {
+      margin-top: 6px;
+      color: #9ca3af;
+    }
+
+    .banner {
+      margin: 24px auto;
+      max-width: 680px;
+      background: #ef4444;
+      padding: 14px;
+      border-radius: 16px;
+      font-weight: 800;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      background: none;
+      border: none;
+      color: #9ca3af;
       font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.5px;
-      box-sizing: border-box;
     }
 
-    .btn-view {
-      background: #ff77b7;
-      color: #000;
+    .tab.active {
+      color: #fff;
+      border-bottom: 3px solid #facc15;
+      padding-bottom: 6px;
     }
 
-    .btn-leader {
-      background: #ffd35a;
-      color: #000;
+    /* CONTENT */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px 80px;
     }
 
-    .btn-disabled,
-    .pill {
-      background: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.6);
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .howto {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .tcard {
+      background: #1f2937;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tcard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .live { background: #22c55e; }
+    .upcoming { background: #facc15; }
+    .finished { background: #6b7280; }
+
+    .status {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .status.live { background: #ef4444; }
+    .status.upcoming { background: #4f46e5; }
+    .status.finished { background: #374151; }
+
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .value {
+      font-weight: 800;
+    }
+
+    .muted {
+      color: #9ca3af;
+      font-size: 13px;
     }
 
     .tactions {
       display: flex;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
-    @media (max-width: 480px) {
+    .btn {
+      flex: 1;
+      border-radius: 14px;
+      padding: 12px;
+      border: none;
+      font-weight: 900;
+    }
+
+    .btn-view {
+      background: #f472b6;
+    }
+
+    .btn-leader {
+      background: #facc15;
+    }
+
+    .btn-disabled {
+      background: #374151;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 640px) {
+      .tgrid {
+        grid-template-columns: 1fr;
+      }
       .tactions {
         flex-direction: column;
-      }
-
-      .btn,
-      .pill {
-        width: 100%;
       }
     }
   </style>
 </head>
 
-<body class="dark">
+<body>
 
-  <!-- TOP NAV -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="logout">LOGOUT</button>
+<header class="topbar">
+  <button class="logout">LOGOUT</button>
+
+  <div class="topbar-center">
+    <div class="cards">
+      <div class="card">A♠</div>
+      <div class="card">J♥</div>
+    </div>
+    BLACKJACK TOURNAMENTS
+  </div>
+
+  <div></div>
+</header>
+
+<main class="hero">
+  <h1>Sports<span>Betting</span></h1>
+  <p>Tournament Lobby</p>
+  <div class="banner">LIVE SPORTS BETTING TOURNAMENTS</div>
+
+  <div class="tabs">
+    <button class="tab active">ALL EVENTS</button>
+    <button class="tab">LIVE</button>
+    <button class="tab">UPCOMING</button>
+    <button class="tab">FINISHED</button>
+  </div>
+</main>
+
+<section class="content">
+  <div class="section-head">
+    <h2>Available Tournaments</h2>
+    <a class="howto" href="#">HOW IT WORKS →</a>
+  </div>
+
+  <!-- CARD -->
+  <article class="tcard">
+    <div class="tcard-top">
+      <div><span class="dot live"></span>Simple Sports Test</div>
+      <span class="status live">LIVE</span>
     </div>
 
-    <div class="topbar-center">
-      <a href="index.html" class="topbar-link" aria-label="Go to Blackjack Tournaments">
-        <span class="card-icons" aria-hidden="true">
-          <!-- CARD 1 -->
-          <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8" fill="#fff"/>
-            <text x="12" y="22" font-size="18">A</text>
-            <text x="12" y="40">♠</text>
-          </svg>
-
-          <!-- CARD 2 -->
-          <svg class="card-icon" viewBox="0 0 64 88">
-            <rect x="4" y="4" width="56" height="80" rx="8" fill="#fff"/>
-            <text x="12" y="22" fill="red" font-size="18">J</text>
-            <text x="12" y="40" fill="red">♥</text>
-          </svg>
-        </span>
-
-        <span class="topbar-text">BLACKJACK TOURNAMENTS</span>
-      </a>
+    <div class="tgrid">
+      <div>
+        <div class="label">START</div>
+        <div class="value">01/15/2026</div>
+        <div class="muted">11:00 am</div>
+      </div>
+      <div>
+        <div class="label">END</div>
+        <div class="value">01/22/2026</div>
+        <div class="muted">11:00 am</div>
+      </div>
+      <div>
+        <div class="label">ENTRY</div>
+        <div class="value">Starting Balance</div>
+        <div class="value">1,000.00</div>
+      </div>
     </div>
 
-    <div class="topbar-right"></div>
-  </header>
-
-  <!-- HERO -->
-  <main class="hero">
-    <h1 class="title">
-      <span class="white">Sports</span><span class="orange">Betting</span>
-    </h1>
-    <p class="subtitle">Tournament Lobby</p>
-
-    <div class="message-bar">LIVE SPORTS BETTING TOURNAMENTS</div>
-
-    <nav class="tabs">
-      <button class="tab active">ALL EVENTS</button>
-      <button class="tab">LIVE</button>
-      <button class="tab">UPCOMING</button>
-      <button class="tab">FINISHED</button>
-    </nav>
-  </main>
-
-  <!-- CONTENT -->
-  <section class="content">
-
-    <div class="section-head">
-      <h2>Available Tournaments</h2>
-      <a class="howto" href="#">HOW IT WORKS →</a>
+    <div class="tactions">
+      <a href="sports-tournament.html" class="btn btn-view">VIEW</a>
+      <button class="btn btn-leader">LEADERBOARD</button>
     </div>
-
-    <!-- LIVE -->
-    <article class="tcard">
-      <div class="tcard-top">
-        <div class="tname">
-          <span class="dot live"></span>
-          Simple Sports Test
-        </div>
-        <span class="status live">LIVE</span>
-      </div>
-
-      <div class="tgrid">
-        <div>
-          <div class="label">START</div>
-          <div class="value">01/15/2026</div>
-          <div class="value muted">11:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">END</div>
-          <div class="value">01/22/2026</div>
-          <div class="value muted">11:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">ENTRY</div>
-          <div class="value">Starting Balance</div>
-          <div class="value">1,000.00</div>
-        </div>
-      </div>
-
-      <div class="tactions">
-        <a href="sports-tournament.html" class="btn btn-view">VIEW</a>
-        <button class="btn btn-leader">LEADERBOARD</button>
-      </div>
-    </article>
-
-    <!-- UPCOMING -->
-    <article class="tcard">
-      <div class="tcard-top">
-        <div class="tname">
-          <span class="dot upcoming"></span>
-          Midweek Multi-Sport Cup
-        </div>
-        <span class="status upcoming">UPCOMING</span>
-      </div>
-
-      <div class="tgrid">
-        <div>
-          <div class="label">START</div>
-          <div class="value">01/18/2026</div>
-          <div class="value muted">09:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">END</div>
-          <div class="value">01/25/2026</div>
-          <div class="value muted">09:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">ENTRY</div>
-          <div class="value">Starting Balance</div>
-          <div class="value">750.00</div>
-        </div>
-      </div>
-
-      <div class="tactions">
-        <div class="pill">STARTS IN&nbsp;05:21:09</div>
-      </div>
-    </article>
-
-    <!-- FINISHED -->
-    <article class="tcard">
-      <div class="tcard-top">
-        <div class="tname">
-          <span class="dot finished"></span>
-          Weekend Sports Mash
-        </div>
-        <span class="status finished">FINISHED</span>
-      </div>
-
-      <div class="tgrid">
-        <div>
-          <div class="label">START</div>
-          <div class="value">01/01/2026</div>
-          <div class="value muted">10:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">END</div>
-          <div class="value">01/08/2026</div>
-          <div class="value muted">10:00 am</div>
-        </div>
-
-        <div>
-          <div class="label">ENTRY</div>
-          <div class="value">Starting Balance</div>
-          <div class="value">500.00</div>
-        </div>
-      </div>
-
-      <div class="tactions">
-        <button class="btn btn-disabled" disabled>COMPLETED</button>
-        <button class="btn btn-leader">LEADERBOARD</button>
-      </div>
-    </article>
-
-  </section>
+  </article>
+</section>
 
 </body>
 </html>
+
 
 
 
