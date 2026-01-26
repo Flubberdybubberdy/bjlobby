@@ -1,207 +1,850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Sports Tournament</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Sports Tournament — Live Betting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    :root{
+      --bg:#05070c;
+      --panel:#0b111b;
+      --panel2:#0f1726;
+      --text:#f7f9ff;
+      --muted:#8c9bb8;
 
-html, body {
-  margin: 0;
-  height: 100%;
-  background: radial-gradient(circle at top, #111827, #020617 70%);
-  font-family: system-ui, sans-serif;
-  color: #fff;
-  overflow-y: auto;
-}
+      --gold:#f6cf67;
+      --orange:#ff8a2a;
 
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-}
+      --blue:#29c7ff;
+      --green:#19e38b;
+      --red:#ff2b3a;
 
-.back {
-  background: #ef4444;
-  border: none;
-  border-radius: 14px;
-  padding: 8px 14px;
-  font-weight: 800;
-  color: #fff;
-}
+      --card:#0f1726;
+      --cardEdge: rgba(255,255,255,.06);
+      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
 
-.header-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #f59e0b;
-  font-weight: 900;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 50% 5%, #141f34 0%, #070b12 55%, #05070c 100%);
+    }
 
-/* PAGE */
-.page {
-  padding: 16px;
-  padding-bottom: 280px; /* CRITICAL */
-}
+    /* ===== TOPBAR ===== */
+    header.topbar{
+      position:sticky; top:0; z-index:50;
+      display:grid;
+      grid-template-columns: auto 1fr;
+      align-items:center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0));
+      backdrop-filter: blur(6px);
+    }
 
-/* MATCH */
-.match {
-  background: #1f2937;
-  border-radius: 20px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
+    .backbtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border:0;
+      cursor:pointer;
+      background: #ff3a46;
+      color:#fff;
+      font-weight: 900;
+      letter-spacing:.03em;
+      text-decoration:none;
+      box-shadow: 0 12px 26px rgba(255,58,70,.25);
+      white-space: nowrap;
+    }
 
-.match-head {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-weight: 800;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      min-height: 44px;
+    }
 
-.odds {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
+    .card-icons{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+    }
+    .card-icon{
+      width: 26px;
+      height: 36px;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+    }
+    .card-bg{fill:#ffffff}
+    .rank{font: 800 16px/1 Inter, system-ui; }
+    .suit{font: 800 16px/1 Inter, system-ui;}
+    .red{fill:#e0222a}
+    .black{fill:#0b0b0b}
 
-.odds button {
-  background: #020617;
-  border-radius: 14px;
-  border: none;
-  color: #ef4444;
-  padding: 16px;
-  font-weight: 900;
-}
+    .brand-title{
+      color: var(--gold);
+      font-weight: 950;
+      letter-spacing: .14em;
+      font-size: 14px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-/* BET SLIP */
-.bet-slip {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, #111827, #020617);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 12px 16px 20px;
-  z-index: 999;
-}
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px;
+    }
 
-.handle {
-  width: 40px;
-  height: 4px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 4px;
-  margin: 0 auto 10px;
-}
+    .hrow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      margin: 8px 0 10px;
+      flex-wrap:wrap;
+    }
 
-.bet-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
+    .hleft{
+      min-width: min(720px, 100%);
+    }
 
-.stake-control {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
+    .title{
+      margin: 6px 0 4px;
+      font-size: clamp(34px, 4.6vw, 52px);
+      letter-spacing:-.02em;
+      font-weight: 950;
+    }
 
-.stake-control button {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: none;
-  background: #020617;
-  color: #fff;
-  font-size: 22px;
-}
+    .meta{
+      display:flex;
+      gap: 16px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
 
-.stake-value {
-  font-size: 32px;
-  font-weight: 900;
-}
+    .prize{
+      color: var(--green);
+      font-weight: 950;
+      font-size: 18px;
+    }
 
-.place {
-  width: 100%;
-  background: #22c55e;
-  border: none;
-  border-radius: 14px;
-  padding: 14px;
-  font-weight: 900;
-}
+    /* ===== TABS ===== */
+    .tabs{
+      display:flex;
+      gap: 20px;
+      margin: 16px 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding-bottom: 10px;
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+    }
 
-.remove {
-  width: 100%;
-  margin-top: 10px;
-  background: #374151;
-  border: none;
-  border-radius: 14px;
-  padding: 12px;
-  color: #9ca3af;
-}
-</style>
+    .tab{
+      border:0;
+      background: transparent;
+      color: #7f92b7;
+      font-weight: 950;
+      padding: 10px 2px;
+      cursor:pointer;
+      position:relative;
+      white-space: nowrap;
+    }
+    .tab.active{color: var(--blue)}
+    .tab.active::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-11px;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    /* ===== GRID ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items:start;
+    }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--cardEdge);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== MATCH LIST ===== */
+    .matchlist{
+      padding: 16px;
+    }
+
+    .section-label{
+      color: var(--blue);
+      font-weight: 950;
+      letter-spacing: .12em;
+      font-size: 12px;
+      margin: 4px 0 12px;
+      text-transform: uppercase;
+    }
+
+    .match{
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 14px;
+    }
+
+    .match-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .match-name{
+      font-weight: 950;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+    .match-time{
+      color: rgba(255,255,255,.65);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .odds{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .odd{
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 14px 12px;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .15s ease;
+      text-align:center;
+      user-select:none;
+    }
+    .odd:hover{transform: translateY(-1px); border-color: rgba(41,199,255,.35)}
+    .odd .k{color: rgba(255,255,255,.55); font-weight: 950; letter-spacing:.14em; font-size: 11px}
+    .odd .v{color:#ff4b5c; font-weight: 950; font-size: 28px; margin-top: 6px}
+
+    .odd.selected{
+      border-color: rgba(25,227,139,.55);
+      box-shadow: 0 0 0 3px rgba(25,227,139,.10) inset;
+    }
+
+    /* ===== BETSLIP (DESKTOP) ===== */
+    .betslip{
+      position: sticky;
+      top: 86px;
+      padding: 16px;
+    }
+
+    .betslip h3{
+      margin: 6px 0 10px;
+      color: var(--blue);
+      font-weight: 950;
+      font-size: 22px;
+    }
+
+    .stakeRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin: 10px 0 12px;
+    }
+
+    .step{
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.9);
+      font-weight: 950;
+      font-size: 22px;
+      cursor:pointer;
+    }
+
+    .stake{
+      flex:1;
+      text-align:center;
+      font-size: 44px;
+      font-weight: 950;
+      letter-spacing:-.02em;
+    }
+
+    .cta{
+      width: 100%;
+      height: 56px;
+      border-radius: 16px;
+      border: 0;
+      cursor:pointer;
+      font-weight: 950;
+      font-size: 16px;
+      background: var(--green);
+      color: #062014;
+      margin-top: 4px;
+    }
+
+    .remove{
+      width: 100%;
+      height: 48px;
+      border-radius: 16px;
+      border: 0;
+      cursor:pointer;
+      font-weight: 950;
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.70);
+      margin-top: 10px;
+    }
+
+    .smallmuted{
+      color: rgba(255,255,255,.55);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing:.08em;
+    }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .section{display:none}
+    .section.active{display:block}
+
+    /* ===== MY BETS ===== */
+    .mybets{
+      padding: 16px;
+    }
+
+    .mybets .banner{
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(41,199,255,.18);
+      border: 1px solid rgba(41,199,255,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 950;
+      font-size: 22px;
+      color: var(--blue);
+      box-shadow: 0 16px 40px rgba(41,199,255,.10);
+      margin-bottom: 14px;
+    }
+
+    .betrow{
+      display:grid;
+      grid-template-columns: 1fr 140px;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 14px;
+      align-items:center;
+    }
+    .betrow h4{
+      margin:0 0 4px;
+      font-size: 16px;
+      font-weight: 950;
+    }
+    .betrow .sub{
+      color: rgba(255,255,255,.55);
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .betpill{
+      justify-self:end;
+      min-width: 140px;
+      height: 56px;
+      border-radius: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap: 4px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .betpill .lbl{font-size: 10px; letter-spacing:.14em; color: rgba(255,255,255,.60)}
+    .betpill .val{font-size: 14px}
+    .betpill.good{background: rgba(25,227,139,.16); border-color: rgba(25,227,139,.22)}
+    .betpill.warn{background: rgba(246,207,103,.16); border-color: rgba(246,207,103,.22)}
+    .betpill.type{background: rgba(41,199,255,.10); border-color: rgba(41,199,255,.16); color: rgba(41,199,255,.95)}
+
+    .betgrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .betbox{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      text-align:center;
+    }
+    .betbox .k{color: rgba(255,255,255,.55); font-weight: 950; letter-spacing:.14em; font-size: 10px}
+    .betbox .v{margin-top: 6px; font-weight: 950; font-size: 16px}
+
+    /* ===== LEADERBOARD ===== */
+    .leader{
+      padding: 16px;
+    }
+    .leader table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(0,0,0,.14);
+    }
+    .leader th,.leader td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-weight: 850;
+      text-align:left;
+    }
+    .leader th{
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+    }
+    .leader td:last-child{text-align:right}
+    .leader tr:last-child td{border-bottom:0}
+
+    /* ===== MOBILE BETSLIP: bottom sheet ===== */
+    .sheet{
+      display:none;
+    }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .betslip{display:none}
+      .sheet{display:block}
+
+      /* give content room so it can scroll behind the sheet */
+      .wrap{
+        padding-bottom: 120px;
+      }
+    }
+
+    .sheet{
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 80;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 26px 80px rgba(0,0,0,.70);
+      overflow:hidden;
+
+      /* default collapsed */
+      height: 112px;
+      transition: height .20s ease;
+    }
+
+    .sheet.expanded{
+      height: min(520px, 72vh);
+    }
+
+    .sheetTop{
+      padding: 10px 12px 8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .handle{
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      margin: 6px auto 2px;
+    }
+
+    .sheetTitle{
+      color: var(--blue);
+      font-weight: 950;
+      font-size: 20px;
+      margin:0;
+    }
+
+    .sheetStake{
+      color: rgba(255,255,255,.55);
+      font-weight: 900;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .sheetBody{
+      padding: 10px 12px 14px;
+    }
+
+    .sheet .stakeRow{margin-top: 2px}
+    .sheet .stake{font-size: 40px}
+    .sheet .cta{height: 58px}
+    .sheet .remove{height: 50px}
+
+    /* ===== MOBILE HEADER TIGHTEN ===== */
+    @media (max-width: 520px){
+      header.topbar{
+        grid-template-columns: auto 1fr;
+        padding: 10px 12px;
+      }
+      .brand{justify-content:flex-start}
+      .brand-title{font-size: 12px; letter-spacing:.12em}
+      .card-icon{width:24px;height:34px}
+      .backbtn{height:42px; padding:0 14px}
+    }
+  </style>
 </head>
 
 <body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a class="backbtn" href="sports.html">Back</a>
 
-<header class="header">
-  <a href="sports.html" class="back">Back</a>
-  <div class="header-title">
-    <span>BLACKJACK TOURNAMENTS</span>
+    <div class="brand" aria-label="Blackjack Tournaments">
+      <span class="card-icons" aria-hidden="true">
+        <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Ace of Spades">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
+          <text class="rank black" x="12" y="22">A</text>
+          <text class="suit black" x="12" y="40">♠</text>
+          <text class="rank black" x="44" y="74" transform="rotate(180 44 74)">A</text>
+          <text class="suit black" x="44" y="56" transform="rotate(180 44 56)">♠</text>
+        </svg>
+
+        <svg class="card-icon" viewBox="0 0 64 88" role="img" aria-label="Jack of Hearts">
+          <rect class="card-bg" x="4" y="4" width="56" height="80" rx="8" />
+          <text class="rank red" x="12" y="22">J</text>
+          <text class="suit red" x="12" y="40">♥</text>
+          <text class="rank red" x="44" y="74" transform="rotate(180 44 74)">J</text>
+          <text class="suit red" x="44" y="56" transform="rotate(180 44 56)">♥</text>
+        </svg>
+      </span>
+
+      <span class="brand-title">BLACKJACK TOURNAMENTS</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- HEADER -->
+    <div class="hrow">
+      <div class="hleft">
+        <div class="title">Simple Sports Test</div>
+        <div class="meta">
+          <!-- Position removed; Prize moved left -->
+          <div class="prize">Prize: £7,461.35</div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Tournament sections">
+          <button class="tab active" data-tab="live" role="tab" aria-selected="true">Live Betting</button>
+          <button class="tab" data-tab="mybets" role="tab" aria-selected="false">My Bets</button>
+          <button class="tab" data-tab="leader" role="tab" aria-selected="false">Leaderboard</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="grid">
+
+      <!-- LEFT: SECTIONS -->
+      <div>
+
+        <!-- LIVE BETTING -->
+        <section class="section active panel" id="section-live" aria-label="Live betting section">
+          <div class="matchlist">
+            <div class="section-label">SOCCER</div>
+
+            <div class="match" data-match="mutd-manc">
+              <div class="match-head">
+                <div class="match-name">Man Utd vs Man City</div>
+                <div class="match-time">17/01/2026 12:30</div>
+              </div>
+              <div class="odds">
+                <div class="odd" data-pick="HOME" data-odds="3.7"><div class="k">HOME</div><div class="v">3.7</div></div>
+                <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+                <div class="odd" data-pick="AWAY" data-odds="2.05"><div class="k">AWAY</div><div class="v">2.05</div></div>
+              </div>
+            </div>
+
+            <div class="match" data-match="liv-bur">
+              <div class="match-head">
+                <div class="match-name">Liverpool vs Burnley</div>
+                <div class="match-time">17/01/2026 15:00</div>
+              </div>
+              <div class="odds">
+                <div class="odd" data-pick="HOME" data-odds="1.25"><div class="k">HOME</div><div class="v">1.25</div></div>
+                <div class="odd" data-pick="DRAW" data-odds="7.5"><div class="k">DRAW</div><div class="v">7.5</div></div>
+                <div class="odd" data-pick="AWAY" data-odds="15"><div class="k">AWAY</div><div class="v">15</div></div>
+              </div>
+            </div>
+
+            <div class="match" data-match="che-bre">
+              <div class="match-head">
+                <div class="match-name">Chelsea vs Brentford</div>
+                <div class="match-time">17/01/2026 15:00</div>
+              </div>
+              <div class="odds">
+                <div class="odd" data-pick="HOME" data-odds="1.8"><div class="k">HOME</div><div class="v">1.8</div></div>
+                <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+                <div class="odd" data-pick="AWAY" data-odds="5"><div class="k">AWAY</div><div class="v">5</div></div>
+              </div>
+            </div>
+
+            <div class="match" data-match="spu-whu">
+              <div class="match-head">
+                <div class="match-name">Spurs vs West Ham</div>
+                <div class="match-time">17/01/2026 15:00</div>
+              </div>
+              <div class="odds">
+                <div class="odd" data-pick="HOME" data-odds="1.8"><div class="k">HOME</div><div class="v">1.8</div></div>
+                <div class="odd" data-pick="DRAW" data-odds="4"><div class="k">DRAW</div><div class="v">4</div></div>
+                <div class="odd" data-pick="AWAY" data-odds="5"><div class="k">AWAY</div><div class="v">5</div></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- MY BETS -->
+        <section class="section panel" id="section-mybets" aria-label="My bets section">
+          <div class="mybets">
+            <div class="banner">My Bets</div>
+            <div class="section-label">SOCCER</div>
+
+            <div class="betrow">
+              <div>
+                <h4>Man Utd vs Man City</h4>
+                <div class="sub">17/01/2026 12:30</div>
+
+                <div class="betgrid">
+                  <div class="betbox"><div class="k">RISK</div><div class="v" style="color:#ff4b5c;">50</div></div>
+                  <div class="betbox"><div class="k">WIN</div><div class="v" style="color:var(--green);">0</div></div>
+                  <div class="betbox"><div class="k">TYPE</div><div class="v" style="color:var(--blue);">STRAIGHT</div></div>
+                </div>
+              </div>
+
+              <div class="betpill good">
+                <div class="lbl">ODDS</div>
+                <div class="val">home: 3.7</div>
+              </div>
+            </div>
+
+            <div class="betrow">
+              <div>
+                <h4>Man Utd vs Man City</h4>
+                <div class="sub">17/01/2026 12:30</div>
+              </div>
+
+              <div class="betpill warn">
+                <div class="lbl">ODDS</div>
+                <div class="val">away: 2.05</div>
+              </div>
+            </div>
+
+            <div class="betrow">
+              <div>
+                <h4>Liverpool vs Burnley</h4>
+                <div class="sub">17/01/2026 15:00</div>
+              </div>
+
+              <div class="betpill warn">
+                <div class="lbl">ODDS</div>
+                <div class="val">home: 1.25</div>
+              </div>
+            </div>
+
+            <div class="betrow">
+              <div>
+                <h4>Chelsea vs Brentford</h4>
+                <div class="sub">17/01/2026 15:00</div>
+              </div>
+
+              <div class="betpill warn">
+                <div class="lbl">ODDS</div>
+                <div class="val">home: 1.8</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section class="section panel" id="section-leader" aria-label="Leaderboard section">
+          <div class="leader">
+            <table aria-label="Leaderboard table">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>ROI</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>JR</td><td style="color:var(--green);font-weight:950;">+12.4%</td><td style="text-align:right;font-weight:950;">£1,124.00</td></tr>
+                <tr><td>PlayerTwo</td><td style="color:rgba(255,255,255,.75);font-weight:950;">+4.1%</td><td style="text-align:right;font-weight:950;">£1,041.00</td></tr>
+                <tr><td>PlayerThree</td><td style="color:#ff4b5c;font-weight:950;">-1.9%</td><td style="text-align:right;font-weight:950;">£981.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT: DESKTOP BETSLIP -->
+      <aside class="panel betslip" aria-label="Bet slip (desktop)">
+        <h3>Bet Slip</h3>
+        <div class="smallmuted" id="selectionText">No selection yet</div>
+
+        <div class="stakeRow" aria-label="Stake controls">
+          <button class="step" id="minusDesk" type="button">−</button>
+          <div class="stake" id="stakeDesk">50</div>
+          <button class="step" id="plusDesk" type="button">+</button>
+        </div>
+
+        <button class="cta" type="button">Place Bet</button>
+        <button class="remove" id="clearDesk" type="button">Remove</button>
+      </aside>
+
+    </div>
   </div>
-</header>
 
-<main class="page">
-  <article class="match">
-    <div class="match-head">
-      <span>Man Utd vs Man City</span>
-      <span>17/01/2026 12:30</span>
+  <!-- MOBILE BETSLIP (BOTTOM SHEET) -->
+  <div class="sheet" id="sheet" aria-label="Bet slip (mobile)">
+    <div class="handle" aria-hidden="true"></div>
+    <div class="sheetTop" id="sheetTop" role="button" aria-expanded="false">
+      <h3 class="sheetTitle">Bet Slip</h3>
+      <div class="sheetStake">Stake: <span id="stakeMini">50</span></div>
     </div>
-    <div class="odds">
-      <button>HOME<br>3.7</button>
-      <button>DRAW<br>4</button>
-      <button>AWAY<br>2.05</button>
-    </div>
-  </article>
 
-  <article class="match">
-    <div class="match-head">
-      <span>Liverpool vs Burnley</span>
-      <span>17/01/2026 15:00</span>
-    </div>
-    <div class="odds">
-      <button>HOME<br>1.25</button>
-      <button>DRAW<br>7.5</button>
-      <button>AWAY<br>15</button>
-    </div>
-  </article>
-</main>
+    <div class="sheetBody">
+      <div class="smallmuted" id="selectionText2">No selection yet</div>
 
-<aside class="bet-slip">
-  <div class="handle"></div>
-  <div class="bet-header">
-    <span>Bet Slip</span>
-    <span>Stake: 50</span>
+      <div class="stakeRow">
+        <button class="step" id="minusMob" type="button">−</button>
+        <div class="stake" id="stakeMob">50</div>
+        <button class="step" id="plusMob" type="button">+</button>
+      </div>
+
+      <button class="cta" type="button">Place Bet</button>
+      <button class="remove" id="clearMob" type="button">Remove</button>
+    </div>
   </div>
 
-  <div class="stake-control">
-    <button>-</button>
-    <span class="stake-value">50</span>
-    <button>+</button>
-  </div>
+  <script>
+    // ---- Tabs ----
+    const tabs = document.querySelectorAll('.tab');
+    const sections = {
+      live: document.getElementById('section-live'),
+      mybets: document.getElementById('section-mybets'),
+      leader: document.getElementById('section-leader')
+    };
 
-  <button class="place">Place Bet</button>
-  <button class="remove">Remove</button>
-</aside>
+    tabs.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        tabs.forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
 
+        Object.values(sections).forEach(s=>s.classList.remove('active'));
+        sections[btn.dataset.tab].classList.add('active');
+      });
+    });
+
+    // ---- Bet slip shared state ----
+    let stake = 50;
+    const stakeDesk = document.getElementById('stakeDesk');
+    const stakeMob  = document.getElementById('stakeMob');
+    const stakeMini = document.getElementById('stakeMini');
+
+    const selectionText = document.getElementById('selectionText');
+    const selectionText2 = document.getElementById('selectionText2');
+
+    function setStake(v){
+      stake = Math.max(0, v);
+      stakeDesk.textContent = stake;
+      stakeMob.textContent = stake;
+      stakeMini.textContent = stake;
+    }
+
+    document.getElementById('minusDesk').onclick = ()=>setStake(stake - 10);
+    document.getElementById('plusDesk').onclick  = ()=>setStake(stake + 10);
+    document.getElementById('minusMob').onclick  = ()=>setStake(stake - 10);
+    document.getElementById('plusMob').onclick   = ()=>setStake(stake + 10);
+
+    // ---- Selection logic ----
+    const odds = document.querySelectorAll('.odd');
+    function clearSelection(){
+      odds.forEach(o=>o.classList.remove('selected'));
+      selectionText.textContent = 'No selection yet';
+      selectionText2.textContent = 'No selection yet';
+    }
+
+    document.getElementById('clearDesk').onclick = clearSelection;
+    document.getElementById('clearMob').onclick  = clearSelection;
+
+    odds.forEach(o=>{
+      o.addEventListener('click', ()=>{
+        // single selection demo
+        odds.forEach(x=>x.classList.remove('selected'));
+        o.classList.add('selected');
+
+        const match = o.closest('.match');
+        const matchName = match.querySelector('.match-name')?.textContent?.trim() || 'Match';
+        const pick = o.dataset.pick;
+        const price = o.dataset.odds;
+
+        const line = `${matchName} — ${pick} @ ${price}`;
+        selectionText.textContent = line;
+        selectionText2.textContent = line;
+
+        // On mobile, auto-expand the sheet briefly so user sees it
+        if (window.matchMedia('(max-width: 980px)').matches){
+          sheet.classList.add('expanded');
+          sheetTop.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+
+    // ---- Mobile sheet behaviour (feature, not bug) ----
+    const sheet = document.getElementById('sheet');
+    const sheetTop = document.getElementById('sheetTop');
+
+    sheetTop.addEventListener('click', ()=>{
+      const open = sheet.classList.toggle('expanded');
+      sheetTop.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Initial values
+    setStake(50);
+    clearSelection();
+  </script>
 </body>
 </html>
-
 
