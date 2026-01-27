@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Leaderboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 50%, #c4b5fd 100%);
+        }
+
+        .sports-banner {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .banner-title {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .header-section {
+            background: linear-gradient(180deg, #8b5cf6 0%, #9f7aea 100%);
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tournament-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .tournament-info {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+        }
+
+        .info-value {
+            font-weight: 800;
+            color: #ffd700;
+        }
+
+        .main-content {
+            padding: 24px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .podium {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+            align-items: flex-end;
+        }
+
+        .podium-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 12px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .podium-card.first {
+            order: 2;
+        }
+
+        .podium-card.second {
+            order: 1;
+        }
+
+        .podium-card.third {
+            order: 3;
+        }
+
+        .podium-medal {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .podium-rank {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .podium-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .podium-score {
+            font-size: 20px;
+            font-weight: 900;
+            color: #8b5cf6;
+        }
+
+        .leaderboard-list {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-header {
+            font-size: 18px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .player-row:last-child {
+            border-bottom: none;
+        }
+
+        .player-row:hover {
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 8px;
+        }
+
+        .player-row.current-user {
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+        }
+
+        .player-rank {
+            font-size: 18px;
+            font-weight: 800;
+            color: #6b7280;
+            width: 40px;
+            flex-shrink: 0;
+        }
+
+        .player-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 800;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .player-info {
+            flex: 1;
+        }
+
+        .player-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2px;
+        }
+
+        .player-badge {
+            font-size: 11px;
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .player-score {
+            font-size: 18px;
+            font-weight: 900;
+            color: #8b5cf6;
+        }
+
+        .your-position {
+            background: linear-gradient(135deg, #ffd700, #f59e0b);
+            color: #000000;
+            text-align: center;
+            padding: 16px;
+            border-radius: 16px;
+            margin-top: 20px;
+            font-weight: 800;
+            box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .podium {
+                gap: 8px;
+            }
+
+            .podium-card {
+                padding: 16px 8px;
+            }
+
+            .podium-medal {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sports-banner">
+        <div class="banner-left">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <div class="banner-title">Tournament Leaderboard</div>
+        </div>
+        <div class="banner-right">
+            <button class="icon-button" onclick="toggleSound()" id="soundButton">🔊</button>
+            <div>🔔</div>
+        </div>
+    </div>
+
+    <div class="header-section">
+        <div class="tournament-name">Friday night the weekends all right</div>
+        <div class="tournament-info">
+            <div class="info-item">Prize Pool: <span class="info-value">TOR 50,000</span></div>
+            <div class="info-item">Players: <span class="info-value">248</span></div>
+            <div class="info-item">Time Left: <span class="info-value">2d 5h</span></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="podium">
+            <div class="podium-card second">
+                <div class="podium-medal">🥈</div>
+                <div class="podium-rank">2ND PLACE</div>
+                <div class="podium-name">Sarah K.</div>
+                <div class="podium-score">TOR 8,450</div>
+            </div>
+            
+            <div class="podium-card first">
+                <div class="podium-medal">🥇</div>
+                <div class="podium-rank">1ST PLACE</div>
+                <div class="podium-name">Mike T.</div>
+                <div class="podium-score">TOR 9,820</div>
+            </div>
+            
+            <div class="podium-card third">
+                <div class="podium-medal">🥉</div>
+                <div class="podium-rank">3RD PLACE</div>
+                <div class="podium-name">Alex P.</div>
+                <div class="podium-score">TOR 7,990</div>
+            </div>
+        </div>
+
+        <div class="leaderboard-list">
+            <div class="list-header">All Players</div>
+            
+            <div class="player-row">
+                <div class="player-rank">4</div>
+                <div class="player-avatar">JD</div>
+                <div class="player-info">
+                    <div class="player-name">James Davis</div>
+                    <div class="player-badge">🔥 Hot Streak</div>
+                </div>
+                <div class="player-score">TOR 7,120</div>
+            </div>
+
+            <div class="player-row">
+                <div class="player-rank">5</div>
+                <div class="player-avatar">LM</div>
+                <div class="player-info">
+                    <div class="player-name">Lisa Martinez</div>
+                </div>
+                <div class="player-score">TOR 6,880</div>
+            </div>
+
+            <div class="player-row">
+                <div class="player-rank">6</div>
+                <div class="player-avatar">RC</div>
+                <div class="player-info">
+                    <div class="player-name">Robert Chen</div>
+                    <div class="player-badge">⚡ Rising</div>
+                </div>
+                <div class="player-score">TOR 6,550</div>
+            </div>
+
+            <div class="player-row current-user">
+                <div class="player-rank">7</div>
+                <div class="player-avatar">YOU</div>
+                <div class="player-info">
+                    <div class="player-name">You</div>
+                    <div class="player-badge">👤 Your Position</div>
+                </div>
+                <div class="player-score">TOR 6,200</div>
+            </div>
+
+            <div class="player-row">
+                <div class="player-rank">8</div>
+                <div class="player-avatar">EW</div>
+                <div class="player-info">
+                    <div class="player-name">Emma Wilson</div>
+                </div>
+                <div class="player-score">TOR 5,990</div>
+            </div>
+
+            <div class="player-row">
+                <div class="player-rank">9</div>
+                <div class="player-avatar">DL</div>
+                <div class="player-info">
+                    <div class="player-name">David Lee</div>
+                </div>
+                <div class="player-score">TOR 5,750</div>
+            </div>
+
+            <div class="player-row">
+                <div class="player-rank">10</div>
+                <div class="player-avatar">KS</div>
+                <div class="player-info">
+                    <div class="player-name">Karen Smith</div>
+                </div>
+                <div class="player-score">TOR 5,500</div>
+            </div>
+        </div>
+
+        <div class="your-position">
+            🎯 You're in 7th place! Keep playing to climb the ranks!
+        </div>
+    </div>
+
+    <script>
+        let soundOn = true;
+        function toggleSound() {
+            soundOn = !soundOn;
+            document.getElementById('soundButton').textContent = soundOn ? '🔊' : '🔇';
+        }
+    </script>
+</body>
+</html>
