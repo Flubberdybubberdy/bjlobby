@@ -1,382 +1,1258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sports Tournament – Simple Sports Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sports Tournament — Live Betting / My Bets / Leaderboard</title>
+  <style>
+    :root{
+      --bg:#05070c;
+      --bg2:#0b111b;
+      --panel:#0f1928;
+      --panel2:#121f33;
+      --card:#17263d;
+      --card2:#1b2c46;
+      --border:rgba(255,255,255,.08);
+      --border2:rgba(255,255,255,.10);
+      --text:#f7f9ff;
+      --muted:#9fb0d0;
+      --muted2:#7e8cab;
 
-<style>
-:root{
-  --bg:#05070c;
-  --panel:#0b111b;
-  --panel2:#101827;
-  --accent:#00e5ff;
-  --green:#1fe28a;
-  --red:#ff4d5a;
-  --gold:#f6b24a;
-  --text:#e9edf5;
-  --muted:#8fa1c7;
-  --radius:18px;
-}
+      --gold:#f3b44b;
+      --orange:#ff9b3d;
+      --blue:#30c6ff;
+      --green:#28e08d;
+      --red:#ff4d66;
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,system-ui,Segoe UI,Arial;
-  background:radial-gradient(1200px 600px at 30% -20%,#12203a 0%,#05070c 60%);
-  color:var(--text);
-}
+      --shadow: 0 22px 70px rgba(0,0,0,.72);
+      --radius: 18px;
+      --radius2: 22px;
+    }
 
-/* HEADER */
-.header{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding:14px 18px;
-  background:linear-gradient(180deg,#0b111b,#05070c);
-}
-.header .back{
-  background:#ff4d5a;
-  color:#fff;
-  border:none;
-  padding:10px 14px;
-  border-radius:999px;
-  cursor:pointer;
-}
-.cards{
-  display:flex;
-  gap:6px;
-  margin-left:8px;
-}
-.card{
-  width:26px;
-  height:36px;
-  background:#fff;
-  color:#000;
-  border-radius:4px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.header h1{
-  margin-left:6px;
-  font-size:14px;
-  letter-spacing:.15em;
-  color:var(--gold);
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 45% 22%, rgba(60,140,255,.22), transparent 62%),
+        radial-gradient(1100px 650px at 12% 85%, rgba(43,255,153,.12), transparent 60%),
+        radial-gradient(900px 600px at 92% 92%, rgba(255,85,119,.10), transparent 55%),
+        linear-gradient(180deg, #05070c 0%, #05070c 55%, #04060a 100%);
+      overflow-x:hidden;
+    }
 
-/* MAIN */
-.wrapper{
-  display:grid;
-  grid-template-columns:1fr 340px;
-  gap:24px;
-  padding:24px;
-}
+    /* ---------- TOP BAR ---------- */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 18px;
+      background: linear-gradient(180deg, rgba(7,10,16,.88), rgba(7,10,16,.55));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-left{display:flex; align-items:center; gap:10px;}
+    .btn-pill{
+      border:0;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:800;
+      letter-spacing:.02em;
+      cursor:pointer;
+      color:white;
+      background: linear-gradient(180deg, #ff586b, #ff3b53);
+      box-shadow: 0 12px 30px rgba(255,59,83,.22);
+    }
+    .btn-pill:active{transform: translateY(1px);}
 
-@media(max-width:900px){
-  .wrapper{
-    grid-template-columns:1fr;
-    padding-bottom:120px;
-  }
-}
+    .topbar-center{
+      display:flex; align-items:center; justify-content:center;
+      gap:10px;
+      flex:1;
+      min-width:0;
+    }
+    .bj-link{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      color:inherit;
+      min-width:0;
+      justify-content:center;
+    }
+    .card-icons{
+      display:flex; gap:6px; align-items:center;
+      flex:0 0 auto;
+    }
+    .mini-card{
+      width:22px; height:30px;
+      border-radius:6px;
+      background:#fff;
+      position:relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,.35);
+      border:1px solid rgba(0,0,0,.10);
+      overflow:hidden;
+      transform: translateY(0);
+      animation: floaty 2.6s ease-in-out infinite;
+    }
+    .mini-card:nth-child(2){animation-delay:.18s}
+    @keyframes floaty{
+      0%,100%{transform: translateY(0)}
+      50%{transform: translateY(-2px)}
+    }
+    .mini-card .rank{
+      position:absolute; left:5px; top:3px;
+      font-weight:900; font-size:11px; line-height:1;
+    }
+    .mini-card .suit{
+      position:absolute; left:5px; top:14px;
+      font-size:11px; line-height:1;
+    }
+    .mini-card.spade .rank,.mini-card.spade .suit{color:#111}
+    .mini-card.heart .rank,.mini-card.heart .suit{color:#d11d2a}
 
-/* TITLE */
-.title h2{
-  font-size:36px;
-  margin:0;
-}
-.prize{
-  margin-top:6px;
-  font-size:22px;
-  color:var(--green);
-}
+    .topbar-title{
+      font-weight:900;
+      letter-spacing:.12em;
+      color:var(--gold);
+      font-size:13px;
+      white-space:nowrap;
+    }
 
-/* TABS */
-.tabs{
-  display:flex;
-  gap:28px;
-  margin:24px 0 12px;
-}
-.tab{
-  cursor:pointer;
-  padding-bottom:8px;
-  color:var(--muted);
-}
-.tab.active{
-  color:var(--accent);
-  border-bottom:3px solid var(--accent);
-}
+    /* tighten header spacing on mobile (cards too close to logout) */
+    @media (max-width: 520px){
+      .topbar{padding:0 12px;}
+      .btn-pill{padding:9px 12px; font-size:13px;}
+      .topbar-center{justify-content:flex-start;}
+      .bj-link{justify-content:flex-start;}
+      .card-icons{margin-left:6px;}
+      .topbar-title{font-size:12px; letter-spacing:.11em;}
+    }
 
-/* SECTIONS */
-.section{display:none}
-.section.active{display:block}
+    /* ---------- PAGE WRAP ---------- */
+    .wrap{
+      max-width:1180px;
+      margin: 0 auto;
+      padding: 22px 18px 120px;
+    }
 
-/* MATCH CARDS */
-.match{
-  background:linear-gradient(180deg,#101827,#0b111b);
-  border-radius:var(--radius);
-  padding:18px;
-  margin-bottom:16px;
-}
-.match h3{margin:0 0 8px}
-.odds{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-.odd{
-  background:#0a0f19;
-  border-radius:14px;
-  padding:14px;
-  text-align:center;
-  cursor:pointer;
-  border:1px solid #121a2b;
-}
-.odd span{display:block;font-size:12px;color:var(--muted)}
-.odd strong{font-size:22px;color:var(--red)}
-.odd.selected{outline:2px solid var(--accent)}
+    .hero{
+      padding: 18px 0 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .hero-left{flex:1; min-width:0;}
+    .h1{
+      margin:0;
+      font-size:48px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+      font-weight:1000;
+    }
+    .h1 .sports{color:var(--text)}
+    .h1 .betting{color:var(--orange)}
+    .sub{
+      margin:10px 0 0;
+      color:var(--muted2);
+      font-weight:650;
+    }
 
-/* BET SLIP */
-.betslip{
-  background:linear-gradient(180deg,#101827,#0b111b);
-  border-radius:var(--radius);
-  padding:18px;
-  position:sticky;
-  top:20px;
-}
+    .live-banner{
+      margin-top:14px;
+      width:100%;
+      border-radius:16px;
+      padding: 14px 16px;
+      background: linear-gradient(90deg, #ff2e4a, #ff3b53, #ff4f40);
+      box-shadow: 0 18px 45px rgba(255,59,83,.22);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .banner-left{min-width:0}
+    .banner-kicker{
+      display:block;
+      font-weight:950;
+      letter-spacing:.16em;
+      font-size:11px;
+      opacity:.95;
+    }
+    .banner-title{
+      display:block;
+      font-weight:1000;
+      font-size:18px;
+      margin-top:2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .banner-right{
+      display:flex; align-items:baseline; gap:10px;
+      font-weight:1000;
+      white-space:nowrap;
+    }
+    .banner-right small{
+      opacity:.92;
+      letter-spacing:.18em;
+      font-weight:900;
+    }
+    .banner-right .prize{
+      font-size:20px;
+    }
 
-@media(max-width:900px){
-  .betslip{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:-100%;
-    border-radius:18px 18px 0 0;
-    transition:.35s;
-    z-index:999;
-  }
-  .betslip.open{bottom:0}
-}
+    .tabs{
+      margin-top:16px;
+      display:flex;
+      gap:22px;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      padding-bottom:10px;
+    }
+    .tab{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:rgba(255,255,255,.65);
+      font-weight:950;
+      letter-spacing:.12em;
+      font-size:12px;
+      padding: 10px 0;
+      cursor:pointer;
+      position:relative;
+    }
+    .tab.active{color:#fff}
+    .tab.active::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-11px;
+      height:3px;
+      border-radius:6px;
+      background: linear-gradient(90deg, #ffd05a, #ffd05a);
+    }
 
-.betslip header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.close{
-  background:none;
-  border:none;
-  color:var(--muted);
-  font-size:22px;
-  cursor:pointer;
-}
+    .content{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:18px;
+      align-items:start;
+    }
 
-.stake{
-  font-size:48px;
-  text-align:center;
-  margin:10px 0;
-}
-.stake-controls{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.stake-controls button{
-  background:#0a0f19;
-  border:none;
-  color:#fff;
-  padding:12px 16px;
-  border-radius:12px;
-  cursor:pointer;
-}
+    /* ---------- PANELS ---------- */
+    .panel{
+      background: linear-gradient(180deg, rgba(22,36,58,.72), rgba(15,25,40,.78));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panel-inner{padding:16px;}
+    .panel-title{
+      font-weight:1000;
+      letter-spacing:.14em;
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      margin:0 0 12px;
+    }
 
-/* STAKE PRESETS */
-.presets{
-  display:flex;
-  gap:8px;
-  margin:12px 0;
-}
-.presets button{
-  flex:1;
-  padding:10px;
-  background:#0a0f19;
-  border:1px solid #1a2340;
-  color:#fff;
-  border-radius:12px;
-  cursor:pointer;
-}
+    /* ---------- MATCH LIST ---------- */
+    .match{
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(28,44,70,.68), rgba(18,30,49,.78));
+      border:1px solid rgba(255,255,255,.07);
+      padding:14px;
+      margin-bottom:14px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.40);
+    }
+    .match-head{
+      display:flex; justify-content:space-between; gap:12px;
+      align-items:flex-start;
+      margin-bottom:12px;
+    }
+    .league{
+      font-weight:1000;
+      letter-spacing:.14em;
+      font-size:11px;
+      color:rgba(48,198,255,.95);
+      margin-bottom:4px;
+    }
+    .fixture{
+      font-weight:1000;
+      font-size:18px;
+      margin:0;
+    }
+    .time{
+      color:rgba(255,255,255,.65);
+      font-weight:800;
+      white-space:nowrap;
+      margin-top:14px;
+    }
 
-.types{
-  display:flex;
-  gap:12px;
-}
-.types button{
-  flex:1;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #1a2340;
-  background:#0a0f19;
-  color:#fff;
-}
-.types .active{outline:2px solid var(--accent)}
+    .odds-row{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:10px;
+    }
+    .odd-btn{
+      width:100%;
+      cursor:pointer;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(12,18,28,.9), rgba(8,12,18,.94));
+      color:#fff;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    .odd-btn:active{transform: translateY(1px);}
+    .odd-btn .label{
+      font-weight:1000;
+      letter-spacing:.18em;
+      font-size:12px;
+      opacity:.80;
+    }
+    .odd-btn .price{
+      font-weight:1100;
+      font-size:16px;
+    }
+    .odd-btn.selected{
+      border-color: rgba(110,120,255,.55);
+      background: linear-gradient(180deg, rgba(62,86,255,.28), rgba(20,26,46,.85));
+      box-shadow: 0 0 0 2px rgba(110,120,255,.20);
+    }
 
-.place{
-  margin-top:12px;
-  width:100%;
-  padding:16px;
-  background:var(--green);
-  border:none;
-  border-radius:14px;
-  font-size:18px;
-  cursor:pointer;
-}
+    /* ---------- MY BETS ---------- */
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px;
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(24,38,61,.70), rgba(16,26,42,.82));
+      border:1px solid rgba(255,255,255,.07);
+      margin-bottom:12px;
+    }
+    .row h4{
+      margin:0 0 4px;
+      font-size:14px;
+      font-weight:1000;
+    }
+    .row p{
+      margin:0;
+      color:rgba(255,255,255,.70);
+      font-weight:750;
+      font-size:12px;
+    }
+    .pill{
+      padding:7px 10px;
+      border-radius:999px;
+      font-weight:1000;
+      font-size:11px;
+      letter-spacing:.12em;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      white-space:nowrap;
+      margin-top:2px;
+    }
+    .pill.live{color:#bfefff; border-color:rgba(48,198,255,.30); background:rgba(48,198,255,.10)}
+    .pill.won{color:#bfffe6; border-color:rgba(40,224,141,.30); background:rgba(40,224,141,.10)}
+    .pill.lost{color:#ffd0d7; border-color:rgba(255,77,102,.30); background:rgba(255,77,102,.10)}
 
-.remove{
-  margin-top:8px;
-  width:100%;
-  padding:14px;
-  background:#1a2236;
-  border:none;
-  color:#fff;
-  border-radius:14px;
-}
+    /* ---------- LEADERBOARD ---------- */
+    .lb-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:14px;
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(24,38,61,.70), rgba(16,26,42,.82));
+      border:1px solid rgba(255,255,255,.07);
+      margin-bottom:12px;
+    }
+    .lb-left strong{display:block; font-weight:1000; font-size:14px;}
+    .lb-left span{display:block; margin-top:3px; color:rgba(255,255,255,.70); font-weight:800; font-size:12px;}
+    .rank{
+      min-width:42px;
+      text-align:center;
+      padding:9px 10px;
+      border-radius:999px;
+      font-weight:1100;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+    }
 
-/* MOBILE OPEN BAR */
-.mobile-open{
-  display:none;
-}
-@media(max-width:900px){
-  .mobile-open{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    background:#0b111b;
-    padding:12px 18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:998;
-  }
-}
-</style>
+    /* ---------- DESKTOP BETSLIP ---------- */
+    .betslip{
+      position:sticky;
+      top: 82px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(22,36,58,.72), rgba(12,18,28,.92));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .betslip-head{
+      padding:14px 14px 10px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .betslip-head .title{
+      font-weight:1100;
+      letter-spacing:.10em;
+      font-size:12px;
+      opacity:.92;
+    }
+    .betslip-head .count{
+      font-weight:1000;
+      letter-spacing:.14em;
+      font-size:11px;
+      opacity:.72;
+    }
+    .betslip-body{padding:0 14px 14px;}
+    .helper{color:rgba(255,255,255,.70); font-weight:800; font-size:13px; margin:0 0 10px;}
+    .stake-input{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:10px;
+    }
+    .stake-input .cur{
+      font-weight:1000;
+      padding:10px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .stake-input input{
+      flex:1;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.90);
+      color:#0b111b;
+      padding:11px 12px;
+      font-weight:1000;
+      outline:none;
+    }
+
+    .presets{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .preset{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      border-radius:10px;
+      padding:7px 10px;
+      font-weight:1000;
+      cursor:pointer;
+      min-width:44px;
+      text-align:center;
+    }
+    .preset.active{
+      border-color: rgba(243,180,75,.55);
+      background: rgba(243,180,75,.18);
+    }
+
+    .mode-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .mode-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:1000;
+      letter-spacing:.10em;
+      cursor:pointer;
+    }
+    .mode-btn.active{
+      background: rgba(243,180,75,.95);
+      color:#0b111b;
+      border-color: rgba(243,180,75,.55);
+    }
+
+    .kv{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .kv .box{
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      padding:10px 10px;
+      font-weight:900;
+      color:rgba(255,255,255,.78);
+      letter-spacing:.12em;
+      font-size:11px;
+    }
+    .kv .box strong{
+      display:block;
+      margin-top:6px;
+      font-size:14px;
+      letter-spacing:0;
+      color:#fff;
+    }
+
+    .actions{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .cta{
+      border:0;
+      border-radius:12px;
+      padding:11px 12px;
+      font-weight:1100;
+      letter-spacing:.10em;
+      cursor:pointer;
+    }
+    .cta.place{
+      background: linear-gradient(180deg, #2ae79b, #15c77f);
+      color:#062114;
+      box-shadow: 0 14px 35px rgba(40,224,141,.22);
+    }
+    .cta.clear{
+      background: rgba(255,255,255,.08);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    /* ---------- SECTION SWITCHING ---------- */
+    .section{display:none;}
+    .section.active{display:block;}
+
+    /* ---------- MOBILE LAYOUT ---------- */
+    @media (max-width: 980px){
+      .content{grid-template-columns:1fr;}
+      .betslip{display:none;} /* replaced by bottom sheet */
+      .h1{font-size:42px;}
+    }
+    @media (max-width: 520px){
+      .wrap{padding: 16px 12px 160px;}
+      .h1{font-size:42px;}
+      .sub{font-size:14px;}
+      .tabs{gap:18px;}
+      .live-banner{padding:12px 12px;}
+      .banner-title{font-size:16px;}
+      .banner-right .prize{font-size:18px;}
+      .odds-row{grid-template-columns:1fr; gap:10px;}
+      .odd-btn{padding:14px 14px;}
+      .fixture{font-size:18px;}
+    }
+
+    /* ---------- MOBILE BETSLIP BOTTOM SHEET ---------- */
+    .sheet-wrap{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index:90;
+      display:none;
+      pointer-events:none;
+    }
+    .sheet{
+      margin: 0 auto;
+      width: min(980px, 100%);
+      pointer-events:auto;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      border-bottom:0;
+      box-shadow: 0 -18px 55px rgba(0,0,0,.70);
+      /* IMPORTANT: solid (not transparent) */
+      background: linear-gradient(180deg, rgba(10,14,22,1), rgba(8,12,18,1));
+      overflow:hidden;
+      transform: translateY(calc(100% - var(--peek, 74px)));
+      transition: transform .22s ease;
+    }
+    .sheet.open{transform: translateY(0);}
+    .sheet-bar{
+      height: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .grab{
+      width:46px; height:4px;
+      border-radius:999px;
+      background: rgba(255,255,255,.25);
+    }
+    .sheet-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 12px 10px;
+      background: rgba(255,255,255,.03);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .sheet-head .left{
+      display:flex; align-items:center; gap:10px;
+      min-width:0;
+    }
+    .sheet-title{
+      font-weight:1100;
+      letter-spacing:.14em;
+      font-size:12px;
+      opacity:.92;
+      white-space:nowrap;
+    }
+    .sheet-sub{
+      font-weight:1000;
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      white-space:nowrap;
+    }
+    .sheet-head .right{
+      display:flex; gap:10px; align-items:center;
+      white-space:nowrap;
+    }
+    .mini-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:1000;
+      letter-spacing:.12em;
+      cursor:pointer;
+    }
+    .mini-btn.primary{
+      background: rgba(255,255,255,.10);
+    }
+
+    .sheet-body{
+      padding: 12px 12px 16px;
+    }
+
+    /* overlay that locks page when sheet open (optional, but prevents "can’t scroll matches" bugs) */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(2px);
+      z-index:80;
+      display:none;
+    }
+    .overlay.show{display:block;}
+
+    /* show bottom sheet only on mobile/tablet */
+    @media (max-width: 980px){
+      .sheet-wrap{display:block;}
+    }
+
+    /* keep content accessible above peek bar */
+    .pad-for-sheet{
+      padding-bottom: 110px;
+    }
+
+    /* small utilities */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-pill" id="logoutBtn" type="button">LOGOUT</button>
+    </div>
 
-<div class="header">
-  <button class="back">Back</button>
-  <div class="cards">
-    <div class="card">A♠</div>
-    <div class="card">J♥</div>
+    <div class="topbar-center">
+      <a class="bj-link" href="index.html" aria-label="Go to Blackjack Tournaments">
+        <span class="card-icons" aria-hidden="true">
+          <span class="mini-card spade" aria-hidden="true">
+            <span class="rank">A</span><span class="suit">♠</span>
+          </span>
+          <span class="mini-card heart" aria-hidden="true">
+            <span class="rank">J</span><span class="suit">♥</span>
+          </span>
+        </span>
+        <span class="topbar-title">BLACKJACK TOURNAMENTS</span>
+      </a>
+    </div>
+
+    <div style="width:84px;"></div>
+  </header>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="h1">
+          <span class="sports">Sports</span> <span class="betting">Betting</span>
+        </h1>
+        <div class="sub">Tournament — Simple Sports Test</div>
+
+        <div class="live-banner" role="region" aria-label="Tournament summary">
+          <div class="banner-left">
+            <span class="banner-kicker">LIVE TOURNAMENT</span>
+            <span class="banner-title">Simple Sports Test</span>
+          </div>
+          <div class="banner-right">
+            <small>PRIZE</small>
+            <span class="prize">£7,400</span>
+          </div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Tournament navigation">
+          <button class="tab active" type="button" data-tab="live" role="tab" aria-selected="true">LIVE BETTING</button>
+          <button class="tab" type="button" data-tab="bets" role="tab" aria-selected="false">MY BETS</button>
+          <button class="tab" type="button" data-tab="lb" role="tab" aria-selected="false">LEADERBOARD</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <div class="panel pad-for-sheet">
+        <div class="panel-inner">
+          <!-- LIVE BETTING -->
+          <div class="section active" id="tab-live" role="tabpanel">
+            <h3 class="panel-title">LIVE MATCHES</h3>
+
+            <div class="match" data-match="ars-che" data-league="Premier League" data-fixture="Arsenal v Chelsea" data-when="Today 19:45">
+              <div class="match-head">
+                <div>
+                  <div class="league">PREMIER LEAGUE</div>
+                  <p class="fixture">Arsenal v Chelsea</p>
+                </div>
+                <div class="time">Today 19:45</div>
+              </div>
+              <div class="odds-row">
+                <button class="odd-btn" type="button" data-pick="HOME" data-odds="2.10">
+                  <span class="label">HOME</span><span class="price">2.10</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="DRAW" data-odds="3.40">
+                  <span class="label">DRAW</span><span class="price">3.40</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="AWAY" data-odds="3.05">
+                  <span class="label">AWAY</span><span class="price">3.05</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="match" data-match="lak-cel" data-league="NBA" data-fixture="Lakers v Celtics" data-when="Today 20:30">
+              <div class="match-head">
+                <div>
+                  <div class="league">NBA</div>
+                  <p class="fixture">Lakers v Celtics</p>
+                </div>
+                <div class="time">Today 20:30</div>
+              </div>
+              <div class="odds-row">
+                <button class="odd-btn" type="button" data-pick="LAKERS" data-odds="1.92">
+                  <span class="label">LAKERS</span><span class="price">1.92</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="SPREAD" data-odds="1.87">
+                  <span class="label">SPREAD</span><span class="price">1.87</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="CELTICS" data-odds="2.05">
+                  <span class="label">CELTICS</span><span class="price">2.05</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="match" data-match="djo-alc" data-league="ATP" data-fixture="Djokovic v Alcaraz" data-when="Tomorrow 14:00">
+              <div class="match-head">
+                <div>
+                  <div class="league">ATP</div>
+                  <p class="fixture">Djokovic v Alcaraz</p>
+                </div>
+                <div class="time">Tomorrow 14:00</div>
+              </div>
+              <div class="odds-row">
+                <button class="odd-btn" type="button" data-pick="DJOKOVIC" data-odds="2.35">
+                  <span class="label">DJOKOVIC</span><span class="price">2.35</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="SETS O2.5" data-odds="1.78">
+                  <span class="label">SETS O2.5</span><span class="price">1.78</span>
+                </button>
+                <button class="odd-btn" type="button" data-pick="ALCARAZ" data-odds="1.62">
+                  <span class="label">ALCARAZ</span><span class="price">1.62</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MY BETS -->
+          <div class="section" id="tab-bets" role="tabpanel">
+            <h3 class="panel-title">MY BETS</h3>
+
+            <div class="row">
+              <div>
+                <h4>Arsenal v Chelsea — HOME</h4>
+                <p>Stake £25 • Odds 2.10 • Potential £52.50</p>
+              </div>
+              <span class="pill live">LIVE</span>
+            </div>
+
+            <div class="row">
+              <div>
+                <h4>Lakers v Celtics — LAKERS</h4>
+                <p>Stake £10 • Odds 1.92 • Potential £19.20</p>
+              </div>
+              <span class="pill won">WON</span>
+            </div>
+
+            <div class="row">
+              <div>
+                <h4>Djokovic v Alcaraz — ALCARAZ</h4>
+                <p>Stake £50 • Odds 1.62 • Potential £81.00</p>
+              </div>
+              <span class="pill lost">LOST</span>
+            </div>
+          </div>
+
+          <!-- LEADERBOARD -->
+          <div class="section" id="tab-lb" role="tabpanel">
+            <h3 class="panel-title">LEADERBOARD</h3>
+
+            <div class="lb-row">
+              <div class="lb-left">
+                <strong>JR</strong>
+                <span>Return £7,112 • Bets 14</span>
+              </div>
+              <div class="rank">#1</div>
+            </div>
+
+            <div class="lb-row">
+              <div class="lb-left">
+                <strong>Player_221</strong>
+                <span>Return £6,980 • Bets 13</span>
+              </div>
+              <div class="rank">#2</div>
+            </div>
+
+            <div class="lb-row">
+              <div class="lb-left">
+                <strong>OddyOne</strong>
+                <span>Return £6,540 • Bets 12</span>
+              </div>
+              <div class="rank">#3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP BETSLIP -->
+      <aside class="betslip" aria-label="Bet slip (desktop)">
+        <div class="betslip-head">
+          <div class="title">BET SLIP</div>
+          <div class="count"><span id="deskSelCount">0</span> SELECTION</div>
+        </div>
+        <div class="betslip-body">
+          <p class="helper" id="deskHelper">Select odds to add a bet.</p>
+
+          <div class="stake-input">
+            <div class="cur">£</div>
+            <input id="deskStake" inputmode="decimal" type="number" min="0" step="1" value="10" aria-label="Stake amount" />
+          </div>
+
+          <div class="presets" id="deskPresets" aria-label="Stake presets">
+            <button class="preset" type="button" data-val="5">5</button>
+            <button class="preset active" type="button" data-val="10">10</button>
+            <button class="preset" type="button" data-val="25">25</button>
+            <button class="preset" type="button" data-val="50">50</button>
+            <button class="preset" type="button" data-val="100">100</button>
+          </div>
+
+          <div class="mode-row" aria-label="Bet type">
+            <button class="mode-btn active" type="button" data-mode="STRAIGHT">STRAIGHT</button>
+            <button class="mode-btn" type="button" data-mode="PARLAY">PARLAY</button>
+          </div>
+
+          <div class="kv">
+            <div class="box">ODDS<strong id="deskOdds">—</strong></div>
+            <div class="box">POTENTIAL<strong id="deskPotential">—</strong></div>
+          </div>
+
+          <div class="actions">
+            <button class="cta place" id="deskPlace" type="button">PLACE BET</button>
+            <button class="cta clear" id="deskClear" type="button">CLEAR</button>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
-  <h1>BLACKJACK TOURNAMENTS</h1>
-</div>
 
-<div class="wrapper">
+  <!-- MOBILE OVERLAY + BOTTOM SHEET -->
+  <div class="overlay" id="overlay"></div>
 
-  <div>
-    <div class="title">
-      <h2>Simple Sports Test</h2>
-      <div class="prize">Prize: £7,418.29</div>
-    </div>
+  <div class="sheet-wrap" aria-label="Bet slip (mobile)">
+    <div class="sheet" id="sheet" style="--peek: 78px;">
+      <div class="sheet-bar"><div class="grab"></div></div>
 
-    <div class="tabs">
-      <div class="tab active" data-tab="live">Live Betting</div>
-      <div class="tab" data-tab="bets">My Bets</div>
-      <div class="tab" data-tab="board">Leaderboard</div>
-    </div>
+      <div class="sheet-head">
+        <div class="left">
+          <div class="sheet-title">BET SLIP</div>
+          <div class="sheet-sub"><span id="mobSelCount">0</span> SELECTION</div>
+        </div>
+        <div class="right">
+          <button class="mini-btn primary" id="sheetToggle" type="button">OPEN</button>
+          <button class="mini-btn" id="sheetClose" type="button">CLOSE</button>
+        </div>
+      </div>
 
-    <div class="section active" id="live">
-      <div class="match">
-        <h3>Man Utd vs Man City</h3>
-        <div class="odds">
-          <div class="odd" onclick="selectOdd(this)"> <span>HOME</span><strong>3.7</strong></div>
-          <div class="odd" onclick="selectOdd(this)"> <span>DRAW</span><strong>4</strong></div>
-          <div class="odd" onclick="selectOdd(this)"> <span>AWAY</span><strong>2.05</strong></div>
+      <div class="sheet-body">
+        <p class="helper" id="mobHelper">Select odds to add a bet.</p>
+
+        <div class="stake-input">
+          <div class="cur">£</div>
+          <input id="mobStake" inputmode="decimal" type="number" min="0" step="1" value="10" aria-label="Stake amount" />
+        </div>
+
+        <!-- stake presets (ALWAYS visible on mobile) -->
+        <div class="presets" id="mobPresets" aria-label="Stake presets">
+          <button class="preset" type="button" data-val="5">5</button>
+          <button class="preset active" type="button" data-val="10">10</button>
+          <button class="preset" type="button" data-val="25">25</button>
+          <button class="preset" type="button" data-val="50">50</button>
+          <button class="preset" type="button" data-val="100">100</button>
+        </div>
+
+        <div class="mode-row" aria-label="Bet type">
+          <button class="mode-btn active" type="button" data-mode="STRAIGHT" data-mobile="1">STRAIGHT</button>
+          <button class="mode-btn" type="button" data-mode="PARLAY" data-mobile="1">PARLAY</button>
+        </div>
+
+        <div class="kv">
+          <div class="box">ODDS<strong id="mobOdds">—</strong></div>
+          <div class="box">POTENTIAL<strong id="mobPotential">—</strong></div>
+        </div>
+
+        <div class="actions">
+          <button class="cta place" id="mobPlace" type="button">PLACE BET</button>
+          <button class="cta clear" id="mobClear" type="button">CLEAR</button>
         </div>
       </div>
     </div>
-
-    <div class="section" id="bets">
-      <div class="match">My Bets placeholder (wired)</div>
-    </div>
-
-    <div class="section" id="board">
-      <div class="match">
-        <strong>Players:</strong> 248<br>
-        <strong>1st:</strong> £7,400<br>
-        <strong>2nd:</strong> £6,200<br>
-        <strong>3rd:</strong> £5,900
-      </div>
-    </div>
   </div>
 
-  <aside class="betslip" id="betslip">
-    <header>
-      <strong>Bet Slip</strong>
-      <button class="close" onclick="closeSlip()">✕</button>
-    </header>
+  <script>
+    /***********************
+     * STATE
+     ***********************/
+    const state = {
+      mode: "STRAIGHT",     // STRAIGHT | PARLAY
+      selection: null,      // { matchKey, fixture, pick, odds }
+      stake: 10
+    };
 
-    <div class="stake-controls">
-      <button onclick="changeStake(-5)">−</button>
-      <div class="stake" id="stake">50</div>
-      <button onclick="changeStake(5)">+</button>
-    </div>
+    /***********************
+     * TAB SWITCHING
+     ***********************/
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const sections = {
+      live: document.getElementById("tab-live"),
+      bets: document.getElementById("tab-bets"),
+      lb:   document.getElementById("tab-lb"),
+    };
 
-    <div class="presets">
-      <button onclick="setStake(5)">5</button>
-      <button onclick="setStake(10)">10</button>
-      <button onclick="setStake(25)">25</button>
-      <button onclick="setStake(50)">50</button>
-      <button onclick="setStake(100)">100</button>
-    </div>
+    function setActiveTab(key){
+      tabs.forEach(t=>{
+        const is = t.dataset.tab === key;
+        t.classList.toggle("active", is);
+        t.setAttribute("aria-selected", is ? "true" : "false");
+      });
+      Object.entries(sections).forEach(([k, el])=>{
+        el.classList.toggle("active", k === key);
+      });
 
-    <div class="types">
-      <button class="active">Straight</button>
-      <button>Parlay</button>
-    </div>
+      // If mobile sheet is open while navigating, keep it open only as "peek" unless user opened it explicitly.
+      // (This avoids covering Leaderboard / My Bets on mobile.)
+      collapseSheet();
+      updateSheetButtons();
+    }
 
-    <button class="place">Place Bet</button>
-    <button class="remove" onclick="closeSlip()">Remove</button>
-  </aside>
+    tabs.forEach(t=>t.addEventListener("click", ()=>setActiveTab(t.dataset.tab)));
 
-</div>
+    /***********************
+     * BETSLIP: common helpers
+     ***********************/
+    const fmtMoney = (n) => {
+      if (!isFinite(n)) return "—";
+      return "£" + (Math.round(n * 100) / 100).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:2});
+    };
+    const fmtOdds = (n) => {
+      if (!isFinite(n)) return "—";
+      return (Math.round(n * 100) / 100).toFixed(2);
+    };
 
-<div class="mobile-open" onclick="openSlip()">
-  <span>BET SLIP</span>
-  <strong>OPEN</strong>
-</div>
+    function calcPotential(){
+      if (!state.selection) return NaN;
+      const odds = Number(state.selection.odds);
+      const stake = Number(state.stake);
+      if (!isFinite(odds) || !isFinite(stake)) return NaN;
 
-<script>
-let stake = 50;
-const stakeEl = document.getElementById('stake');
-const slip = document.getElementById('betslip');
+      // Simple placeholder math:
+      // Straight: stake * odds
+      // Parlay:   stake * odds (still, because we only store 1 selection in this demo)
+      return stake * odds;
+    }
 
-function setStake(v){stake=v;stakeEl.innerText=v}
-function changeStake(v){stake=Math.max(0,stake+v);stakeEl.innerText=stake}
+    function setSelection(matchEl, oddBtn){
+      // clear selected class across all odds buttons
+      document.querySelectorAll(".odd-btn.selected").forEach(b=>b.classList.remove("selected"));
+      oddBtn.classList.add("selected");
 
-function openSlip(){slip.classList.add('open')}
-function closeSlip(){slip.classList.remove('open')}
+      const fixture = matchEl.dataset.fixture || "Match";
+      const matchKey = matchEl.dataset.match || "m";
+      const pick = oddBtn.dataset.pick;
+      const odds = oddBtn.dataset.odds;
 
-function selectOdd(el){
-  document.querySelectorAll('.odd').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  openSlip();
-}
+      state.selection = { matchKey, fixture, pick, odds };
 
-document.querySelectorAll('.tab').forEach(t=>{
-  t.onclick=()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById(t.dataset.tab).classList.add('active');
-  }
-});
-</script>
+      // After selecting, on mobile: show sheet in PEEK mode (retreat behaviour).
+      // User can OPEN it if they want. This solves "can’t get rid of it to make another bet".
+      showSheet();      // ensure present
+      collapseSheet();  // retreat by default
+      updateSheetButtons();
 
+      renderAll();
+    }
+
+    function clearSelection(){
+      state.selection = null;
+      document.querySelectorAll(".odd-btn.selected").forEach(b=>b.classList.remove("selected"));
+      renderAll();
+    }
+
+    function placeBet(){
+      if (!state.selection){
+        alert("Select odds first.");
+        return;
+      }
+      alert(`Bet placed (demo)\n\n${state.mode}\n${state.selection.fixture} — ${state.selection.pick}\nOdds: ${state.selection.odds}\nStake: £${state.stake}\nPotential: ${fmtMoney(calcPotential())}`);
+      // Keep selection in demo, but collapse on mobile so user can keep browsing
+      collapseSheet();
+      updateSheetButtons();
+    }
+
+    /***********************
+     * WIRES: odds selection
+     ***********************/
+    document.querySelectorAll(".match").forEach(match=>{
+      match.querySelectorAll(".odd-btn").forEach(btn=>{
+        btn.addEventListener("click", ()=> setSelection(match, btn));
+      });
+    });
+
+    /***********************
+     * DESKTOP BETSLIP WIRES
+     ***********************/
+    const deskStake = document.getElementById("deskStake");
+    const deskPresets = document.getElementById("deskPresets");
+    const deskOdds = document.getElementById("deskOdds");
+    const deskPotential = document.getElementById("deskPotential");
+    const deskSelCount = document.getElementById("deskSelCount");
+    const deskHelper = document.getElementById("deskHelper");
+
+    const deskModeButtons = Array.from(document.querySelectorAll(".mode-row .mode-btn")).filter(b=>!b.dataset.mobile);
+
+    deskStake.addEventListener("input", ()=>{
+      state.stake = Number(deskStake.value || 0);
+      syncStakeToMobile();
+      renderAll();
+    });
+
+    deskPresets.addEventListener("click", (e)=>{
+      const btn = e.target.closest(".preset");
+      if(!btn) return;
+      setStakePreset(Number(btn.dataset.val || 0));
+    });
+
+    deskModeButtons.forEach(b=>{
+      b.addEventListener("click", ()=>{
+        setMode(b.dataset.mode);
+      });
+    });
+
+    document.getElementById("deskPlace").addEventListener("click", placeBet);
+    document.getElementById("deskClear").addEventListener("click", clearSelection);
+
+    /***********************
+     * MOBILE SHEET WIRES
+     ***********************/
+    const overlay = document.getElementById("overlay");
+    const sheet = document.getElementById("sheet");
+    const sheetToggle = document.getElementById("sheetToggle");
+    const sheetClose = document.getElementById("sheetClose");
+
+    const mobStake = document.getElementById("mobStake");
+    const mobPresets = document.getElementById("mobPresets");
+    const mobOdds = document.getElementById("mobOdds");
+    const mobPotential = document.getElementById("mobPotential");
+    const mobSelCount = document.getElementById("mobSelCount");
+    const mobHelper = document.getElementById("mobHelper");
+    const mobModeButtons = Array.from(document.querySelectorAll('.mode-btn[data-mobile="1"]'));
+
+    // Make sure OPEN/CLOSE work
+    function showSheet(){
+      // bottom sheet exists on mobile; keep it available
+      // pointer events already handled
+    }
+
+    function openSheet(){
+      sheet.classList.add("open");
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden"; // prevent background scroll (fixes “can’t scroll matches” issues)
+      updateSheetButtons();
+    }
+
+    function collapseSheet(){
+      sheet.classList.remove("open");
+      overlay.classList.remove("show");
+      document.body.style.overflow = ""; // restore
+      updateSheetButtons();
+    }
+
+    function updateSheetButtons(){
+      const isOpen = sheet.classList.contains("open");
+      sheetToggle.textContent = isOpen ? "OPEN" : "OPEN";
+      // Keep OPEN always available; CLOSE always collapses
+      // If you want label to become "OPEN" / "HIDE" we can, but keeping simple + consistent.
+    }
+
+    sheetToggle.addEventListener("click", ()=>{
+      // OPEN should open fully; if already open, do nothing
+      if (!sheet.classList.contains("open")) openSheet();
+      else openSheet();
+    });
+
+    sheetClose.addEventListener("click", collapseSheet);
+    overlay.addEventListener("click", collapseSheet);
+
+    // Optional: tap the grab area to toggle open/collapse quickly
+    sheet.querySelector(".sheet-bar").addEventListener("click", ()=>{
+      if (sheet.classList.contains("open")) collapseSheet();
+      else openSheet();
+    });
+
+    mobStake.addEventListener("input", ()=>{
+      state.stake = Number(mobStake.value || 0);
+      syncStakeToDesktop();
+      renderAll();
+    });
+
+    mobPresets.addEventListener("click", (e)=>{
+      const btn = e.target.closest(".preset");
+      if(!btn) return;
+      setStakePreset(Number(btn.dataset.val || 0));
+    });
+
+    mobModeButtons.forEach(b=>{
+      b.addEventListener("click", ()=>{
+        setMode(b.dataset.mode);
+      });
+    });
+
+    document.getElementById("mobPlace").addEventListener("click", placeBet);
+    document.getElementById("mobClear").addEventListener("click", clearSelection);
+
+    /***********************
+     * Mode / Stake helpers
+     ***********************/
+    function setMode(mode){
+      state.mode = mode;
+      // desktop buttons
+      deskModeButtons.forEach(b=>b.classList.toggle("active", b.dataset.mode === mode));
+      // mobile buttons
+      mobModeButtons.forEach(b=>b.classList.toggle("active", b.dataset.mode === mode));
+      renderAll();
+    }
+
+    function setStakePreset(val){
+      state.stake = val;
+      deskStake.value = val;
+      mobStake.value = val;
+
+      // activate preset buttons (both)
+      markPresetActive(deskPresets, val);
+      markPresetActive(mobPresets, val);
+
+      renderAll();
+    }
+
+    function markPresetActive(container, val){
+      Array.from(container.querySelectorAll(".preset")).forEach(p=>{
+        p.classList.toggle("active", Number(p.dataset.val) === Number(val));
+      });
+    }
+
+    function syncStakeToMobile(){
+      const val = Number(deskStake.value || 0);
+      mobStake.value = val;
+      markPresetActive(mobPresets, val);
+    }
+    function syncStakeToDesktop(){
+      const val = Number(mobStake.value || 0);
+      deskStake.value = val;
+      markPresetActive(deskPresets, val);
+    }
+
+    /***********************
+     * Render UI
+     ***********************/
+    function renderAll(){
+      const selCount = state.selection ? 1 : 0;
+
+      // helper text
+      const helper = state.selection
+        ? `${state.selection.fixture} — ${state.selection.pick} @ ${fmtOdds(Number(state.selection.odds))}`
+        : "Select odds to add a bet.";
+
+      const oddsVal = state.selection ? fmtOdds(Number(state.selection.odds)) : "—";
+      const pot = state.selection ? fmtMoney(calcPotential()) : "—";
+
+      // desktop
+      deskSelCount.textContent = selCount;
+      deskHelper.textContent = helper;
+      deskOdds.textContent = oddsVal;
+      deskPotential.textContent = pot;
+
+      // mobile
+      mobSelCount.textContent = selCount;
+      mobHelper.textContent = helper;
+      mobOdds.textContent = oddsVal;
+      mobPotential.textContent = pot;
+
+      // If no selection, keep sheet collapsed so page is always browsable
+      if (!state.selection){
+        collapseSheet();
+      }
+    }
+
+    /***********************
+     * Init
+     ***********************/
+    // default mode & stake
+    setMode("STRAIGHT");
+    setStakePreset(10);
+
+    // keep sheet present & collapsed by default
+    collapseSheet();
+    renderAll();
+
+    // logout button (placeholder)
+    document.getElementById("logoutBtn").addEventListener("click", ()=>{
+      // in your real app: clear session then redirect
+      window.location.href = "sports.html";
+    });
+  </script>
 </body>
 </html>
-
 
